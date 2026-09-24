@@ -1,93 +1,173 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>About — Gabriel Fontaine</title>
-  <meta name="description" content="About Gabriel Fontaine — product leader for identity, fraud, and compliance at Equifax and LexisNexis.">
-  <link rel="stylesheet" href="css/styles.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About — Gabriel Fontaine</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        fontFamily: { serif: ['Playfair Display','serif'], sans: ['Inter','sans-serif'] },
+        colors: {
+          ink: { 950:'#0A0E27', 900:'#10163A', 800:'#1B2250', 700:'#2A3268' },
+          lavender: { 50:'#F3F4FC', 100:'#E9EBFA', 200:'#DBDFF6' },
+          accent: { 400:'#7C7FF2', 500:'#5B5FEF', 600:'#4338CA' }
+        }
+      }
+    }
+  }
+</script>
 </head>
-<body>
+<body class="bg-lavender-100 text-ink-900 font-sans antialiased selection:bg-accent-500 selection:text-white">
 
-<header class="site-header">
-  <div class="header-inner">
-    <a href="index.html" class="logo">Gabriel Fontaine</a>
-    <nav class="nav-desktop"><a href="index.html">Home</a><a href="executive.html">Executive</a><a href="fractional.html">Fractional</a><a href="practice-areas.html">Practice Areas</a><a href="about.html" class="active">About</a><a href="contact.html">Contact</a></nav>
-    <a href="contact.html" class="btn btn-primary header-cta">Schedule a Conversation</a>
-    <button id="menu-btn" class="menu-btn" type="button" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
-  </div>
-  <div id="mobile-drawer" class="mobile-drawer"><nav><a href="index.html">Home</a><a href="executive.html">Executive</a><a href="fractional.html">Fractional</a><a href="practice-areas.html">Practice Areas</a><a href="about.html" class="active">About</a><a href="contact.html">Contact</a></nav><a href="contact.html" class="btn btn-primary">Schedule a Conversation</a></div>
-</header>
+  <!-- Header -->
+  <header class="sticky top-0 z-50 bg-lavender-100/90 backdrop-blur-md border-b border-ink-900/10">
+    <div class="max-w-6xl mx-auto px-6 h-18 sm:h-20 flex items-center justify-between py-4">
+      <a href="index.html" class="font-serif italic text-xl font-semibold text-accent-600">Gabriel Fontaine</a>
+      <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-ink-900/70">
+        <a href="index.html" class="hover:text-ink-900 transition-colors">Home</a>
+        <a href="about.html" class="text-accent-600 font-semibold">About</a>
+        <a href="services.html" class="hover:text-ink-900 transition-colors">Services</a>
+        <a href="expertise.html" class="hover:text-ink-900 transition-colors">Expertise</a>
+        <a href="index.html#signal" class="hover:text-ink-900 transition-colors">Signal</a>
+      </nav>
+      <a href="index.html#contact" class="text-xs font-semibold uppercase tracking-wider bg-ink-900 text-white px-5 py-2.5 rounded-full hover:bg-accent-600 transition-all">Book a Call</a>
+    </div>
+  </header>
 
-<main>
-  <section class="page-hero">
-    <div class="container" style="display:grid;gap:2rem;align-items:center;">
-      <div style="display:flex;flex-wrap:wrap;gap:2.5rem;align-items:flex-start;">
-        <img src="assets/gabriel-headshot.png" alt="Gabriel Fontaine" class="about-photo" width="220" height="220">
-        <div style="flex:1;min-width:260px;">
-          <span class="eyebrow">About</span>
-          <h1 class="serif mb-0">Gabriel Fontaine</h1>
-          <p class="lead" style="margin-top:0.75rem;">Product Management Leader · Identity, Fraud & Compliance</p>
-          <p class="text-sm text-muted">Alpharetta, GA · Bilingual English/Spanish · <a href="https://linkedin.com/in/gabrielfontaine1" target="_blank" rel="noopener">LinkedIn</a></p>
+  <main>
+
+    <!-- Page hero -->
+    <section class="max-w-6xl mx-auto px-6 pt-20 pb-16 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+      <div class="lg:col-span-7 space-y-6">
+        <span class="text-xs font-bold uppercase tracking-widest text-accent-600">About</span>
+        <h1 class="font-serif text-4xl sm:text-5xl leading-[1.15] font-semibold text-ink-950">
+          Product leadership built on pattern recognition, not guesswork.
+        </h1>
+        <p class="text-lg text-ink-900/70 leading-relaxed max-w-xl">
+          For 11+ of his 18+ years in product, Gabriel has worked almost entirely inside identity, fraud, and compliance data — first at LexisNexis Risk Solutions, then at Equifax. The pattern across both: turn a regulatory requirement into a funded, shippable product, not just a defensible one. This practice exists so a company can get that judgment in the room without committing to a full-time executive hire.
+        </p>
+      </div>
+      <div class="lg:col-span-5">
+        <div class="max-w-[300px] mx-auto lg:mx-0 lg:ml-auto">
+          <div class="aspect-[4/5] rounded-[2rem] overflow-hidden relative shadow-xl ring-1 ring-ink-900/10">
+            <img src="gabe-headshot.png" alt="Gabriel Fontaine" class="w-full h-full object-cover" style="image-rendering: -webkit-optimize-contrast;">
+          </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <section>
-    <div class="container" style="max-width:720px;">
-      <p>I'm a senior product management executive with 18+ years of experience, the last 11+ spent inside the identity, fraud, and compliance data industry at LexisNexis Risk Solutions and Equifax.</p>
-      <p>I operate at the intersection of three things that don't often coexist in one person: deep regulatory fluency (FCRA, GLBA, KYC, KYB, AML), hands-on technical range (I build prototypes, test vendor SDKs, and integrate APIs with GenAI tools), and large-scale organizational leadership (I've run a 45-person cross-functional Agile organization from funding ask through shipped product).</p>
-      <p>I have managed and built product teams from scratch under my direct supervision — Product Managers, UI/UX, Rules Editors, and Business Analysts — while coaching Engineering, Data Science, and Data Stewards and working closely with Legal, Compliance, Privacy, Fraud, Marketing, and Finance on cost containment, margin improvement, and pricing strategy.</p>
-      <p>My consistent pattern is turning regulatory constraints into monetizable, API-delivered products — CIP, KYC, and KYB requirements are the starting spec, not the ceiling. Every compliance product I've shipped carries pricing, go-to-market, and a revenue or pipeline number attached.</p>
-    </div>
-  </section>
-
-  <section class="band-alt">
-    <div class="container">
-      <div class="section-head"><h2>How I Work</h2><p>Patterns that show up across every role — not theory, but how I actually operate.</p></div>
-      <div class="grid-3">
-        <div class="card"><h3>Hands-on with technology</h3><p class="text-sm text-muted">I test ThreatMetrix, Socure, Prove, and Kount myself before recommending them — including local bot-detection test environments.</p></div>
-        <div class="card"><h3>Data quality as product risk</h3><p class="text-sm text-muted">Identity resolution at scale breaks when source discipline fails. I bring that scar tissue into every data architecture conversation.</p></div>
-        <div class="card"><h3>Detection vs actionability</h3><p class="text-sm text-muted">Strong fraud signals aren't always legally actionable under FCRA. I know what the data says — and what you're allowed to do about it.</p></div>
-        <div class="card"><h3>Funding and P&L thinking</h3><p class="text-sm text-muted">$6M LexisNexis funding and $8M+ Equifax pipeline both started as authored executive pitches — not roadmaps alone.</p></div>
-        <div class="card"><h3>Regulatory-to-revenue</h3><p class="text-sm text-muted">Compliance products designed to be sold, not just defensible — Purpose View governance made compliance easier to commercialize.</p></div>
-        <div class="card"><h3>GenAI in the workflow</h3><p class="text-sm text-muted">Daily user of Gemini, NotebookLM, and Claude for prototyping and data synthesis — operational experience, not strategy decks.</p></div>
-      </div>
-    </div>
-  </section>
-
-  <section class="compact">
-    <div class="container">
-      <div class="section-head"><h2>Credentials</h2></div>
-      <div class="grid-2">
-        <div class="card">
-          <h3>Education</h3>
-          <p class="text-sm text-muted mb-0">MBA, International Business — Lynn University<br>BS, Electronic Engineering Technology — ITT Technical Institute</p>
+    <!-- Why fractional -->
+    <section class="bg-white border-y border-ink-900/10">
+      <div class="max-w-6xl mx-auto px-6 py-24 grid grid-cols-1 lg:grid-cols-2 gap-14">
+        <div class="space-y-5">
+          <span class="text-xs font-bold uppercase tracking-widest text-accent-600">The Belief</span>
+          <h2 class="font-serif text-3xl text-ink-950">Most product problems aren't a headcount problem.</h2>
+          <p class="text-ink-900/70 leading-relaxed">They're a judgment problem — no one senior enough in the room to make the call, own the tradeoff, or say no to the wrong roadmap item. A full-time VP hire takes months and a six-figure bet. Fractional leadership gets that judgment in the room in weeks, scoped to exactly what's needed.</p>
         </div>
-        <div class="card">
-          <h3>Certifications</h3>
-          <p class="text-sm text-muted mb-0">CSPO (Scrum Alliance) · Pragmatic Institute PMC Level III · Requirements & Use Case Modeling (Armstrong Process Group) · UML (Enterprise Architect)</p>
+        <div class="space-y-5">
+          <span class="text-xs font-bold uppercase tracking-widest text-accent-600">The Practice</span>
+          <h2 class="font-serif text-3xl text-ink-950">Embedded, not advisory-from-a-distance.</h2>
+          <p class="text-ink-900/70 leading-relaxed">This isn't a slide deck handed off at the end of a sprint. At LexisNexis and Equifax, that meant sitting in standups, reviewing real specs, and owning the roadmap the same way a full-time leader would — the same standard a fractional engagement runs on.</p>
         </div>
       </div>
-      <p class="text-sm text-muted mt-2">Earlier career includes NTT (SaaS/hosting product lines) and consumer-goods manufacturing operations in China — relevant for supply chain and international vendor contexts, not a headline credential.</p>
-    </div>
-  </section>
+    </section>
 
-  <section class="compact">
-    <div class="container text-center">
-      <a href="executive.html" class="btn btn-secondary">Executive Track Record</a>
-      <a href="contact.html" class="btn btn-primary" style="margin-left:0.5rem;">Get in Touch</a>
-    </div>
-  </section>
-</main>
+    <!-- Values grid -->
+    <section class="max-w-6xl mx-auto px-6 py-24">
+      <div class="max-w-2xl mb-14">
+        <span class="text-xs font-bold uppercase tracking-widest text-accent-600">Principles</span>
+        <h2 class="font-serif text-3xl sm:text-4xl mt-3 text-ink-950">How every engagement runs.</h2>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+        <div class="flex gap-4">
+          <div class="w-10 h-10 rounded-xl bg-lavender-50 flex items-center justify-center text-accent-600 shrink-0">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="M22 4 12 14.01l-3-3"/></svg>
+          </div>
+          <div>
+            <h3 class="font-semibold text-ink-950 mb-1">Scoped, not open-ended</h3>
+            <p class="text-sm text-ink-900/60 leading-relaxed">Every engagement starts with a written scope and a defined end state — the same discipline behind a $6M funded platform roadmap — so success is never ambiguous.</p>
+          </div>
+        </div>
+        <div class="flex gap-4">
+          <div class="w-10 h-10 rounded-xl bg-lavender-50 flex items-center justify-center text-accent-600 shrink-0">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24"><path d="M2 12h20M12 2v20"/></svg>
+          </div>
+          <div>
+            <h3 class="font-semibold text-ink-950 mb-1">Decisions made in the open</h3>
+            <p class="text-sm text-ink-900/60 leading-relaxed">Roadmap tradeoffs and their reasoning get documented where the team can see and challenge them — the same governance instinct behind the Purpose View data framework built at Equifax.</p>
+          </div>
+        </div>
+        <div class="flex gap-4">
+          <div class="w-10 h-10 rounded-xl bg-lavender-50 flex items-center justify-center text-accent-600 shrink-0">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          </div>
+          <div>
+            <h3 class="font-semibold text-ink-950 mb-1">Built to leave</h3>
+            <p class="text-sm text-ink-900/60 leading-relaxed">Every engagement ends with a documented playbook and a team that can run it without a fractional leader in the room.</p>
+          </div>
+        </div>
+        <div class="flex gap-4">
+          <div class="w-10 h-10 rounded-xl bg-lavender-50 flex items-center justify-center text-accent-600 shrink-0">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24"><path d="M12 2 2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+          </div>
+          <div>
+            <h3 class="font-semibold text-ink-950 mb-1">Right-sized, always</h3>
+            <p class="text-sm text-ink-900/60 leading-relaxed">If a fractional engagement isn't the right tool for the problem, that's the first thing Gabriel will say.</p>
+          </div>
+        </div>
+      </div>
+    </section>
 
-<footer class="site-footer">
-  <div class="footer-inner">
-    <p class="text-sm text-muted mb-0">© 2026 Gabriel Fontaine</p>
-    <div class="footer-links"><a href="contact.html">Contact</a><a href="https://linkedin.com/in/gabrielfontaine1" target="_blank" rel="noopener">LinkedIn</a></div>
-  </div>
-</footer>
-<script src="js/main.js"></script>
+    <!-- Stats band -->
+    <section class="bg-ink-900 text-white">
+      <div class="max-w-6xl mx-auto px-6 py-16 grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
+        <div tabindex="0" class="group rounded-2xl p-5 transition-colors duration-300 hover:bg-white/10 focus:bg-white/10 outline-none cursor-default">
+          <span class="font-serif text-4xl text-accent-400 block">18+</span>
+          <span class="text-xs uppercase tracking-widest text-white/50 mt-2 block">Years leading product</span>
+          <span class="block text-xs text-white/60 leading-relaxed overflow-hidden max-h-0 opacity-0 group-hover:max-h-24 group-hover:opacity-100 group-focus:max-h-24 group-focus:opacity-100 transition-all duration-300 mt-0 group-hover:mt-3">Spanning NTT, LexisNexis Risk Solutions, and Equifax — the last 11+ almost entirely in identity, fraud, and compliance.</span>
+        </div>
+        <div tabindex="0" class="group rounded-2xl p-5 transition-colors duration-300 hover:bg-white/10 focus:bg-white/10 outline-none cursor-default">
+          <span class="font-serif text-4xl text-accent-400 block">45</span>
+          <span class="text-xs uppercase tracking-widest text-white/50 mt-2 block">People led through Agile transformation</span>
+          <span class="block text-xs text-white/60 leading-relaxed overflow-hidden max-h-0 opacity-0 group-hover:max-h-24 group-hover:opacity-100 group-focus:max-h-24 group-focus:opacity-100 transition-all duration-300 mt-0 group-hover:mt-3">A cross-functional product and engineering org at LexisNexis, with direct throughput accountability for multiple years.</span>
+        </div>
+        <div tabindex="0" class="group rounded-2xl p-5 transition-colors duration-300 hover:bg-white/10 focus:bg-white/10 outline-none cursor-default">
+          <span class="font-serif text-4xl text-accent-400 block">$6M</span>
+          <span class="text-xs uppercase tracking-widest text-white/50 mt-2 block">Funding secured for a 3-year roadmap</span>
+          <span class="block text-xs text-white/60 leading-relaxed overflow-hidden max-h-0 opacity-0 group-hover:max-h-24 group-hover:opacity-100 group-focus:max-h-24 group-focus:opacity-100 transition-all duration-300 mt-0 group-hover:mt-3">Personally authored and pitched the business case for the Risk Defense Platform's 3-year evolution at LexisNexis.</span>
+        </div>
+        <div tabindex="0" class="group rounded-2xl p-5 transition-colors duration-300 hover:bg-white/10 focus:bg-white/10 outline-none cursor-default">
+          <span class="font-serif text-4xl text-accent-400 block">69%</span>
+          <span class="text-xs uppercase tracking-widest text-white/50 mt-2 block">Cloud cost cut in a live AWS→GCP migration</span>
+          <span class="block text-xs text-white/60 leading-relaxed overflow-hidden max-h-0 opacity-0 group-hover:max-h-24 group-hover:opacity-100 group-focus:max-h-24 group-focus:opacity-100 transition-all duration-300 mt-0 group-hover:mt-3">Directed the RAE & DIT suite's migration at Equifax with zero downtime, on a $4M managed budget.</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="max-w-6xl mx-auto px-6 py-24 text-center space-y-6">
+      <h2 class="font-serif text-3xl sm:text-4xl text-ink-950 max-w-2xl mx-auto">Want the fuller resume?</h2>
+      <p class="text-ink-900/60 max-w-xl mx-auto">See specific domains, tools, and 18+ years of career history on the Expertise page — or skip straight to a conversation.</p>
+      <div class="flex flex-wrap justify-center gap-4">
+        <a href="expertise.html" class="text-xs font-semibold uppercase tracking-wider bg-white border border-ink-900/15 text-ink-900 px-6 py-3.5 rounded-full hover:bg-lavender-50 transition-all">View Expertise</a>
+        <a href="index.html#contact" class="text-xs font-semibold uppercase tracking-wider bg-ink-900 text-white px-6 py-3.5 rounded-full hover:bg-accent-600 transition-all">Book a Call</a>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-ink-900 text-white/60 py-10">
+    <div class="max-w-6xl mx-auto px-6 text-xs">
+      Gabriel Fontaine — Executive product leadership, without the full-time overhead. Identity, fraud & compliance specialist, 18+ years. © 2026.
+    </div>
+  </footer>
+
 </body>
 </html>

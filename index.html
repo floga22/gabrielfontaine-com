@@ -1,186 +1,293 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Gabriel Fontaine — Identity, Fraud & Compliance Product Leadership</title>
-  <meta name="description" content="Executive product leader and fractional advisor for identity, fraud, and compliance platforms. 18+ years at Equifax and LexisNexis.">
-  <link rel="stylesheet" href="css/styles.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gabriel Fontaine — Fractional Product Leadership</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        fontFamily: { serif: ['Playfair Display','serif'], sans: ['Inter','sans-serif'] },
+        colors: {
+          ink: { 950:'#0A0E27', 900:'#10163A', 800:'#1B2250', 700:'#2A3268' },
+          lavender: { 50:'#F3F4FC', 100:'#E9EBFA', 200:'#DBDFF6' },
+          accent: { 400:'#7C7FF2', 500:'#5B5FEF', 600:'#4338CA' }
+        }
+      }
+    }
+  }
+</script>
+<style>
+  summary::-webkit-details-marker { display: none; }
+  summary { list-style: none; }
+</style>
 </head>
-<body>
+<body class="bg-lavender-100 text-ink-900 font-sans antialiased selection:bg-accent-500 selection:text-white">
 
-<header class="site-header">
-  <div class="header-inner">
-    <a href="index.html" class="logo">Gabriel Fontaine</a>
-    <nav class="nav-desktop" aria-label="Main">
-      <a href="index.html" class="active">Home</a>
-      <a href="executive.html">Executive</a>
-      <a href="fractional.html">Fractional</a>
-      <a href="practice-areas.html">Practice Areas</a>
-      <a href="about.html">About</a>
-      <a href="contact.html">Contact</a>
-    </nav>
-    <a href="contact.html" class="btn btn-primary header-cta">Schedule a Conversation</a>
-    <button id="menu-btn" class="menu-btn" type="button" aria-label="Open menu" aria-expanded="false">
-      <span></span><span></span><span></span>
-    </button>
-  </div>
-  <div id="mobile-drawer" class="mobile-drawer" aria-hidden="true">
-    <nav>
-      <a href="index.html" class="active">Home</a>
-      <a href="executive.html">Executive</a>
-      <a href="fractional.html">Fractional</a>
-      <a href="practice-areas.html">Practice Areas</a>
-      <a href="about.html">About</a>
-      <a href="contact.html">Contact</a>
-    </nav>
-    <a href="contact.html" class="btn btn-primary">Schedule a Conversation</a>
-  </div>
-</header>
+  <!-- Header -->
+  <header class="sticky top-0 z-50 bg-lavender-100/90 backdrop-blur-md border-b border-ink-900/10">
+    <div class="max-w-6xl mx-auto px-6 h-18 sm:h-20 flex items-center justify-between py-4">
+      <a href="index.html" class="font-serif italic text-xl font-semibold text-accent-600">Gabriel Fontaine</a>
+      <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-ink-900/70">
+        <a href="index.html" class="text-accent-600 font-semibold">Home</a>
+        <a href="about.html" class="hover:text-ink-900 transition-colors">About</a>
+        <a href="services.html" class="hover:text-ink-900 transition-colors">Services</a>
+        <a href="expertise.html" class="hover:text-ink-900 transition-colors">Expertise</a>
+        <a href="#signal" class="hover:text-ink-900 transition-colors">Signal</a>
+      </nav>
+      <a href="#contact" class="text-xs font-semibold uppercase tracking-wider bg-ink-900 text-white px-5 py-2.5 rounded-full hover:bg-accent-600 transition-all">Book a Call</a>
+    </div>
+  </header>
 
-<main>
-  <section class="hero">
-    <div class="container hero-grid">
-      <div>
-        <span class="eyebrow">Identity · Fraud · Compliance</span>
-        <h1 class="serif">Turning regulatory mandates into identity, fraud, and compliance products at enterprise scale.</h1>
-        <p class="lead">Executive product leader with 18+ years building regulated platforms at Equifax and LexisNexis — translating FCRA, GLBA, CIP, KYC, and AML requirements into API-driven products that drive growth and reduce risk.</p>
-        <div class="hero-actions">
-          <a href="executive.html" class="btn btn-navy">Executive Track Record</a>
-          <a href="fractional.html" class="btn btn-primary">Fractional Advisory</a>
+  <main>
+
+    <!-- Hero: full-bleed navy, indigo glow, photo -->
+    <section class="bg-ink-900 relative overflow-hidden">
+      <div class="absolute inset-0 flex items-center justify-center opacity-60 pointer-events-none">
+        <div class="w-[600px] h-[600px] rounded-full blur-3xl" style="background: radial-gradient(circle, #5B5FEF 0%, transparent 65%);"></div>
+      </div>
+      <div class="max-w-6xl mx-auto px-6 pt-20 pb-28 relative grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        <div class="lg:col-span-7">
+          <span class="text-xs font-semibold uppercase tracking-widest text-accent-400">Fractional Product Leadership</span>
+          <h1 class="font-serif text-4xl sm:text-6xl leading-[1.1] font-semibold text-white mt-5 max-w-3xl">
+            Executive product leadership, without the full-time overhead.
+          </h1>
+          <p class="text-lg text-white/60 leading-relaxed max-w-xl mt-6">
+            Gabriel Fontaine brings 18+ years of identity, fraud, and compliance product leadership — including a $6M funded platform roadmap, an $8M+ enterprise sales pipeline, and a 45-person org led through Agile transformation — to the decisions that can't wait for a permanent hire.
+          </p>
+          <div class="flex flex-wrap gap-4 mt-8">
+            <a href="#contact" class="text-xs font-semibold uppercase tracking-wider bg-accent-500 text-white px-6 py-3.5 rounded-full hover:bg-accent-600 transition-all shadow-lg shadow-accent-500/30">
+              Book a Call →
+            </a>
+            <a href="services.html" class="text-xs font-semibold uppercase tracking-wider bg-transparent border border-white/25 text-white px-6 py-3.5 rounded-full hover:bg-white/10 transition-all">
+              Explore Services
+            </a>
+          </div>
+        </div>
+        <div class="lg:col-span-5 relative">
+          <div class="rounded-[1.75rem] overflow-hidden border border-white/10 shadow-2xl">
+            <img src="https://framerusercontent.com/images/xyBndsSZnG7qAtbStSTKQreYh8.jpg?scale-down-to=1024&width=1200&height=800" alt="Meeting space set up for a strategy session" class="w-full h-full object-cover aspect-[4/3]">
+          </div>
         </div>
       </div>
-      <aside class="hero-aside">
-        <img src="assets/gabriel-headshot.png" alt="Gabriel Fontaine" class="hero-photo" width="180" height="180">
-        <div class="snapshot-card">
-          <h3>Executive Snapshot</h3>
-          <div class="snapshot-row"><span>Location</span><span>Alpharetta, GA</span></div>
-          <div class="snapshot-row"><span>Experience</span><span>18+ Years</span></div>
-          <div class="snapshot-row"><span>Teams Built</span><span>PMs, UI/UX, Rules, BA + Eng</span></div>
-          <div class="snapshot-row"><span>Scale Led</span><span>45+ Agile Org</span></div>
-          <div class="snapshot-row"><span>Practice</span><span>AML, Identity, Fraud & GRC</span></div>
-          <div class="snapshot-row"><span>Regulated Data</span><span>FCRA & GLBA</span></div>
-          <div class="snapshot-row"><span>Languages</span><span>English / Spanish</span></div>
+    </section>
+
+    <!-- Trust bar: reframed as career pedigree, not fractional clients -->
+    <section class="border-b border-ink-900/10">
+      <div class="max-w-6xl mx-auto px-6 py-8 flex flex-col sm:flex-row items-center gap-6">
+        <span class="text-xs uppercase tracking-widest text-ink-900/40 shrink-0">Senior product leadership built inside:</span>
+        <div class="flex flex-wrap items-center gap-x-8 gap-y-3 text-ink-900/40 font-serif italic text-base">
+          <span>LexisNexis Risk Solutions</span>
+          <span>Equifax</span>
+          <span>NTT America</span>
         </div>
-      </aside>
-    </div>
-  </section>
+      </div>
+    </section>
 
-  <section class="compact">
-    <div class="container">
-      <div class="grid-2">
-        <a href="executive.html" class="card card-link">
-          <span class="eyebrow">Full-Time Leadership</span>
-          <h3>Gabriel the Executive</h3>
-          <p class="text-muted text-sm">Senior Director and VP-caliber product leader for identity, fraud, and compliance portfolios. Eleven years at Equifax and LexisNexis turning regulatory constraints into API products with measurable pipeline, funding, and organizational outcomes.</p>
-          <ul class="text-xs text-muted" style="padding-left:1rem;margin:1rem 0 0;">
-            <li>$8M+ pipeline · $6M funding · 45-person org</li>
-            <li>Open to VP, Senior Director, and CPO-level roles</li>
-          </ul>
-          <span class="link-arrow">View track record →</span>
-        </a>
-        <a href="fractional.html" class="card card-link card-dark">
-          <span class="eyebrow" style="color:#93C5FD;">Advisory & Interim</span>
-          <h3>Gabriel the Fractional Expert</h3>
-          <p class="text-sm">When engineering has the data and compliance knows the rules — but no one owns the product between them. Interim leadership, vendor strategy, and regulatory-to-roadmap translation without a full-time hire.</p>
-          <ul class="text-xs" style="padding-left:1rem;margin:1rem 0 0;color:#64748B;">
-            <li>Sprint audits · Fractional VP · Strategic advisory</li>
-            <li>Hands-on vendor evaluation, not deck-driven advice</li>
-          </ul>
-          <span class="link-arrow">Explore engagements →</span>
-        </a>
+    <!-- Why fractional: restrained, white cards on lavender -->
+    <section class="max-w-6xl mx-auto px-6 py-24">
+      <div class="max-w-2xl mb-12">
+        <span class="text-xs font-bold uppercase tracking-widest text-accent-600">Why Fractional</span>
+        <h2 class="font-serif text-3xl sm:text-4xl font-semibold mt-3 text-ink-900">The right level of seniority for the moment you're in.</h2>
       </div>
-    </div>
-  </section>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+        <div class="bg-white p-7 rounded-2xl space-y-4 transition-shadow duration-300 hover:shadow-lg hover:shadow-ink-900/5">
+          <div class="w-10 h-10 rounded-full border border-accent-500/30 flex items-center justify-center text-accent-600">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 8v4l3 2"/></svg>
+          </div>
+          <h3 class="font-semibold text-lg text-ink-900">Clearer decisions</h3>
+          <p class="text-sm text-ink-900/60 leading-relaxed">Most product problems aren't a headcount problem — they're a judgment problem. Gabriel gets senior judgment in the room in weeks, not the months a full-time VP search takes.</p>
+        </div>
+        <div class="bg-white p-7 rounded-2xl space-y-4 transition-shadow duration-300 hover:shadow-lg hover:shadow-ink-900/5">
+          <div class="w-10 h-10 rounded-full border border-accent-500/30 flex items-center justify-center text-accent-600">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24"><path d="M13 2 3 14h7l-1 8 10-12h-7l1-8z"/></svg>
+          </div>
+          <h3 class="font-semibold text-lg text-ink-900">Focused momentum</h3>
+          <p class="text-sm text-ink-900/60 leading-relaxed">A scoped engagement built around what matters most right now — a stuck roadmap call, a vendor evaluation, a go-to-market decision no one senior enough was in the room to own.</p>
+        </div>
+        <div class="bg-white p-7 rounded-2xl space-y-4 transition-shadow duration-300 hover:shadow-lg hover:shadow-ink-900/5">
+          <div class="w-10 h-10 rounded-full border border-accent-500/30 flex items-center justify-center text-accent-600">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24"><path d="M12 20V10M18 20V4M6 20v-4"/></svg>
+          </div>
+          <h3 class="font-semibold text-lg text-ink-900">Independent perspective</h3>
+          <p class="text-sm text-ink-900/60 leading-relaxed">Close enough to the team to understand the constraints, independent enough to say when a fractional engagement isn't even the right tool for the problem.</p>
+        </div>
+      </div>
+    </section>
 
-  <section class="band-dark compact">
-    <div class="container grid-4">
-      <div class="metric"><div class="metric-value">$8M+</div><div class="metric-label">Sales Pipeline</div><p class="text-xs">Contact & Locate Suite, Equifax</p></div>
-      <div class="metric"><div class="metric-value">$6M</div><div class="metric-label">Executive Funding</div><p class="text-xs">Risk Defense Platform, LexisNexis</p></div>
-      <div class="metric"><div class="metric-value">69%</div><div class="metric-label">Cloud Cost Reduction</div><p class="text-xs">AWS→GCP, Equifax DIT/RAE</p></div>
-      <div class="metric"><div class="metric-value">45</div><div class="metric-label">Person Org Led</div><p class="text-xs">Cross-functional Agile team</p></div>
-    </div>
-  </section>
-
-  <section class="compact">
-    <div class="container">
-      <div class="section-head">
-        <h2>Fraud & Identity Stack</h2>
-        <p>Platforms, protocols, and vendors worked with across 18+ years — tested hands-on, not compared from slides.</p>
-      </div>
-      <div class="pill-row">
-        <span class="pill">Socure</span><span class="pill">Prove</span><span class="pill">ThreatMetrix</span><span class="pill">Kount</span>
-        <span class="pill">iovation</span><span class="pill">Telesign</span><span class="pill">Zumigo</span><span class="pill">OAuth</span>
-        <span class="pill">WebAuthn</span><span class="pill">IVR & Contact Centers</span><span class="pill">Instant ID</span>
-        <span class="pill">Synthetic ID Detection</span><span class="pill">Step-Up Auth</span>
-      </div>
-    </div>
-  </section>
-
-  <section class="band-alt compact">
-    <div class="container">
-      <div class="section-head">
-        <h2>Practice Areas</h2>
-        <p>Eight domains where product leadership meets regulated identity and fraud — from market strategy through launch readiness.</p>
-      </div>
-      <div class="grid-3">
-        <div class="card"><h3>Market Intelligence</h3><p class="text-sm text-muted">Competitive landscape and vendor assessment for identity/fraud stacks.</p></div>
-        <div class="card"><h3>Product Strategy</h3><p class="text-sm text-muted">Multi-year roadmaps for platforms like Risk Defense and Credit Header API.</p></div>
-        <div class="card"><h3>Pricing & Monetization</h3><p class="text-sm text-muted">API and batch pricing, bundled solutions, executive funding pitches.</p></div>
-      </div>
-      <p class="text-center mt-2"><a href="practice-areas.html" class="btn btn-secondary">View All 8 Practice Areas</a></p>
-    </div>
-  </section>
-
-  <section class="compact">
-    <div class="container">
-      <div class="section-head">
-        <h2>Signal</h2>
-        <p>What's shaping how I'd advise a roadmap this quarter — sourced, not commentary for its own sake.</p>
-      </div>
-      <div class="signal-item">
-        <div><span class="text-xs font-semibold">Biometric Update</span><br><span class="text-xs text-muted">June 2026</span></div>
+    <!-- How it works: full-bleed indigo band -->
+    <section class="bg-accent-600 text-white">
+      <div class="max-w-6xl mx-auto px-6 py-24 grid grid-cols-1 lg:grid-cols-2 gap-12">
         <div>
-          <p class="signal-quote">"Synthetic identity fraud has become an industrialized threat."</p>
-          <p class="text-sm text-muted">Matches what I saw building credit-header and onboarding products: synthetic fraud is a roadmap-level design constraint, not a niche loss category. <a href="https://www.biometricupdate.com/202606/report-finds-synthetic-identity-fraud-becoming-biggest-fraud-threat-in-2026" target="_blank" rel="noopener">Read the piece ↗</a></p>
+          <span class="text-xs font-bold uppercase tracking-widest text-white/60">How It Works</span>
+          <h2 class="font-serif text-3xl sm:text-4xl font-semibold mt-3">Low ceremony. High signal.</h2>
+        </div>
+        <div class="space-y-2">
+          <div tabindex="0" class="group flex items-baseline gap-4 border-b border-white/15 py-4 px-4 -mx-4 rounded-xl transition-colors duration-300 hover:bg-white/10 focus:bg-white/10 outline-none cursor-default">
+            <span class="text-xs font-mono text-white/50 w-6 shrink-0">01</span>
+            <div>
+              <span class="font-medium block">Diagnose</span>
+              <span class="text-sm text-white/60 block overflow-hidden max-h-0 opacity-0 group-hover:max-h-20 group-hover:opacity-100 group-focus:max-h-20 group-focus:opacity-100 transition-all duration-300 mt-0 group-hover:mt-1.5">A focused audit of the roadmap, team, and vendor stack — usually inside the first two weeks.</span>
+            </div>
+          </div>
+          <div tabindex="0" class="group flex items-baseline gap-4 border-b border-white/15 py-4 px-4 -mx-4 rounded-xl transition-colors duration-300 hover:bg-white/10 focus:bg-white/10 outline-none cursor-default">
+            <span class="text-xs font-mono text-white/50 w-6 shrink-0">02</span>
+            <div>
+              <span class="font-medium block">Decide</span>
+              <span class="text-sm text-white/60 block overflow-hidden max-h-0 opacity-0 group-hover:max-h-20 group-hover:opacity-100 group-focus:max-h-20 group-focus:opacity-100 transition-all duration-300 mt-0 group-hover:mt-1.5">The judgment calls that have been stuck: prioritization, vendor selection, build-vs-buy, pricing.</span>
+            </div>
+          </div>
+          <div tabindex="0" class="group flex items-baseline gap-4 border-b border-white/15 py-4 px-4 -mx-4 rounded-xl transition-colors duration-300 hover:bg-white/10 focus:bg-white/10 outline-none cursor-default">
+            <span class="text-xs font-mono text-white/50 w-6 shrink-0">03</span>
+            <div>
+              <span class="font-medium block">Deliver</span>
+              <span class="text-sm text-white/60 block overflow-hidden max-h-0 opacity-0 group-hover:max-h-20 group-hover:opacity-100 group-focus:max-h-20 group-focus:opacity-100 transition-all duration-300 mt-0 group-hover:mt-1.5">Embedded execution — real specs, real sprints, real accountability for the roadmap.</span>
+            </div>
+          </div>
+          <div tabindex="0" class="group flex items-baseline gap-4 py-4 px-4 -mx-4 rounded-xl transition-colors duration-300 hover:bg-white/10 focus:bg-white/10 outline-none cursor-default">
+            <span class="text-xs font-mono text-white/50 w-6 shrink-0">04</span>
+            <div>
+              <span class="font-medium block">Leave the system stronger</span>
+              <span class="text-sm text-white/60 block overflow-hidden max-h-0 opacity-0 group-hover:max-h-20 group-hover:opacity-100 group-focus:max-h-20 group-focus:opacity-100 transition-all duration-300 mt-0 group-hover:mt-1.5">A documented playbook and a team that can run it without a fractional leader in the room.</span>
+            </div>
+          </div>
         </div>
       </div>
-      <div class="signal-item">
-        <div><span class="text-xs font-semibold">KYC360</span><br><span class="text-xs text-muted">January 2026</span></div>
-        <div>
-          <p class="signal-quote">"The competitive advantage will not come from 'more AI' alone."</p>
-          <p class="text-sm text-muted">For anyone bolting AI onto a KYC/AML stack: auditability and data quality are the differentiator, not model size. <a href="https://kyc360.com/knowledge-hub/resources/2026-kyc-aml-outlook" target="_blank" rel="noopener">Read the piece ↗</a></p>
+    </section>
+
+    <!-- Services preview -->
+    <section class="max-w-6xl mx-auto px-6 py-24">
+      <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-6 mb-12">
+        <div class="max-w-xl">
+          <span class="text-xs font-bold uppercase tracking-widest text-accent-600">What We Do</span>
+          <h2 class="font-serif text-3xl sm:text-4xl font-semibold mt-3 text-ink-900">Three ways to bring in senior product leadership.</h2>
+        </div>
+        <a href="services.html" class="text-xs font-semibold uppercase tracking-wider text-accent-600 hover:text-ink-900 transition-colors flex items-center gap-2 shrink-0">
+          See all services →
+        </a>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+        <div tabindex="0" class="group bg-white hover:bg-ink-900 focus:bg-ink-900 p-7 rounded-2xl space-y-3 transition-colors duration-300 outline-none cursor-default">
+          <div class="w-9 h-9 rounded-full border border-accent-500/30 group-hover:border-white/25 flex items-center justify-center text-accent-600 group-hover:text-white transition-colors duration-300">
+            <svg class="w-4.5 h-4.5" fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          </div>
+          <h3 class="font-serif text-xl font-semibold text-ink-900 group-hover:text-white transition-colors duration-300">Fractional Head of Product</h3>
+          <p class="text-sm text-ink-900/60 group-hover:text-white/70 leading-relaxed transition-colors duration-300">Embedded part-time leadership for identity, fraud, and compliance product teams that need direction now — not a nine-month executive search.</p>
+          <p class="text-sm text-white/70 leading-relaxed overflow-hidden max-h-0 opacity-0 group-hover:max-h-24 group-hover:opacity-100 group-focus:max-h-24 group-focus:opacity-100 transition-all duration-300 pt-0 group-hover:pt-1 border-t border-white/0 group-hover:border-white/15">Typically 2–3 days a week, retained monthly — roadmap ownership, team leadership, and stakeholder reporting included.</p>
+        </div>
+        <div tabindex="0" class="group bg-white hover:bg-ink-900 focus:bg-ink-900 p-7 rounded-2xl space-y-3 transition-colors duration-300 outline-none cursor-default">
+          <div class="w-9 h-9 rounded-full border border-accent-500/30 group-hover:border-white/25 flex items-center justify-center text-accent-600 group-hover:text-white transition-colors duration-300">
+            <svg class="w-4.5 h-4.5" fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24"><path d="M13 2 3 14h7l-1 8 10-12h-7l1-8z"/></svg>
+          </div>
+          <h3 class="font-serif text-xl font-semibold text-ink-900 group-hover:text-white transition-colors duration-300">Strategy & Roadmap Sprint</h3>
+          <p class="text-sm text-ink-900/60 group-hover:text-white/70 leading-relaxed transition-colors duration-300">A focused 2–4 week engagement that turns a regulatory requirement into a shippable, funded roadmap — the same way a $6M platform bet got made.</p>
+          <p class="text-sm text-white/70 leading-relaxed overflow-hidden max-h-0 opacity-0 group-hover:max-h-24 group-hover:opacity-100 group-focus:max-h-24 group-focus:opacity-100 transition-all duration-300 pt-0 group-hover:pt-1 border-t border-white/0 group-hover:border-white/15">Stakeholder interviews, a prioritization pass, and a board-ready roadmap delivered with a live working session.</p>
+        </div>
+        <div tabindex="0" class="group bg-white hover:bg-ink-900 focus:bg-ink-900 p-7 rounded-2xl space-y-3 transition-colors duration-300 outline-none cursor-default">
+          <div class="w-9 h-9 rounded-full border border-accent-500/30 group-hover:border-white/25 flex items-center justify-center text-accent-600 group-hover:text-white transition-colors duration-300">
+            <svg class="w-4.5 h-4.5" fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24"><path d="M12 20V10M18 20V4M6 20v-4"/></svg>
+          </div>
+          <h3 class="font-serif text-xl font-semibold text-ink-900 group-hover:text-white transition-colors duration-300">Interim Leadership</h3>
+          <p class="text-sm text-ink-900/60 group-hover:text-white/70 leading-relaxed transition-colors duration-300">Full-scope coverage during a leadership transition — with the throughput accountability of running a 45-person org, not just advising one.</p>
+          <p class="text-sm text-white/70 leading-relaxed overflow-hidden max-h-0 opacity-0 group-hover:max-h-24 group-hover:opacity-100 group-focus:max-h-24 group-focus:opacity-100 transition-all duration-300 pt-0 group-hover:pt-1 border-t border-white/0 group-hover:border-white/15">Full-time-equivalent coverage during a search or leave, with a structured handoff to whoever comes in permanently.</p>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <section class="compact">
-    <div class="container text-center">
-      <h2>Open to full-time leadership and selective advisory</h2>
-      <p class="lead" style="max-width:560px;margin:1rem auto 1.5rem;">Director, Senior Director, VP, or CPO-level roles — and fractional engagements for identity, fraud, and compliance teams that need senior product expertise without a full-time hire.</p>
-      <div style="display:flex;flex-wrap:wrap;gap:0.75rem;justify-content:center;">
-        <a href="contact.html" class="btn btn-primary">Schedule a Conversation</a>
-        <a href="https://linkedin.com/in/gabrielfontaine1" target="_blank" rel="noopener" class="btn btn-secondary">LinkedIn</a>
+    <!-- Signal: in-page expanding trend citations -->
+    <section id="signal" class="max-w-6xl mx-auto px-6 py-24 scroll-mt-20">
+      <div class="max-w-2xl mb-12">
+        <span class="text-xs font-bold uppercase tracking-widest text-accent-600">Signal</span>
+        <h2 class="font-serif text-3xl sm:text-4xl font-semibold mt-3 text-ink-900">A running, sourced list of what's shaping the roadmap conversation.</h2>
+        <p class="text-sm text-ink-900/50 mt-3 leading-relaxed">Not commentary for its own sake — the trend pieces actually worth a product leader's attention this quarter. Expand any item to read the take in place.</p>
       </div>
-    </div>
-  </section>
-</main>
+      <div class="space-y-4">
 
-<footer class="site-footer">
-  <div class="footer-inner">
-    <p class="text-sm text-muted mb-0">© 2026 Gabriel Fontaine</p>
-    <div class="footer-links">
-      <a href="executive.html">Executive</a>
-      <a href="fractional.html">Fractional</a>
-      <a href="practice-areas.html">Practice Areas</a>
-      <a href="about.html">About</a>
-      <a href="contact.html">Contact</a>
-      <a href="https://linkedin.com/in/gabrielfontaine1" target="_blank" rel="noopener">LinkedIn</a>
-      <a href="mailto:gabrielfontaine@gmail.com">Email</a>
+        <details class="group bg-white rounded-2xl border border-ink-900/10 overflow-hidden">
+          <summary class="cursor-pointer p-6 flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-6">
+            <div class="sm:w-48 shrink-0 text-xs text-ink-900/40">
+              <span class="block font-semibold text-ink-900">Biometric Update</span>
+              June 11, 2026
+            </div>
+            <p class="font-serif italic text-lg text-ink-900 flex-1">"Synthetic identity fraud has become an industrialized threat."</p>
+            <span class="text-accent-600 text-xs font-semibold uppercase tracking-wider shrink-0 flex items-center gap-1.5">
+              <span class="group-open:hidden">Read take</span>
+              <span class="hidden group-open:inline">Close</span>
+              <svg class="w-3.5 h-3.5 transition-transform group-open:rotate-45" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg>
+            </span>
+          </summary>
+          <div class="px-6 pb-6 sm:pl-[13.5rem]">
+            <p class="text-sm text-ink-900/60 leading-relaxed">Matches what I saw building credit-header and onboarding products: synthetic fraud is no longer a niche loss category, it's a roadmap-level design constraint.</p>
+            <a href="https://www.biometricupdate.com/202606/report-finds-synthetic-identity-fraud-becoming-biggest-fraud-threat-in-2026" target="_blank" rel="noopener" class="inline-flex items-center gap-1 mt-3 text-xs font-semibold text-accent-600 hover:underline">View original source ↗</a>
+          </div>
+        </details>
+
+        <details class="group bg-white rounded-2xl border border-ink-900/10 overflow-hidden">
+          <summary class="cursor-pointer p-6 flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-6">
+            <div class="sm:w-48 shrink-0 text-xs text-ink-900/40">
+              <span class="block font-semibold text-ink-900">KYC360</span>
+              January 7, 2026
+            </div>
+            <p class="font-serif italic text-lg text-ink-900 flex-1">"The competitive advantage will not come from 'more AI' alone."</p>
+            <span class="text-accent-600 text-xs font-semibold uppercase tracking-wider shrink-0 flex items-center gap-1.5">
+              <span class="group-open:hidden">Read take</span>
+              <span class="hidden group-open:inline">Close</span>
+              <svg class="w-3.5 h-3.5 transition-transform group-open:rotate-45" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg>
+            </span>
+          </summary>
+          <div class="px-6 pb-6 sm:pl-[13.5rem]">
+            <p class="text-sm text-ink-900/60 leading-relaxed">The right takeaway for anyone bolting AI onto a KYC/AML stack: auditability and data quality are the actual differentiator, not model size.</p>
+            <a href="https://kyc360.com/knowledge-hub/resources/2026-kyc-aml-outlook" target="_blank" rel="noopener" class="inline-flex items-center gap-1 mt-3 text-xs font-semibold text-accent-600 hover:underline">View original source ↗</a>
+          </div>
+        </details>
+
+        <details class="group bg-white rounded-2xl border border-ink-900/10 overflow-hidden">
+          <summary class="cursor-pointer p-6 flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-6">
+            <div class="sm:w-48 shrink-0 text-xs text-ink-900/40">
+              <span class="block font-semibold text-ink-900">PwC</span>
+              February 16, 2026
+            </div>
+            <p class="font-serif italic text-lg text-ink-900 flex-1">Deepfakes and synthetic identities flagged as a top fraud trend as AI reshapes financial crime.</p>
+            <span class="text-accent-600 text-xs font-semibold uppercase tracking-wider shrink-0 flex items-center gap-1.5">
+              <span class="group-open:hidden">Read take</span>
+              <span class="hidden group-open:inline">Close</span>
+              <svg class="w-3.5 h-3.5 transition-transform group-open:rotate-45" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg>
+            </span>
+          </summary>
+          <div class="px-6 pb-6 sm:pl-[13.5rem]">
+            <p class="text-sm text-ink-900/60 leading-relaxed">This is exactly the device-intelligence and identity-signal territory worked at LexisNexis — the arms race hasn't slowed down.</p>
+            <a href="https://www.pwc.com/cz/cs/blog/rizeni-rizik/the-fraud-trend-to-watch-in-2026-and-beyond.html" target="_blank" rel="noopener" class="inline-flex items-center gap-1 mt-3 text-xs font-semibold text-accent-600 hover:underline">View original source ↗</a>
+          </div>
+        </details>
+
+      </div>
+    </section>
+
+    <!-- CTA + Contact -->
+    <section id="contact" class="max-w-6xl mx-auto px-6 pb-24 scroll-mt-20">
+      <div class="bg-lavender-50 border border-ink-900/10 rounded-3xl p-10 sm:p-16">
+        <span class="text-xs font-bold uppercase tracking-widest text-accent-600">A Practical Next Step</span>
+        <h2 class="font-serif text-3xl sm:text-4xl font-semibold mt-3 text-ink-900 max-w-xl">If the product work has outgrown the current operating model, let's talk.</h2>
+        <div class="mt-8 rounded-xl overflow-hidden border border-ink-900/10 bg-white" style="height: 560px;">
+          <div data-tf-live="01M2P2TMD1FZJM1Q6KAJCGZSGZ" style="width: 100%; height: 100%;"></div>
+          <script src="https://embed.typeform.com/next/embed.js"></script>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-ink-900 text-white/60 py-10">
+    <div class="max-w-6xl mx-auto px-6 text-xs">
+      Gabriel Fontaine — Executive product leadership, without the full-time overhead. Identity, fraud & compliance specialist, 18+ years. © 2026.
     </div>
-  </div>
-</footer>
-<script src="js/main.js"></script>
+  </footer>
+
 </body>
 </html>

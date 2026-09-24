@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Services — Gabriel Fontaine</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        fontFamily: { serif: ['Playfair Display','serif'], sans: ['Inter','sans-serif'] },
+        colors: {
+          ink: { 950:'#0A0E27', 900:'#10163A', 800:'#1B2250', 700:'#2A3268' },
+          lavender: { 50:'#F3F4FC', 100:'#E9EBFA', 200:'#DBDFF6' },
+          accent: { 400:'#7C7FF2', 500:'#5B5FEF', 600:'#4338CA' }
+        }
+      }
+    }
+  }
+</script>
+</head>
+<body class="bg-lavender-100 text-ink-900 font-sans antialiased selection:bg-accent-500 selection:text-white">
+
+  <!-- Header -->
+  <header class="sticky top-0 z-50 bg-lavender-100/90 backdrop-blur-md border-b border-ink-900/10">
+    <div class="max-w-6xl mx-auto px-6 h-18 sm:h-20 flex items-center justify-between py-4">
+      <a href="index.html" class="font-serif italic text-xl font-semibold text-accent-600">Gabriel Fontaine</a>
+      <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-ink-900/70">
+        <a href="index.html" class="hover:text-ink-900 transition-colors">Home</a>
+        <a href="about.html" class="hover:text-ink-900 transition-colors">About</a>
+        <a href="services.html" class="text-accent-600 font-semibold">Services</a>
+        <a href="expertise.html" class="hover:text-ink-900 transition-colors">Expertise</a>
+        <a href="index.html#signal" class="hover:text-ink-900 transition-colors">Signal</a>
+      </nav>
+      <a href="index.html#contact" class="text-xs font-semibold uppercase tracking-wider bg-ink-900 text-white px-5 py-2.5 rounded-full hover:bg-accent-600 transition-all">Book a Call</a>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- Page hero -->
+    <section class="max-w-6xl mx-auto px-6 pt-20 pb-16 max-w-3xl space-y-6">
+      <span class="text-xs font-bold uppercase tracking-widest text-accent-600">Services</span>
+      <h1 class="font-serif text-4xl sm:text-5xl leading-[1.15] font-semibold text-ink-950">
+        Three ways to bring senior product leadership into your team.
+      </h1>
+      <p class="text-lg text-ink-900/70 leading-relaxed">
+        Every engagement is scoped around a concrete outcome — not a monthly retainer for open-ended hours. Pick the shape that matches where you're stuck.
+      </p>
+    </section>
+
+    <!-- Service cards -->
+    <section class="max-w-6xl mx-auto px-6 pb-24 space-y-6">
+
+      <div tabindex="0" class="group bg-white hover:bg-ink-900 focus:bg-ink-900 rounded-2xl border border-ink-900/10 hover:border-transparent p-8 sm:p-10 grid grid-cols-1 lg:grid-cols-12 gap-8 transition-colors duration-300 outline-none cursor-default">
+        <div class="lg:col-span-4 space-y-3">
+          <span class="text-xs font-mono text-accent-600 group-hover:text-accent-400 transition-colors duration-300">01 · Retained</span>
+          <h2 class="font-serif text-2xl text-ink-950 group-hover:text-white transition-colors duration-300">Fractional Head of Product</h2>
+          <p class="text-sm text-ink-900/60 group-hover:text-white/70 leading-relaxed transition-colors duration-300">Embedded 2–3 days per week as your acting product leader — roadmap, team, and stakeholder management included.</p>
+          <span class="inline-block text-[11px] font-semibold uppercase tracking-wider text-accent-600 group-hover:text-accent-400 bg-lavender-50 group-hover:bg-white/10 px-3 py-1 rounded-full transition-colors duration-300">Ideal for: Identity, fraud & compliance teams between hires</span>
+        </div>
+        <div class="lg:col-span-8 grid sm:grid-cols-2 gap-4 lg:pl-8 lg:border-l border-ink-900/10 group-hover:border-white/15 transition-colors duration-300">
+          <div class="flex gap-3"><svg class="w-5 h-5 text-accent-600 group-hover:text-accent-400 shrink-0 mt-0.5 transition-colors duration-300" fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg><span class="text-sm text-ink-900/70 group-hover:text-white/80 transition-colors duration-300">Roadmap ownership & prioritization</span></div>
+          <div class="flex gap-3"><svg class="w-5 h-5 text-accent-600 group-hover:text-accent-400 shrink-0 mt-0.5 transition-colors duration-300" fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg><span class="text-sm text-ink-900/70 group-hover:text-white/80 transition-colors duration-300">Team mentoring & hiring support</span></div>
+          <div class="flex gap-3"><svg class="w-5 h-5 text-accent-600 group-hover:text-accent-400 shrink-0 mt-0.5 transition-colors duration-300" fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg><span class="text-sm text-ink-900/70 group-hover:text-white/80 transition-colors duration-300">Board & executive reporting</span></div>
+          <div class="flex gap-3"><svg class="w-5 h-5 text-accent-600 group-hover:text-accent-400 shrink-0 mt-0.5 transition-colors duration-300" fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg><span class="text-sm text-ink-900/70 group-hover:text-white/80 transition-colors duration-300">Cross-functional stakeholder alignment</span></div>
+        </div>
+      </div>
+
+      <div tabindex="0" class="group bg-white hover:bg-ink-900 focus:bg-ink-900 rounded-2xl border border-ink-900/10 hover:border-transparent p-8 sm:p-10 grid grid-cols-1 lg:grid-cols-12 gap-8 transition-colors duration-300 outline-none cursor-default">
+        <div class="lg:col-span-4 space-y-3">
+          <span class="text-xs font-mono text-accent-600 group-hover:text-accent-400 transition-colors duration-300">02 · Project</span>
+          <h2 class="font-serif text-2xl text-ink-950 group-hover:text-white transition-colors duration-300">Strategy & Roadmap Sprint</h2>
+          <p class="text-sm text-ink-900/60 group-hover:text-white/70 leading-relaxed transition-colors duration-300">A focused 2–4 week engagement that turns a fuzzy backlog — or an unresolved regulatory requirement — into a prioritized, fundable roadmap.</p>
+          <span class="inline-block text-[11px] font-semibold uppercase tracking-wider text-accent-600 group-hover:text-accent-400 bg-lavender-50 group-hover:bg-white/10 px-3 py-1 rounded-full transition-colors duration-300">Ideal for: A specific decision point</span>
+        </div>
+        <div class="lg:col-span-8 grid sm:grid-cols-2 gap-4 lg:pl-8 lg:border-l border-ink-900/10 group-hover:border-white/15 transition-colors duration-300">
+          <div class="flex gap-3"><svg class="w-5 h-5 text-accent-600 group-hover:text-accent-400 shrink-0 mt-0.5 transition-colors duration-300" fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg><span class="text-sm text-ink-900/70 group-hover:text-white/80 transition-colors duration-300">Vendor & stakeholder evaluation</span></div>
+          <div class="flex gap-3"><svg class="w-5 h-5 text-accent-600 group-hover:text-accent-400 shrink-0 mt-0.5 transition-colors duration-300" fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg><span class="text-sm text-ink-900/70 group-hover:text-white/80 transition-colors duration-300">Prioritization framework & scoring</span></div>
+          <div class="flex gap-3"><svg class="w-5 h-5 text-accent-600 group-hover:text-accent-400 shrink-0 mt-0.5 transition-colors duration-300" fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg><span class="text-sm text-ink-900/70 group-hover:text-white/80 transition-colors duration-300">12-month roadmap deliverable</span></div>
+          <div class="flex gap-3"><svg class="w-5 h-5 text-accent-600 group-hover:text-accent-400 shrink-0 mt-0.5 transition-colors duration-300" fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg><span class="text-sm text-ink-900/70 group-hover:text-white/80 transition-colors duration-300">Executive readout & working session</span></div>
+        </div>
+      </div>
+
+      <div tabindex="0" class="group bg-white hover:bg-ink-900 focus:bg-ink-900 rounded-2xl border border-ink-900/10 hover:border-transparent p-8 sm:p-10 grid grid-cols-1 lg:grid-cols-12 gap-8 transition-colors duration-300 outline-none cursor-default">
+        <div class="lg:col-span-4 space-y-3">
+          <span class="text-xs font-mono text-accent-600 group-hover:text-accent-400 transition-colors duration-300">03 · Interim</span>
+          <h2 class="font-serif text-2xl text-ink-950 group-hover:text-white transition-colors duration-300">Interim Leadership Coverage</h2>
+          <p class="text-sm text-ink-900/60 group-hover:text-white/70 leading-relaxed transition-colors duration-300">Full-scope coverage during a leadership transition, extended leave, or an active executive search — while a company runs its own search for a permanent hire.</p>
+          <span class="inline-block text-[11px] font-semibold uppercase tracking-wider text-accent-600 group-hover:text-accent-400 bg-lavender-50 group-hover:bg-white/10 px-3 py-1 rounded-full transition-colors duration-300">Ideal for: Leadership gaps</span>
+        </div>
+        <div class="lg:col-span-8 grid sm:grid-cols-2 gap-4 lg:pl-8 lg:border-l border-ink-900/10 group-hover:border-white/15 transition-colors duration-300">
+          <div class="flex gap-3"><svg class="w-5 h-5 text-accent-600 group-hover:text-accent-400 shrink-0 mt-0.5 transition-colors duration-300" fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg><span class="text-sm text-ink-900/70 group-hover:text-white/80 transition-colors duration-300">Full-time-equivalent coverage</span></div>
+          <div class="flex gap-3"><svg class="w-5 h-5 text-accent-600 group-hover:text-accent-400 shrink-0 mt-0.5 transition-colors duration-300" fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg><span class="text-sm text-ink-900/70 group-hover:text-white/80 transition-colors duration-300">Executive search support & handoff</span></div>
+          <div class="flex gap-3"><svg class="w-5 h-5 text-accent-600 group-hover:text-accent-400 shrink-0 mt-0.5 transition-colors duration-300" fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg><span class="text-sm text-ink-900/70 group-hover:text-white/80 transition-colors duration-300">No dropped roadmap commitments</span></div>
+          <div class="flex gap-3"><svg class="w-5 h-5 text-accent-600 group-hover:text-accent-400 shrink-0 mt-0.5 transition-colors duration-300" fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg><span class="text-sm text-ink-900/70 group-hover:text-white/80 transition-colors duration-300">Structured onboarding for the successor</span></div>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- FAQ -->
+    <section class="bg-white border-t border-ink-900/10">
+      <div class="max-w-4xl mx-auto px-6 py-24">
+        <div class="mb-12">
+          <span class="text-xs font-bold uppercase tracking-widest text-accent-600">FAQ</span>
+          <h2 class="font-serif text-3xl mt-3 text-ink-950">Common questions.</h2>
+        </div>
+        <div class="divide-y divide-ink-900/10">
+          <div class="py-6">
+            <h3 class="font-semibold text-ink-950 mb-2">How is this different from a consultant?</h3>
+            <p class="text-sm text-ink-900/60 leading-relaxed">A consultant typically hands you a recommendation and moves on. This means being embedded — sitting in standups, reviewing real specs, and carrying the same roadmap accountability a full-time leader would, for the length of the engagement.</p>
+          </div>
+          <div class="py-6">
+            <h3 class="font-semibold text-ink-950 mb-2">What size company is this for?</h3>
+            <p class="text-sm text-ink-900/60 leading-relaxed">Companies in identity, fraud, risk, or compliance-adjacent spaces — from growth-stage teams to regulated enterprise divisions — that need senior product judgment without a full headcount commitment.</p>
+          </div>
+          <div class="py-6">
+            <h3 class="font-semibold text-ink-950 mb-2">How much time does an engagement take?</h3>
+            <p class="text-sm text-ink-900/60 leading-relaxed">Anywhere from a focused 2–4 week sprint to an ongoing 2–3 day-per-week retainer — scoped in writing before anything starts.</p>
+          </div>
+          <div class="py-6">
+            <h3 class="font-semibold text-ink-950 mb-2">What does it cost?</h3>
+            <p class="text-sm text-ink-900/60 leading-relaxed">Pricing depends on scope and cadence — discussed openly on the discovery call, no surprises in the proposal.</p>
+          </div>
+          <div class="py-6">
+            <h3 class="font-semibold text-ink-950 mb-2">Is Gabriel only doing fractional work, or also considering full-time roles?</h3>
+            <p class="text-sm text-ink-900/60 leading-relaxed">Both, in parallel. Several companies he's talked to have proposed a fractional or interim arrangement as a lower-commitment starting point before — or instead of — a full-time hire, which is exactly the shape these engagements take.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="max-w-6xl mx-auto px-6 py-24">
+      <div class="bg-ink-950 text-white rounded-3xl p-10 sm:p-16 text-center space-y-6">
+        <h2 class="font-serif text-3xl sm:text-4xl max-w-2xl mx-auto">Not sure which engagement fits?</h2>
+        <p class="text-white/60 max-w-xl mx-auto">That's exactly what the discovery call is for — no commitment, just clarity on the right shape.</p>
+        <a href="index.html#contact" class="inline-flex text-xs font-semibold uppercase tracking-wider bg-white text-ink-900 px-8 py-4 rounded-full hover:bg-lavender-100 transition-all">
+          Book a Discovery Call
+        </a>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-ink-900 text-white/60 py-10">
+    <div class="max-w-6xl mx-auto px-6 text-xs">
+      Gabriel Fontaine — Executive product leadership, without the full-time overhead. Identity, fraud & compliance specialist, 18+ years. © 2026.
+    </div>
+  </footer>
+
+</body>
+</html>
