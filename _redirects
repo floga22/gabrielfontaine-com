@@ -1,0 +1,5 @@
+# Old addresses -> current pages, tagged so visits from old links show up in analytics
+/leadership   /about?utm_source=legacy&utm_campaign=leadership     301
+/leadership/  /about?utm_source=legacy&utm_campaign=leadership     301
+/fractional   /services?utm_source=legacy&utm_campaign=fractional  301
+/fractional/  /services?utm_source=legacy&utm_campaign=fractional  301

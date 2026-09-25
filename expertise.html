@@ -22,6 +22,27 @@
     }
   }
 </script>
+<!-- site-insights-kit: analytics, session replay, device intelligence. Public IDs only. -->
+<script>
+  window.INSIGHTS_CONFIG = {
+    site: "gabrielfontaine.com",
+    ownerName: "Gabriel Fontaine",
+    contactEmail: "privacy@gabrielfontaine.com",
+    consent: "none",
+    ga4: "G-Z56L1BHZS1",
+    clarity: "yo1qncaepu",
+    fingerprint: {
+      key: "71BAprWdJzzeJSgcyPcL",
+      region: "us",
+      endpoint: "https://metrics.gabrielfontaine.com"
+    },
+    // worker: "https://...",   // add when the Cloudflare Worker is deployed
+    // clickstream: true,
+    debug: false
+  };
+</script>
+<script src="https://cdn.jsdelivr.net/gh/floga22/site-insights-kit@v1.1.0/src/insights.js" defer></script>
+<style>:root{--insights-accent:#4338CA;--insights-bg:#fff;--insights-text:#10163A}</style>
 </head>
 <body class="bg-lavender-100 text-ink-900 font-sans antialiased selection:bg-accent-500 selection:text-white">
 
@@ -36,7 +57,7 @@
         <a href="expertise.html" class="text-accent-600 font-semibold">Expertise</a>
         <a href="index.html#signal" class="hover:text-ink-900 transition-colors">Signal</a>
       </nav>
-      <a href="index.html#contact" class="text-xs font-semibold uppercase tracking-wider bg-ink-900 text-white px-5 py-2.5 rounded-full hover:bg-accent-600 transition-all">Book a Call</a>
+      <a href="index.html#contact" data-track="book_call" class="text-xs font-semibold uppercase tracking-wider bg-ink-900 text-white px-5 py-2.5 rounded-full hover:bg-accent-600 transition-all">Book a Call</a>
     </div>
   </header>
 
@@ -265,6 +286,7 @@
   <footer class="bg-ink-900 text-white/60 py-10">
     <div class="max-w-6xl mx-auto px-6 text-xs">
       Gabriel Fontaine — Executive product leadership, without the full-time overhead. Identity, fraud & compliance specialist, 18+ years. © 2026.
+      <div class="mt-3"><span id="insights-privacy"></span></div>
     </div>
   </footer>
 
