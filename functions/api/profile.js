@@ -103,7 +103,10 @@ export async function onRequestPost(context) {
   try {
     data = await fetchEvent(secretKey, eventId);
   } catch (e) {
-    return json({ ok: false, error: "upstream_error", message: "Couldn't reach the device-intelligence service. Try again in a moment." }, 200);
+    // TEMP DEBUG: surface the safe failure detail (error name/message only,
+    // never the secret itself) so we can tell auth vs network vs timeout
+    // apart. Remove once the upstream issue is diagnosed.
+    return json({ ok: false, error: "upstream_error", message: "Couldn't reach the device-intelligence service. Try again in a moment.", debug: { name: e && e.name, message: e && e.message, keyLen: secretKey ? secretKey.length : 0 } }, 200);
   }
 
   const products = data.products || {};
