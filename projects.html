@@ -583,6 +583,35 @@
     });
   }
 
+  function renderProfileRows(body, rows) {
+    body.innerHTML = rows.map(function (r) {
+      return '<tr class="border-t border-ink-900/10"><td class="py-2 pr-4 text-xs uppercase tracking-wide text-ink-900/40 w-56">' + r[0] + '</td><td class="py-2 font-medium">' + r[1] + "</td></tr>";
+    }).join("");
+  }
+
+  // Shown when the live Fingerprint call fails (service down, key issue, etc.)
+  // so the panel still demonstrates what the read-out looks like, clearly
+  // labeled as an example rather than this visitor's real data.
+  function renderExampleProfile(status, resultsWrap, body) {
+    var banner = '<tr><td colspan="2" class="pb-3"><span class="inline-block text-[10px] font-bold uppercase tracking-wider bg-amber-100 text-amber-800 px-2.5 py-1 rounded-full">Example output — live check unavailable</span></td></tr>';
+    var rows = [
+      ["Confidence score", "0.99"],
+      ["Incognito / private browsing", "No"],
+      ["Automation / bot", "Not detected"],
+      ["VPN detected", "No"],
+      ["Proxy detected", "No"],
+      ["Tor detected", "No"],
+      ["Network type", "Consumer ISP network"],
+      ["Country", "United States"],
+      ["Visit history", "Returning device (first seen 2026-08-14)."]
+    ];
+    body.innerHTML = banner + rows.map(function (r) {
+      return '<tr class="border-t border-ink-900/10"><td class="py-2 pr-4 text-xs uppercase tracking-wide text-ink-900/40 w-56">' + r[0] + '</td><td class="py-2 font-medium">' + r[1] + "</td></tr>";
+    }).join("");
+    resultsWrap.classList.remove("hidden");
+    status.textContent = "The live device-intelligence service is temporarily unavailable — the table below is an example of what it normally shows, not your actual data.";
+  }
+
   var profileBtn = document.getElementById("profile-run");
   if (profileBtn) {
     profileBtn.addEventListener("click", function () {
@@ -607,7 +636,11 @@
           .then(function (res) { return res.json(); })
           .then(function (data) {
             if (!data.ok) {
-              status.textContent = data.message || "Couldn't complete the check.";
+              if (data.error === "bad_request") {
+                status.textContent = data.message || "No device signal yet — reload the page and try again.";
+                return;
+              }
+              renderExampleProfile(status, resultsWrap, body);
               return;
             }
             var rows = [
@@ -621,13 +654,11 @@
               ["Country", data.country],
               ["Visit history", data.returning]
             ];
-            body.innerHTML = rows.map(function (r) {
-              return '<tr class="border-t border-ink-900/10"><td class="py-2 pr-4 text-xs uppercase tracking-wide text-ink-900/40 w-56">' + r[0] + '</td><td class="py-2 font-medium">' + r[1] + "</td></tr>";
-            }).join("");
+            renderProfileRows(body, rows);
             resultsWrap.classList.remove("hidden");
             status.textContent = "Done.";
           })
-          .catch(function () { status.textContent = "Couldn't reach the check right now."; })
+          .catch(function () { renderExampleProfile(status, resultsWrap, body); })
           .finally(function () {
             profileBtn.disabled = false;
             profileBtn.classList.remove("opacity-60");
