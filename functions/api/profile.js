@@ -58,7 +58,7 @@ async function fetchEvent(secretKey, eventId) {
   const timer = setTimeout(() => controller.abort(), TIMEOUT_MS);
   try {
     const res = await fetch(`${FP_API_BASE}/v4/events/${encodeURIComponent(eventId)}`, {
-      headers: { "Auth-API-Key": secretKey },
+      headers: { "Authorization": `Bearer ${secretKey}` },
       signal: controller.signal
     });
     if (!res.ok) {
