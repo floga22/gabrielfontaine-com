@@ -209,6 +209,7 @@
           <button data-demo="1" class="jev-run text-xs font-semibold uppercase tracking-wider bg-accent-500 text-white px-6 py-3 rounded-full hover:bg-accent-600 transition-all">Run via Jev →</button>
           <span class="jev-status text-xs text-ink-900/40"></span>
         </div>
+        <div id="jev-panel-1" class="hidden space-y-5">
         <div class="overflow-x-auto">
           <table class="w-full text-sm border-collapse">
             <thead>
@@ -243,6 +244,7 @@
             <li>The real to-do list is 4 emails, not 10: three decisions and a conversation with the manager, one quick hand-off, and five that can wait or be ignored.</li>
           </ul>
         </div>
+        </div>
       </div>
 
       <!-- DEMO 2: Scam texts -->
@@ -273,6 +275,7 @@
           <button data-demo="2" class="jev-run text-xs font-semibold uppercase tracking-wider bg-accent-500 text-white px-6 py-3 rounded-full hover:bg-accent-600 transition-all">Run via Jev →</button>
           <span class="jev-status text-xs text-ink-900/40"></span>
         </div>
+        <div id="jev-panel-2" class="hidden space-y-5">
         <div class="overflow-x-auto">
           <table class="w-full text-sm border-collapse">
             <thead>
@@ -302,6 +305,7 @@
             <li>The "Hi Mom" scam works on emotion, not technology. The fix is just as simple: call the old number.</li>
           </ul>
         </div>
+        </div>
       </div>
 
       <!-- DEMO 3: Account risk routing -->
@@ -329,6 +333,7 @@
           <button data-demo="3" class="jev-run text-xs font-semibold uppercase tracking-wider bg-accent-500 text-white px-6 py-3 rounded-full hover:bg-accent-600 transition-all">Run via Jev →</button>
           <span class="jev-status text-xs text-ink-900/40"></span>
         </div>
+        <div id="jev-panel-3" class="hidden space-y-5">
         <div class="overflow-x-auto">
           <table class="w-full text-sm border-collapse">
             <thead>
@@ -354,6 +359,7 @@
             <li>Most real decisions are in the middle: Applicant 3 is mostly clean with one mismatch, so Jev routes to a quick extra check instead of guessing. Good systems add a little friction where there's doubt, instead of rejecting a real customer or waving through a fraudster.</li>
           </ul>
           <p class="text-xs text-ink-900/40 italic mt-3">Illustrative demo with fictional applicants. Not a production fraud model.</p>
+        </div>
         </div>
       </div>
     </section>
@@ -572,9 +578,11 @@
       var demo = btn.getAttribute("data-demo");
       var status = btn.parentElement.querySelector(".jev-status");
       var caption = document.getElementById("jev-caption-" + demo);
+      var panel = document.getElementById("jev-panel-" + demo);
       btn.disabled = true;
       btn.classList.add("opacity-60");
       status.textContent = "Running…";
+      if (panel) panel.classList.remove("hidden");
       fetch("/api/jev", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
