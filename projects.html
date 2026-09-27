@@ -355,17 +355,13 @@
       <div class="bg-white rounded-2xl border border-ink-900/10 p-6 sm:p-8 space-y-5">
         <div>
           <h3 class="font-serif text-xl font-semibold text-ink-950">Check what this visit looks like from the other side</h3>
-          <p class="text-sm text-ink-900/50 mt-1">This will read: browser confidence, incognito/private browsing, automation, VPN/proxy/Tor, network type, country, and whether this device has been here before.</p>
+          <p class="text-sm text-ink-900/50 mt-1">This will read: identity confidence, incognito/bot/VPN/proxy/tampering signals, your IP address, ISP, city and country, and the analytics identifiers already set by this site — plus the full raw payload if you want to see it.</p>
         </div>
         <div class="flex items-center gap-4">
           <button id="profile-run" class="text-xs font-semibold uppercase tracking-wider bg-accent-500 text-white px-6 py-3 rounded-full hover:bg-accent-600 transition-all">Check my device →</button>
           <span id="profile-status" class="text-xs text-ink-900/40"></span>
         </div>
-        <div id="profile-results" class="hidden overflow-x-auto">
-          <table class="w-full text-sm border-collapse">
-            <tbody id="profile-results-body" class="text-ink-900/70"></tbody>
-          </table>
-        </div>
+        <div id="profile-results" class="hidden space-y-5"></div>
         <p class="text-xs text-ink-900/40 italic">Live check of your own current visit. Uses the same signals already active on this site — see the Privacy note in the footer. Nothing here is used to grant, deny, or score anything, and results are shown only to you.</p>
       </div>
     </section>
@@ -583,33 +579,157 @@
     });
   }
 
-  function renderProfileRows(body, rows) {
-    body.innerHTML = rows.map(function (r) {
-      return '<tr class="border-t border-ink-900/10"><td class="py-2 pr-4 text-xs uppercase tracking-wide text-ink-900/40 w-56">' + r[0] + '</td><td class="py-2 font-medium">' + r[1] + "</td></tr>";
-    }).join("");
+  function escapeHtml(s) {
+    return String(s == null ? "" : s).replace(/[&<>"']/g, function (c) {
+      return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c];
+    });
   }
 
-  // Shown when the live Fingerprint call fails (service down, key issue, etc.)
-  // so the panel still demonstrates what the read-out looks like, clearly
-  // labeled as an example rather than this visitor's real data.
-  function renderExampleProfile(status, resultsWrap, body) {
-    var banner = '<tr><td colspan="2" class="pb-3"><span class="inline-block text-[10px] font-bold uppercase tracking-wider bg-amber-100 text-amber-800 px-2.5 py-1 rounded-full">Example output — live check unavailable</span></td></tr>';
-    var rows = [
-      ["Confidence score", "0.99"],
-      ["Incognito / private browsing", "No"],
-      ["Automation / bot", "Not detected"],
-      ["VPN detected", "No"],
-      ["Proxy detected", "No"],
-      ["Tor detected", "No"],
-      ["Network type", "Consumer ISP network"],
-      ["Country", "United States"],
-      ["Visit history", "Returning device (first seen 2026-08-14)."]
-    ];
-    body.innerHTML = banner + rows.map(function (r) {
-      return '<tr class="border-t border-ink-900/10"><td class="py-2 pr-4 text-xs uppercase tracking-wide text-ink-900/40 w-56">' + r[0] + '</td><td class="py-2 font-medium">' + r[1] + "</td></tr>";
-    }).join("");
+  function badge(text, tone) {
+    var toneClasses = {
+      good: "bg-emerald-100 text-emerald-800",
+      warn: "bg-amber-100 text-amber-800",
+      bad: "bg-rose-100 text-rose-800",
+      neutral: "bg-ink-900/10 text-ink-900/60"
+    };
+    return '<span class="inline-block text-[10px] font-bold uppercase tracking-wider ' + (toneClasses[tone] || toneClasses.neutral) + ' px-2.5 py-1 rounded-full mr-1.5 mb-1.5">' + escapeHtml(text) + "</span>";
+  }
+
+  function profileRow(label, valueHtml) {
+    return '<div class="flex justify-between gap-4 py-1.5 border-t border-ink-900/10 first:border-t-0"><span class="text-xs uppercase tracking-wide text-ink-900/40">' + escapeHtml(label) + '</span><span class="text-sm font-medium text-right">' + valueHtml + "</span></div>";
+  }
+
+  function profileSection(title, rowsHtml) {
+    return '<div class="bg-lavender-50 rounded-xl p-4"><h4 class="text-[10px] font-bold uppercase tracking-widest text-ink-900/40 mb-1">' + escapeHtml(title) + "</h4>" + rowsHtml + "</div>";
+  }
+
+  function fmtBool(v, yesText, noText) {
+    if (v === null || v === undefined) return "Unknown";
+    return v ? (yesText || "Yes") : (noText || "No");
+  }
+
+  function fmtDate(ms) {
+    if (!ms) return "—";
+    try { return new Date(ms).toLocaleString(); } catch (e) { return "—"; }
+  }
+
+  function getGaClientId() {
+    var m = document.cookie.match(/(?:^|;\s*)_ga=([^;]+)/);
+    if (!m) return null;
+    var parts = decodeURIComponent(m[1]).split(".");
+    return parts.length >= 4 ? parts[2] + "." + parts[3] : null;
+  }
+
+  function getClarityIds() {
+    function readCookie(name) {
+      var m = document.cookie.match(new RegExp("(?:^|;\\s*)" + name + "=([^;]+)"));
+      return m ? decodeURIComponent(m[1]) : null;
+    }
+    var clck = readCookie("_clck");
+    var clsk = readCookie("_clsk");
+    return {
+      userId: clck ? clck.split("|")[0] : null,
+      sessionId: clsk ? clsk.split("|")[0] : null
+    };
+  }
+
+  // Fake-but-shaped payload used only when the live Fingerprint check fails,
+  // so the panel still demonstrates the full read-out — clearly labeled as
+  // an example rather than this visitor's real data.
+  function buildExampleProfileData() {
+    return {
+      identity: { visitorId: "ExampleVisitorId128", confidence: 0.99, confidenceVersion: "v1.1", visitorFound: true, firstSeenAt: Date.now() - 1000 * 60 * 60 * 24 * 30, lastSeenAt: Date.now(), returning: "Returning device (first seen 2026-08-14)." },
+      client: { device: "Other", os: "Mac OS X", osVersion: "10.15.7", browser: "Chrome", browserVersion: "128" },
+      risk: { bot: "not_detected", incognito: false, vpn: false, vpnConfidence: "high", proxy: false, proxyConfidence: "high", torNode: false, tampering: false, developerTools: false, virtualMachine: false, suspectScore: 0, highActivityDevice: false, rareDevice: false },
+      network: { ip: "203.0.113.42", asn: "7018", asnName: "Example Broadband LLC", classification: "Consumer ISP network", city: "Atlanta", region: "Georgia", country: "United States", timezone: "America/New_York", latitude: 33.749, longitude: -84.388, accuracyRadiusKm: 10 },
+      raw: { note: "Example payload — the live Fingerprint check is temporarily unavailable, so this illustrates the shape of a real result rather than this visitor's actual data." }
+    };
+  }
+
+  function renderRichProfile(status, resultsWrap, container, data, isExample) {
+    var risk = data.risk, identity = data.identity, client = data.client, network = data.network;
+
+    var badges = "";
+    if (isExample) badges += badge("Example output — live check unavailable", "warn");
+    badges += badge(risk.bot === "not_detected" ? "Bot: not detected" : "Bot: " + (risk.bot || "unknown"), risk.bot === "not_detected" ? "good" : "bad");
+    badges += badge(risk.vpn ? "VPN detected" : "No VPN", risk.vpn ? "warn" : "good");
+    badges += badge(risk.proxy ? "Proxy detected" : "No proxy", risk.proxy ? "warn" : "good");
+    badges += badge(risk.tampering ? "Tampering detected" : "No tampering", risk.tampering ? "bad" : "good");
+    if (risk.highActivityDevice) badges += badge("High-activity device", "warn");
+    if (risk.rareDevice) badges += badge("Rare device", "warn");
+    if (typeof risk.suspectScore === "number") badges += badge("Suspect score: " + risk.suspectScore, risk.suspectScore > 0 ? "warn" : "good");
+
+    var identityRows =
+      profileRow("Visitor ID", "<code class=\"text-xs\">" + escapeHtml(identity.visitorId || "Unknown") + "</code>") +
+      profileRow("Confidence", identity.confidence != null ? escapeHtml((identity.confidence * 100).toFixed(0) + "% (" + (identity.confidenceVersion || "") + ")") : "Unknown") +
+      profileRow("Visit history", escapeHtml(identity.returning)) +
+      profileRow("First seen", escapeHtml(fmtDate(identity.firstSeenAt))) +
+      profileRow("Last seen", escapeHtml(fmtDate(identity.lastSeenAt)));
+
+    var clientRows =
+      profileRow("Browser", escapeHtml(client.browser + (client.browserVersion ? " " + client.browserVersion : ""))) +
+      profileRow("Operating system", escapeHtml(client.os + (client.osVersion ? " " + client.osVersion : ""))) +
+      profileRow("Incognito / private browsing", escapeHtml(fmtBool(risk.incognito, "Yes, private/incognito browsing", "No"))) +
+      profileRow("Developer tools open", escapeHtml(fmtBool(risk.developerTools))) +
+      profileRow("Virtual machine", escapeHtml(fmtBool(risk.virtualMachine)));
+
+    var networkRows =
+      profileRow("IP address", "<code class=\"text-xs\">" + escapeHtml(network.ip || "Unknown") + "</code>") +
+      profileRow("ISP / network", escapeHtml(network.asnName || "Unknown") + (network.asn ? escapeHtml(" (AS" + network.asn + ")") : "")) +
+      profileRow("Network type", escapeHtml(network.classification || "Unknown")) +
+      profileRow("City / region", escapeHtml([network.city, network.region].filter(Boolean).join(", ") || "Unknown")) +
+      profileRow("Country", escapeHtml(network.country || "Unknown")) +
+      profileRow("Timezone", escapeHtml(network.timezone || "Unknown")) +
+      profileRow("VPN", escapeHtml(fmtBool(risk.vpn)) + (risk.vpnConfidence ? escapeHtml(" (confidence: " + risk.vpnConfidence + ")") : "")) +
+      profileRow("Proxy", escapeHtml(fmtBool(risk.proxy)) + (risk.proxyConfidence ? escapeHtml(" (confidence: " + risk.proxyConfidence + ")") : "")) +
+      profileRow("Tor exit node", escapeHtml(fmtBool(risk.torNode)));
+
+    var mapHtml = "";
+    if (typeof network.latitude === "number" && typeof network.longitude === "number") {
+      var lat = network.latitude, lon = network.longitude, d = 0.2;
+      var bbox = (lon - d) + "," + (lat - d) + "," + (lon + d) + "," + (lat + d);
+      mapHtml = '<div class="rounded-xl overflow-hidden border border-ink-900/10">' +
+        '<iframe src="https://www.openstreetmap.org/export/embed.html?bbox=' + encodeURIComponent(bbox) + "&layer=mapnik&marker=" + lat + "," + lon + '" style="width:100%;height:220px;border:0" loading="lazy"></iframe></div>' +
+        '<p class="text-[11px] text-ink-900/40 mt-1">IP-based geolocation (±' + escapeHtml(network.accuracyRadiusKm || "a few") + ' km) — approximate, not GPS-precise.</p>';
+    }
+
+    var gaClientId = getGaClientId();
+    var clarityIds = getClarityIds();
+    var analyticsRows =
+      profileRow("GA4 client ID", gaClientId ? "<code class=\"text-xs\">" + escapeHtml(gaClientId) + "</code>" : "Not available") +
+      profileRow("Clarity user ID", clarityIds.userId ? "<code class=\"text-xs\">" + escapeHtml(clarityIds.userId) + "</code>" : "Not available") +
+      profileRow("Clarity session ID", clarityIds.sessionId ? "<code class=\"text-xs\">" + escapeHtml(clarityIds.sessionId) + "</code>" : "Not available");
+    var clarityLink = '<a href="https://clarity.microsoft.com/projects/view/yo1qncaepu/impressions" target="_blank" rel="noopener" class="text-xs font-semibold text-accent-600 hover:underline">Open Clarity dashboard →</a>';
+
+    var rawId = "profile-raw-" + Date.now();
+    var rawHtml = '<div>' +
+      '<button type="button" class="raw-toggle text-xs font-semibold uppercase tracking-wider text-accent-600 hover:underline" data-target="' + rawId + '">Show raw JSON</button>' +
+      '<pre id="' + rawId + '" class="hidden mt-3 bg-ink-950 text-emerald-300 text-[11px] leading-relaxed p-4 rounded-xl overflow-auto max-h-80">' + escapeHtml(JSON.stringify(data.raw, null, 2)) + "</pre>" +
+      "</div>";
+
+    container.innerHTML =
+      "<div>" + badges + "</div>" +
+      '<div class="grid grid-cols-1 md:grid-cols-2 gap-4">' + profileSection("Identity", identityRows) + profileSection("Client", clientRows) + "</div>" +
+      profileSection("Network & location", networkRows) +
+      mapHtml +
+      profileSection("Analytics identifiers", analyticsRows) +
+      '<div>' + clarityLink + "</div>" +
+      rawHtml;
+
     resultsWrap.classList.remove("hidden");
-    status.textContent = "The live device-intelligence service is temporarily unavailable — the table below is an example of what it normally shows, not your actual data.";
+    status.textContent = isExample
+      ? "The live device-intelligence service is temporarily unavailable — the read-out below is an example of what it normally shows, not your actual data."
+      : "Done.";
+
+    var toggleBtn = container.querySelector(".raw-toggle");
+    if (toggleBtn) {
+      toggleBtn.addEventListener("click", function () {
+        var pre = document.getElementById(toggleBtn.getAttribute("data-target"));
+        var showing = !pre.classList.contains("hidden");
+        pre.classList.toggle("hidden");
+        toggleBtn.textContent = showing ? "Show raw JSON" : "Hide raw JSON";
+      });
+    }
   }
 
   var profileBtn = document.getElementById("profile-run");
@@ -617,7 +737,6 @@
     profileBtn.addEventListener("click", function () {
       var status = document.getElementById("profile-status");
       var resultsWrap = document.getElementById("profile-results");
-      var body = document.getElementById("profile-results-body");
       profileBtn.disabled = true;
       profileBtn.classList.add("opacity-60");
       status.textContent = "Reading device signal…";
@@ -640,25 +759,12 @@
                 status.textContent = data.message || "No device signal yet — reload the page and try again.";
                 return;
               }
-              renderExampleProfile(status, resultsWrap, body);
+              renderRichProfile(status, resultsWrap, resultsWrap, buildExampleProfileData(), true);
               return;
             }
-            var rows = [
-              ["Confidence score", data.confidence != null ? data.confidence.toFixed(2) : "Unknown"],
-              ["Incognito / private browsing", data.incognito],
-              ["Automation / bot", data.bot],
-              ["VPN detected", data.vpn],
-              ["Proxy detected", data.proxy],
-              ["Tor detected", data.tor],
-              ["Network type", data.network],
-              ["Country", data.country],
-              ["Visit history", data.returning]
-            ];
-            renderProfileRows(body, rows);
-            resultsWrap.classList.remove("hidden");
-            status.textContent = "Done.";
+            renderRichProfile(status, resultsWrap, resultsWrap, data, false);
           })
-          .catch(function () { renderExampleProfile(status, resultsWrap, body); })
+          .catch(function () { renderRichProfile(status, resultsWrap, resultsWrap, buildExampleProfileData(), true); })
           .finally(function () {
             profileBtn.disabled = false;
             profileBtn.classList.remove("opacity-60");

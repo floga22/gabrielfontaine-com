@@ -4,11 +4,13 @@
 // load (window.INSIGHTS_VISITOR.eventId, from the site-insights-kit agent
 // that already runs on every page). This function calls Fingerprint's Server
 // API for that one event, adds Cloudflare's own edge network context, and
-// returns a compact, display-ready readout. Nothing here is stored; it's
-// shown only to the visitor who triggered it.
+// returns a rich, display-ready readout. Nothing here is stored server-side;
+// it's shown only to the visitor who triggered it, for their own event.
 //
 // Secret required: FINGERPRINT_SECRET_KEY (Cloudflare Pages > Settings >
 // Environment variables, added as a *secret*, Production + Preview).
+// Auth: Fingerprint's v4 Server API uses Bearer token auth
+// (Authorization: Bearer <secret key>), not the older Auth-API-Key header.
 // Region: same "us" region already used for the client agent, so the global
 // endpoint (api.fpjs.io) is correct. If the Fingerprint workspace is ever
 // moved to the EU or Asia-Pacific region, change FP_API_BASE below to match.
@@ -30,11 +32,11 @@ function isRateLimited(ip) {
   return entry.count > RATE_LIMIT_PER_HOUR;
 }
 
-// Small, deliberately coarse ASN heuristic — the same kind of first-pass
-// network classification fraud teams use before deeper review. Not a claim
-// of certainty, just a label.
-function classifyNetwork(cf) {
-  const org = (cf && cf.asOrganization ? cf.asOrganization : "").toLowerCase();
+// Small, deliberately coarse ASN-name heuristic — the same kind of
+// first-pass network classification fraud teams use before deeper review.
+// Not a claim of certainty, just a label.
+function classifyNetwork(orgName) {
+  const org = (orgName || "").toLowerCase();
   if (!org) return "Unknown network";
   const hosting = ["amazon", "google", "microsoft", "azure", "digitalocean", "ovh", "hetzner", "linode", "vultr", "oracle cloud", "cloudflare"];
   const mobile = ["t-mobile", "verizon wireless", "at&t mobility", "cellco", "sprint"];
@@ -43,13 +45,12 @@ function classifyNetwork(cf) {
   return "Consumer ISP network";
 }
 
-function returningVisitorText(firstSeenIso, lastSeenIso) {
-  if (!firstSeenIso) return "No visit history available for this device.";
-  const first = new Date(firstSeenIso);
-  const now = new Date();
-  const minutesSinceFirst = (now - first) / 60000;
+function returningVisitorText(firstSeenMs) {
+  if (!firstSeenMs) return "No visit history available for this device.";
+  const first = new Date(firstSeenMs);
+  const minutesSinceFirst = (Date.now() - first.getTime()) / 60000;
   const firstSeenStr = first.toISOString().slice(0, 10);
-  if (minutesSinceFirst < 5) return `New device (first seen just now).`;
+  if (minutesSinceFirst < 5) return "New device (first seen just now).";
   return `Returning device (first seen ${firstSeenStr}).`;
 }
 
@@ -61,16 +62,7 @@ async function fetchEvent(secretKey, eventId) {
       headers: { "Authorization": `Bearer ${secretKey}` },
       signal: controller.signal
     });
-    if (!res.ok) {
-      // TEMP DEBUG: capture Fingerprint's own error body text (their error
-      // message, never our secret) so we can see the exact reason for a
-      // non-2xx response instead of just the status code.
-      let bodyText = "";
-      try { bodyText = (await res.text()).slice(0, 500); } catch (_) {}
-      const err = new Error(`Fingerprint API ${res.status}`);
-      err.body = bodyText;
-      throw err;
-    }
+    if (!res.ok) throw new Error(`Fingerprint API ${res.status}`);
     return await res.json();
   } finally {
     clearTimeout(timer);
@@ -112,36 +104,96 @@ export async function onRequestPost(context) {
   try {
     data = await fetchEvent(secretKey, eventId);
   } catch (e) {
-    // TEMP DEBUG: surface the safe failure detail (error name/message only,
-    // never the secret itself) so we can tell auth vs network vs timeout
-    // apart. Remove once the upstream issue is diagnosed.
-    return json({ ok: false, error: "upstream_error", message: "Couldn't reach the device-intelligence service. Try again in a moment.", debug: { name: e && e.name, message: e && e.message, keyLen: secretKey ? secretKey.length : 0, body: e && e.body } }, 200);
+    return json({ ok: false, error: "upstream_error", message: "Couldn't reach the device-intelligence service. Try again in a moment." }, 200);
   }
 
-  const products = data.products || {};
-  const ident = (products.identification && products.identification.data) || {};
-  const bot = (products.botd && products.botd.data && products.botd.data.bot) || {};
-  const vpn = (products.vpn && products.vpn.data) || {};
-  const proxy = (products.proxy && products.proxy.data) || {};
-  const tor = (products.tor && products.tor.data) || {};
-  const incognitoVal = typeof ident.incognito === "boolean" ? ident.incognito : null;
-
+  const ident = data.identification || {};
+  const ipv4 = (data.ip_info && data.ip_info.v4) || {};
+  const geo = ipv4.geolocation || {};
   const cf = request.cf || {};
+  const asnName = ipv4.asn_name || null;
 
   const result = {
     ok: true,
-    // TEMP DEBUG: raw upstream payload so we can see the real v4 response
-    // shape and fix the field mapping below. Remove once confirmed.
-    debugRaw: data,
-    confidence: typeof ident.confidence?.score === "number" ? ident.confidence.score : null,
-    incognito: incognitoVal === null ? "Unknown" : incognitoVal ? "Yes, private/incognito browsing" : "No",
-    bot: bot.result ? (bot.result === "notDetected" ? "Not detected" : bot.result === "bad" ? "Automated tool detected" : "Possible automation") : "Unknown",
-    vpn: typeof vpn.result === "boolean" ? (vpn.result ? `Yes (confidence: ${vpn.confidence || "n/a"})` : "No") : "Unknown",
-    proxy: typeof proxy.result === "boolean" ? (proxy.result ? `Yes (confidence: ${proxy.confidence || "n/a"})` : "No") : "Unknown",
-    tor: typeof tor.result === "boolean" ? (tor.result ? "Yes" : "No") : "Unknown",
-    country: (ident.ipLocation && ident.ipLocation.country && ident.ipLocation.country.name) || cf.country || "Unknown",
-    network: classifyNetwork(cf),
-    returning: returningVisitorText(ident.firstSeenAt?.global, ident.lastSeenAt?.global)
+
+    identity: {
+      visitorId: ident.visitor_id || null,
+      confidence: typeof ident.confidence?.score === "number" ? ident.confidence.score : null,
+      confidenceVersion: ident.confidence?.version || null,
+      visitorFound: !!ident.visitor_found,
+      firstSeenAt: ident.first_seen_at || null,
+      lastSeenAt: ident.last_seen_at || null,
+      returning: returningVisitorText(ident.first_seen_at)
+    },
+
+    client: {
+      device: data.device || "Unknown",
+      os: data.os || "Unknown",
+      osVersion: data.os_version || "",
+      browser: (data.browser_details && data.browser_details.browser_name) || "Unknown",
+      browserVersion: (data.browser_details && data.browser_details.browser_major_version) || ""
+    },
+
+    risk: {
+      bot: data.bot || "unknown",
+      incognito: typeof data.incognito === "boolean" ? data.incognito : null,
+      vpn: typeof data.vpn === "boolean" ? data.vpn : null,
+      vpnConfidence: data.vpn_confidence || null,
+      vpnMethods: data.vpn_methods || null,
+      vpnOriginCountry: data.vpn_origin_country || null,
+      proxy: typeof data.proxy === "boolean" ? data.proxy : null,
+      proxyConfidence: data.proxy_confidence || null,
+      torNode: !!(data.ip_blocklist && data.ip_blocklist.tor_node),
+      ipBlocklist: data.ip_blocklist || null,
+      tampering: typeof data.tampering === "boolean" ? data.tampering : null,
+      tamperingDetails: data.tampering_details || null,
+      developerTools: !!data.developer_tools,
+      virtualMachine: !!data.virtual_machine,
+      privacySettings: !!data.privacy_settings,
+      suspectScore: typeof data.suspect_score === "number" ? data.suspect_score : null,
+      highActivityDevice: !!data.high_activity_device,
+      rareDevice: !!data.rare_device,
+      rareDevicePercentile: data.rare_device_percentile_bucket || null
+    },
+
+    network: {
+      ip: data.ip_address || null,
+      asn: ipv4.asn || null,
+      asnName,
+      asnType: ipv4.asn_type || null,
+      datacenter: !!ipv4.datacenter_result,
+      classification: classifyNetwork(asnName || cf.asOrganization),
+      city: geo.city_name || cf.city || null,
+      region: (geo.subdivisions && geo.subdivisions[0] && geo.subdivisions[0].name) || cf.region || null,
+      country: geo.country_name || cf.country || "Unknown",
+      countryCode: geo.country_code || cf.country || null,
+      postalCode: geo.postal_code || cf.postalCode || null,
+      latitude: typeof geo.latitude === "number" ? geo.latitude : (cf.latitude || null),
+      longitude: typeof geo.longitude === "number" ? geo.longitude : (cf.longitude || null),
+      timezone: geo.timezone || cf.timezone || null,
+      accuracyRadiusKm: geo.accuracy_radius || null
+    },
+
+    edge: {
+      colo: cf.colo || null,
+      country: cf.country || null,
+      city: cf.city || null,
+      region: cf.region || null,
+      postalCode: cf.postalCode || null,
+      latitude: cf.latitude || null,
+      longitude: cf.longitude || null,
+      timezone: cf.timezone || null,
+      asn: cf.asn || null,
+      asOrganization: cf.asOrganization || null,
+      isEUCountry: cf.isEUCountry || null,
+      tlsVersion: cf.tlsVersion || null,
+      tlsCipher: cf.tlsCipher || null,
+      httpProtocol: cf.httpProtocol || null
+    },
+
+    velocity: data.velocity || null,
+
+    raw: data
   };
 
   return json(result);
