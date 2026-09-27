@@ -52,8 +52,8 @@
 
   <!-- Header -->
   <header class="sticky top-0 z-50 bg-lavender-100/90 backdrop-blur-md border-b border-ink-900/10">
-    <div class="max-w-6xl mx-auto px-6 h-18 sm:h-20 flex items-center justify-between py-4">
-      <a href="index.html" class="font-serif italic text-xl font-semibold text-accent-600">Gabriel Fontaine</a>
+    <div class="max-w-6xl mx-auto px-6 h-18 sm:h-20 flex items-center justify-between py-4 gap-3">
+      <a href="index.html" class="font-serif italic text-xl font-semibold text-accent-600 shrink-0">Gabriel Fontaine</a>
       <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-ink-900/70">
         <a href="index.html" class="hover:text-ink-900 transition-colors">Home</a>
         <a href="about.html" class="hover:text-ink-900 transition-colors">About</a>
@@ -62,9 +62,46 @@
         <a href="projects.html" class="text-accent-600 font-semibold">Projects</a>
         <a href="index.html#signal" class="hover:text-ink-900 transition-colors">Signal</a>
       </nav>
-      <a href="index.html#contact" data-track="book_call" class="text-xs font-semibold uppercase tracking-wider bg-ink-900 text-white px-5 py-2.5 rounded-full hover:bg-accent-600 transition-all">Book a Call</a>
+      <div class="flex items-center gap-2 sm:gap-3 shrink-0">
+        <a href="index.html#contact" data-track="book_call" class="text-xs font-semibold uppercase tracking-wider bg-ink-900 text-white px-4 sm:px-5 py-2.5 rounded-full hover:bg-accent-600 transition-all whitespace-nowrap">Book a Call</a>
+        <button type="button" id="mobile-menu-toggle" aria-expanded="false" aria-controls="mobile-menu" aria-label="Open menu" class="md:hidden inline-flex items-center justify-center w-9 h-9 rounded-full border border-ink-900/15 text-ink-900 hover:bg-white/60 transition-colors shrink-0">
+          <svg id="mobile-menu-icon-open" class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
+          <svg id="mobile-menu-icon-close" class="w-5 h-5 hidden" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+        </button>
+      </div>
     </div>
+    <nav id="mobile-menu" class="hidden md:hidden border-t border-ink-900/10 bg-lavender-100/95 backdrop-blur-md">
+      <div class="max-w-6xl mx-auto px-6 py-2 flex flex-col text-sm font-medium text-ink-900/70">
+        <a href="index.html" class="py-2.5 border-b border-ink-900/10 hover:text-ink-900">Home</a>
+        <a href="about.html" class="py-2.5 border-b border-ink-900/10 hover:text-ink-900">About</a>
+        <a href="services.html" class="py-2.5 border-b border-ink-900/10 hover:text-ink-900">Services</a>
+        <a href="expertise.html" class="py-2.5 border-b border-ink-900/10 hover:text-ink-900">Expertise</a>
+        <a href="projects.html" class="py-2.5 border-b border-ink-900/10 text-accent-600 font-semibold">Projects</a>
+        <a href="index.html#signal" class="py-2.5 hover:text-ink-900">Signal</a>
+      </div>
+    </nav>
   </header>
+  <script>
+    (function () {
+      var btn = document.getElementById("mobile-menu-toggle");
+      var menu = document.getElementById("mobile-menu");
+      var iconOpen = document.getElementById("mobile-menu-icon-open");
+      var iconClose = document.getElementById("mobile-menu-icon-close");
+      if (!btn || !menu) return;
+      function setOpen(open) {
+        menu.classList.toggle("hidden", !open);
+        if (iconOpen) iconOpen.classList.toggle("hidden", open);
+        if (iconClose) iconClose.classList.toggle("hidden", !open);
+        btn.setAttribute("aria-expanded", String(open));
+      }
+      btn.addEventListener("click", function () {
+        setOpen(menu.classList.contains("hidden"));
+      });
+      menu.querySelectorAll("a").forEach(function (a) {
+        a.addEventListener("click", function () { setOpen(false); });
+      });
+    })();
+  </script>
 
   <main>
 
