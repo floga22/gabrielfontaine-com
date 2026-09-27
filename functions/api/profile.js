@@ -61,7 +61,16 @@ async function fetchEvent(secretKey, eventId) {
       headers: { "Auth-API-Key": secretKey },
       signal: controller.signal
     });
-    if (!res.ok) throw new Error(`Fingerprint API ${res.status}`);
+    if (!res.ok) {
+      // TEMP DEBUG: capture Fingerprint's own error body text (their error
+      // message, never our secret) so we can see the exact reason for a
+      // non-2xx response instead of just the status code.
+      let bodyText = "";
+      try { bodyText = (await res.text()).slice(0, 500); } catch (_) {}
+      const err = new Error(`Fingerprint API ${res.status}`);
+      err.body = bodyText;
+      throw err;
+    }
     return await res.json();
   } finally {
     clearTimeout(timer);
@@ -106,7 +115,7 @@ export async function onRequestPost(context) {
     // TEMP DEBUG: surface the safe failure detail (error name/message only,
     // never the secret itself) so we can tell auth vs network vs timeout
     // apart. Remove once the upstream issue is diagnosed.
-    return json({ ok: false, error: "upstream_error", message: "Couldn't reach the device-intelligence service. Try again in a moment.", debug: { name: e && e.name, message: e && e.message, keyLen: secretKey ? secretKey.length : 0 } }, 200);
+    return json({ ok: false, error: "upstream_error", message: "Couldn't reach the device-intelligence service. Try again in a moment.", debug: { name: e && e.name, message: e && e.message, keyLen: secretKey ? secretKey.length : 0, body: e && e.body } }, 200);
   }
 
   const products = data.products || {};
