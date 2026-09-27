@@ -130,6 +130,9 @@ export async function onRequestPost(context) {
 
   const result = {
     ok: true,
+    // TEMP DEBUG: raw upstream payload so we can see the real v4 response
+    // shape and fix the field mapping below. Remove once confirmed.
+    debugRaw: data,
     confidence: typeof ident.confidence?.score === "number" ? ident.confidence.score : null,
     incognito: incognitoVal === null ? "Unknown" : incognitoVal ? "Yes, private/incognito browsing" : "No",
     bot: bot.result ? (bot.result === "notDetected" ? "Not detected" : bot.result === "bad" ? "Automated tool detected" : "Possible automation") : "Unknown",
