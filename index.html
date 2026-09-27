@@ -295,11 +295,70 @@
       <div class="bg-lavender-50 border border-ink-900/10 rounded-3xl p-10 sm:p-16">
         <span class="text-xs font-bold uppercase tracking-widest text-accent-600">A Practical Next Step</span>
         <h2 class="font-serif text-3xl sm:text-4xl font-semibold mt-3 text-ink-900 max-w-xl">If the product work has outgrown the current operating model, let's talk.</h2>
-        <div class="mt-8 rounded-xl overflow-hidden border border-ink-900/10 bg-white" style="height: 900px;">
-          <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSeoEQRJYcJRMTZQDV1-8PvapbVYgGipghmvo3ItbI5rvbPI4A/viewform?embedded=true" width="100%" height="100%" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
-        </div>
+        <form id="contact-form" class="mt-8 bg-white border border-ink-900/10 rounded-xl p-6 sm:p-8 space-y-5">
+          <input type="hidden" name="access_key" value="4b696fb3-5108-4b5b-8780-445fbc7531ea">
+          <input type="hidden" name="subject" value="New inquiry from gabrielfontaine.com">
+          <input type="checkbox" name="botcheck" class="hidden" style="display:none" tabindex="-1" autocomplete="off">
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+            <div>
+              <label for="cf-name" class="text-xs font-semibold uppercase tracking-wide text-ink-900/50 mb-1 block">Name</label>
+              <input id="cf-name" type="text" name="name" required class="w-full rounded-xl border border-ink-900/15 bg-white px-4 py-3 text-sm text-ink-900 placeholder:text-ink-900/30 focus:outline-none focus:ring-2 focus:ring-accent-500 focus:border-transparent">
+            </div>
+            <div>
+              <label for="cf-email" class="text-xs font-semibold uppercase tracking-wide text-ink-900/50 mb-1 block">Email</label>
+              <input id="cf-email" type="email" name="email" required class="w-full rounded-xl border border-ink-900/15 bg-white px-4 py-3 text-sm text-ink-900 placeholder:text-ink-900/30 focus:outline-none focus:ring-2 focus:ring-accent-500 focus:border-transparent">
+            </div>
+          </div>
+          <div>
+            <label for="cf-company" class="text-xs font-semibold uppercase tracking-wide text-ink-900/50 mb-1 block">Company <span class="normal-case font-normal text-ink-900/30">(optional)</span></label>
+            <input id="cf-company" type="text" name="company" class="w-full rounded-xl border border-ink-900/15 bg-white px-4 py-3 text-sm text-ink-900 placeholder:text-ink-900/30 focus:outline-none focus:ring-2 focus:ring-accent-500 focus:border-transparent">
+          </div>
+          <div>
+            <label for="cf-message" class="text-xs font-semibold uppercase tracking-wide text-ink-900/50 mb-1 block">What's the situation?</label>
+            <textarea id="cf-message" name="message" required rows="5" class="w-full rounded-xl border border-ink-900/15 bg-white px-4 py-3 text-sm text-ink-900 placeholder:text-ink-900/30 focus:outline-none focus:ring-2 focus:ring-accent-500 focus:border-transparent"></textarea>
+          </div>
+          <div class="flex items-center gap-4">
+            <button type="submit" class="text-xs font-semibold uppercase tracking-wider bg-accent-500 text-white px-6 py-3 rounded-full hover:bg-accent-600 transition-all disabled:opacity-60">Send message →</button>
+            <span id="contact-form-status" class="text-xs text-ink-900/50"></span>
+          </div>
+        </form>
       </div>
     </section>
+
+    <script>
+      (function () {
+        var form = document.getElementById("contact-form");
+        if (!form) return;
+        var status = document.getElementById("contact-form-status");
+        var submitBtn = form.querySelector('button[type="submit"]');
+        form.addEventListener("submit", function (e) {
+          e.preventDefault();
+          submitBtn.disabled = true;
+          status.textContent = "Sending…";
+          fetch("https://api.web3forms.com/submit", {
+            method: "POST",
+            headers: { Accept: "application/json" },
+            body: new FormData(form)
+          })
+            .then(function (res) { return res.json(); })
+            .then(function (data) {
+              if (data.success) {
+                status.textContent = "Thanks — message sent. I'll get back to you soon.";
+                form.reset();
+              } else {
+                status.textContent = data.message || "Something went wrong. Please try again.";
+              }
+            })
+            .catch(function () {
+              status.textContent = "Something went wrong. Please try again, or email directly.";
+            })
+            .finally(function () {
+              submitBtn.disabled = false;
+            });
+        });
+      })();
+    </script>
 
   </main>
 
