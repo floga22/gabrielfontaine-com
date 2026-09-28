@@ -25,13 +25,22 @@
 <style>
   summary::-webkit-details-marker { display: none; }
   summary { list-style: none; }
-  .examples-bar { transition: border-color .15s ease, box-shadow .15s ease; }
-  .examples-bar:hover { border-color: rgba(91,95,239,0.45); }
-  .examples-bar:hover .proj-chevron { border-color: rgba(67,56,202,0.4); color: #4338CA; }
+  .examples-bar { transition: border-color .15s ease, box-shadow .15s ease, background-color .15s ease; }
+  .examples-bar:hover, .examples-bar:focus-visible {
+    border-color: rgba(91,95,239,0.55);
+    background-color: #F3F4FC;
+    box-shadow: 0 4px 16px rgba(67,56,202,0.12);
+  }
+  .examples-bar:hover .proj-chevron, .examples-bar:focus-visible .proj-chevron { border-color: rgba(67,56,202,0.5); color: #4338CA; background-color: #fff; }
   .examples-bar:focus-visible { outline: 2px solid #4338CA; outline-offset: 4px; }
-  .proj-chevron { transition: transform 0.2s ease; }
+  .proj-chevron { transition: transform 0.2s ease, border-color .15s ease, color .15s ease; }
   .examples-details[open] > .examples-bar { border-color: rgba(91,95,239,0.45); }
   .examples-details[open] > .examples-bar .proj-chevron { transform: rotate(180deg); }
+
+  /* Whole-project hover: a faint highlight on the section the pointer is over, so it reads as a
+     distinct, explorable unit even before reaching a "Try it" bar inside it. */
+  .project-block { transition: background-color .2s ease, box-shadow .2s ease; border-radius: 24px; }
+  .project-block:hover { background-color: rgba(91,95,239,0.06); box-shadow: inset 0 0 0 1px rgba(91,95,239,0.12); }
 </style>
 <!-- site-insights-kit: analytics, session replay, device intelligence. Public IDs only. -->
 <script>
@@ -126,7 +135,7 @@
     <!-- ============================================================ -->
     <!-- PROJECT 1: JEV DECISION ENGINE                                -->
     <!-- ============================================================ -->
-    <section class="max-w-6xl mx-auto px-6 pb-8">
+    <section class="max-w-6xl mx-auto px-6 pb-8 project-block">
       <div class="max-w-3xl mb-10">
         <span class="text-xs font-bold uppercase tracking-widest text-accent-600">Project 01</span>
         <h2 class="font-serif text-3xl sm:text-4xl font-semibold mt-3 text-ink-950">Jev Decision Engine: fast, explainable AI decisions for everyday choices</h2>
@@ -389,7 +398,7 @@
     <!-- ============================================================ -->
     <!-- PROJECT 2: VISITOR DEVICE INTELLIGENCE                        -->
     <!-- ============================================================ -->
-    <section class="max-w-6xl mx-auto px-6 py-8 border-t border-ink-900/10 mt-10">
+    <section class="max-w-6xl mx-auto px-6 py-8 border-t border-ink-900/10 mt-10 project-block">
       <div class="max-w-3xl mb-10 pt-10">
         <span class="text-xs font-bold uppercase tracking-widest text-accent-600">Project 02</span>
         <h2 class="font-serif text-3xl sm:text-4xl font-semibold mt-3 text-ink-950">Visitor Device Intelligence: what a fraud-grade signal stack sees about your visit</h2>
@@ -449,8 +458,8 @@
       <details class="examples-details mb-0">
         <summary class="examples-bar flex items-center justify-between gap-4 bg-white rounded-2xl border border-ink-900/10 px-6 sm:px-8 py-5 cursor-pointer list-none">
           <div>
-            <span class="text-xs font-bold uppercase tracking-widest text-accent-600">Nested build</span>
-            <span class="block font-serif text-xl font-semibold text-ink-950 mt-1">Stack Landscape: the same detection, across the web</span>
+            <span class="text-xs font-bold uppercase tracking-widest text-accent-600">Try it</span>
+            <span class="block font-serif text-xl font-semibold text-ink-950 mt-1">Stack Landscape: a nested build, mapped across the web</span>
             <span class="block text-sm text-ink-900/50 mt-1">A Chrome extension I built that maps which fraud and bot-detection vendors run on the sites I browse.</span>
           </div>
           <span class="proj-chevron shrink-0 w-9 h-9 rounded-full border border-ink-900/15 bg-white flex items-center justify-center text-ink-900/50">
@@ -493,7 +502,7 @@
     <!-- ============================================================ -->
     <!-- PROJECT 3: JOB FIT ANALYZER                                   -->
     <!-- ============================================================ -->
-    <section class="max-w-6xl mx-auto px-6 py-8 border-t border-ink-900/10 mt-10">
+    <section class="max-w-6xl mx-auto px-6 py-8 border-t border-ink-900/10 mt-10 project-block">
       <div class="max-w-3xl mb-10 pt-10">
         <span class="text-xs font-bold uppercase tracking-widest text-accent-600">Project 03</span>
         <h2 class="font-serif text-3xl sm:text-4xl font-semibold mt-3 text-ink-950">Job Fit Analyzer: the same engine, aimed at a job search</h2>
@@ -527,8 +536,8 @@
         <summary class="examples-bar flex items-center justify-between gap-4 bg-white rounded-2xl border border-ink-900/10 px-6 sm:px-8 py-5 cursor-pointer list-none">
           <div>
             <span class="text-xs font-bold uppercase tracking-widest text-accent-600">Try it</span>
-            <span class="block font-serif text-xl font-semibold text-ink-950 mt-1">Pick a posting, run its candidate, browse the tracker</span>
-            <span class="block text-sm text-ink-900/50 mt-1">A live Jev fit analysis on three fictional postings, plus a 14-application dashboard snapshot.</span>
+            <span class="block font-serif text-xl font-semibold text-ink-950 mt-1">Pick a posting, run its candidate against it</span>
+            <span class="block text-sm text-ink-900/50 mt-1">A live Jev fit analysis on three fictional job postings.</span>
           </div>
           <span class="proj-chevron shrink-0 w-9 h-9 rounded-full border border-ink-900/15 bg-white flex items-center justify-center text-ink-900/50">
             <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
@@ -595,12 +604,23 @@
         </div>
       </div>
 
+        </div>
+      </details>
+
+      <details class="examples-details mb-0">
+        <summary class="examples-bar flex items-center justify-between gap-4 bg-white rounded-2xl border border-ink-900/10 px-6 sm:px-8 py-5 cursor-pointer list-none">
+          <div>
+            <span class="text-xs font-bold uppercase tracking-widest text-accent-600">Try it</span>
+            <span class="block font-serif text-xl font-semibold text-ink-950 mt-1">Browse the dashboard: 14 applications in progress</span>
+            <span class="block text-sm text-ink-900/50 mt-1">A hardcoded snapshot of the real tracker's daily view — click a role or a company to open it.</span>
+          </div>
+          <span class="proj-chevron shrink-0 w-9 h-9 rounded-full border border-ink-900/15 bg-white flex items-center justify-center text-ink-900/50">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+          </span>
+        </summary>
+        <div class="pt-6">
       <!-- Static dashboard snapshot -->
       <div class="bg-white rounded-2xl border border-ink-900/10 overflow-hidden">
-        <div class="p-6 sm:p-8 pb-4 border-b border-ink-900/10">
-          <h3 class="font-serif text-xl font-semibold text-ink-950">Dashboard snapshot: 14 applications in progress</h3>
-          <p class="text-sm text-ink-900/50 mt-1">A hardcoded snapshot of the real tracker's daily view. Click a role for its full analysis and posting text; click a company to see every role there.</p>
-        </div>
         <div class="flex flex-col md:flex-row">
           <!-- Sidebar -->
           <div class="md:w-72 shrink-0 border-b md:border-b-0 md:border-r border-ink-900/10 p-4">
