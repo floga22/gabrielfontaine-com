@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Stack Landscape — Gabriel Fontaine</title>
+<meta name="description" content="Every anti-bot, fraud-risk, and device-intelligence vendor recognized across the sites I've browsed — a Chrome extension side project, rolled up by category with no site names attached.">
+<meta name="robots" content="noindex, follow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,600&family=Inter:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js"></script>
+<!-- site-insights-kit: analytics, session replay, device intelligence. Public IDs only. -->
+<script>
+  window.INSIGHTS_CONFIG = {
+    site: "gabrielfontaine.com",
+    ownerName: "Gabriel Fontaine",
+    contactEmail: "privacy@gabrielfontaine.com",
+    consent: "none",
+    ga4: "G-Z56L1BHZS1",
+    clarity: "yo1qncaepu",
+    fingerprint: {
+      key: "71BAprWdJzzeJSgcyPcL",
+      region: "us",
+      endpoint: "https://metrics.gabrielfontaine.com"
+    },
+    // worker: "https://...",   // add when the Cloudflare Worker is deployed
+    // clickstream: true,
+    debug: false
+  };
+</script>
+<script src="https://cdn.jsdelivr.net/gh/floga22/site-insights-kit@v1.1.0/src/insights.js" defer></script>
+
+<style>
+  /* ---- minimal brand top bar / footer, independent of the tool's own theme below ---- */
+  :root { --brand-accent: #4338CA; --brand-ink: #10163A; }
+  .brand-topbar {
+    font-family: "Inter", system-ui, sans-serif;
+    background: #F3F4FC;
+    border-bottom: 1px solid rgba(16,22,58,0.10);
+    padding: 14px 16px;
+  }
+  .brand-topbar .inner {
+    max-width: 1180px;
+    margin-inline: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+  }
+  .brand-topbar a.back {
+    color: var(--brand-accent);
+    font-weight: 600;
+    font-size: 13.5px;
+    text-decoration: none;
+  }
+  .brand-topbar a.back:hover { text-decoration: underline; }
+  .brand-topbar .brand-name {
+    font-family: "Playfair Display", serif;
+    font-style: italic;
+    font-weight: 600;
+    font-size: 15px;
+    color: var(--brand-ink);
+  }
+  .brand-footer {
+    font-family: "Inter", system-ui, sans-serif;
+    background: var(--brand-ink);
+    color: rgba(255,255,255,0.6);
+    padding: 28px 16px;
+    font-size: 12px;
+    line-height: 1.7;
+  }
+  .brand-footer .inner { max-width: 1180px; margin-inline: auto; }
+
+  /* ---- Stack Landscape tool theme (scoped to the rest of this page) ---- */
+  :root {
+    color-scheme: light;
+    --page-bg: #f9f9f7;
+    --surface: #fcfcfb;
+    --surface-2: #f2f1ed;
+    --text-primary: #0b0b0b;
+    --text-secondary: #52514e;
+    --text-muted: #898781;
+    --border: rgba(11,11,11,0.10);
+    --gridline: #e1e0d9;
+
+    --b-bot:      #2a78d6;  /* Bot & Traffic Management  -- blue */
+    --b-captcha:  #eb6834;  /* Challenge / CAPTCHA       -- orange */
+    --b-fraud:    #1baf7a;  /* Fraud & Risk Platforms    -- aqua */
+    --b-device:  #eda100;  /* Device & Behavioral Intel -- yellow */
+    --b-identity: #e87ba4;  /* Identity & Account Linking -- magenta */
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      color-scheme: dark;
+      --page-bg: #0d0d0d;
+      --surface: #17171a;
+      --surface-2: #1f1f22;
+      --text-primary: #ffffff;
+      --text-secondary: #c3c2b7;
+      --text-muted: #8b8a86;
+      --border: rgba(255,255,255,0.10);
+      --gridline: #2c2c2a;
+
+      --b-bot:      #3987e5;
+      --b-captcha:  #d95926;
+      --b-fraud:    #199e70;
+      --b-device:  #c98500;
+      --b-identity: #d55181;
+    }
+    .brand-topbar { background: #17171a; border-bottom-color: rgba(255,255,255,0.10); }
+    .brand-topbar .brand-name { color: #ffffff; }
+  }
+  :root[data-theme="dark"] {
+    color-scheme: dark;
+    --page-bg: #0d0d0d;
+    --surface: #17171a;
+    --surface-2: #1f1f22;
+    --text-primary: #ffffff;
+    --text-secondary: #c3c2b7;
+    --text-muted: #8b8a86;
+    --border: rgba(255,255,255,0.10);
+    --gridline: #2c2c2a;
+
+    --b-bot:      #3987e5;
+    --b-captcha:  #d95926;
+    --b-fraud:    #199e70;
+    --b-device:  #c98500;
+    --b-identity: #d55181;
+  }
+
+  #tool-root * { box-sizing: border-box; }
+  #tool-root {
+    background: var(--page-bg);
+    color: var(--text-primary);
+    font-family: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+    padding-inline: 16px;
+    padding-block: 28px 48px;
+    max-width: 1180px;
+    margin-inline: auto;
+  }
+  #tool-root .mono { font-family: "IBM Plex Mono", ui-monospace, monospace; }
+  #tool-root .tabular { font-variant-numeric: tabular-nums; }
+
+  #tool-root header.page-head { margin-bottom: 28px; }
+  #tool-root header.page-head h1 {
+    font-size: 30px;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    text-wrap: balance;
+    margin: 0 0 6px;
+  }
+  #tool-root header.page-head p {
+    color: var(--text-secondary);
+    font-size: 14.5px;
+    line-height: 1.55;
+    max-width: 62ch;
+    margin: 0 0 4px;
+  }
+  #tool-root header.page-head .meta {
+    color: var(--text-muted);
+    font-size: 12px;
+    margin-top: 10px;
+  }
+
+  #tool-root .stat-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 10px;
+    margin-bottom: 28px;
+  }
+  #tool-root .stat-tile {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 16px 18px;
+  }
+  #tool-root .stat-tile .value {
+    font-family: "IBM Plex Mono", ui-monospace, monospace;
+    font-size: 26px;
+    font-weight: 600;
+    line-height: 1.1;
+  }
+  #tool-root .stat-tile .label {
+    color: var(--text-secondary);
+    font-size: 12.5px;
+    margin-top: 6px;
+  }
+  #tool-root .stat-tile.highlight .value { color: var(--b-device); }
+
+  #tool-root section { margin-bottom: 36px; }
+  #tool-root section > h2 {
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--text-muted);
+    font-weight: 600;
+    margin: 0 0 14px;
+  }
+
+  #tool-root .legend-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 18px;
+  }
+  #tool-root .legend-chip {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    padding: 7px 13px 7px 10px;
+    font-size: 12.5px;
+    color: var(--text-secondary);
+    cursor: pointer;
+    user-select: none;
+    transition: opacity .15s ease;
+  }
+  #tool-root .legend-chip .dot { width: 9px; height: 9px; border-radius: 50%; flex: none; }
+  #tool-root .legend-chip .n { color: var(--text-muted); }
+  #tool-root .legend-chip.off { opacity: 0.35; }
+
+  #tool-root .viz-wrap {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 8px;
+  }
+  #tool-root #pack-svg { width: 100%; height: auto; display: block; }
+  #tool-root #pack-svg text { font-family: "IBM Plex Sans", sans-serif; fill: var(--text-primary); pointer-events: none; }
+  #tool-root #pack-svg .bucket-label { fill: var(--text-secondary); font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em; }
+  #tool-root #pack-svg circle.vendor { cursor: pointer; }
+  #tool-root #pack-svg circle.bucket-bg { fill: none; }
+
+  #tool-root #tooltip {
+    position: fixed;
+    pointer-events: none;
+    background: var(--text-primary);
+    color: var(--page-bg);
+    font-size: 12.5px;
+    line-height: 1.5;
+    padding: 8px 11px;
+    border-radius: 8px;
+    max-width: 240px;
+    opacity: 0;
+    transform: translate(-50%, calc(-100% - 10px));
+    transition: opacity .1s ease;
+    z-index: 20;
+  }
+  #tool-root #tooltip b { display: block; font-weight: 600; margin-bottom: 2px; }
+  #tool-root #tooltip .muted { opacity: 0.7; }
+
+  #tool-root .rank-caption { color: var(--text-muted); font-size: 12px; line-height: 1.5; margin: -6px 0 16px; max-width: 62ch; }
+  #tool-root .rank-list { display: flex; flex-direction: column; }
+  #tool-root .rank-row {
+    display: grid;
+    grid-template-columns: minmax(150px, 25ch) minmax(0,1fr) 5.5ch;
+    align-items: center;
+    gap: 14px;
+    padding: 7px 0;
+    border-bottom: 1px solid var(--gridline);
+    font-size: 13px;
+  }
+  #tool-root .rank-row:last-child { border-bottom: none; }
+  #tool-root .rank-row .name { color: var(--text-primary); white-space: normal; line-height: 1.25; overflow-wrap: break-word; }
+  #tool-root .rank-row .bar-track { background: var(--surface-2); border-radius: 4px; height: 10px; overflow: hidden; }
+  #tool-root .rank-row .bar-fill { height: 100%; border-radius: 4px; }
+  #tool-root .rank-row .count { text-align: right; color: var(--text-secondary); }
+
+  #tool-root .section-note { color: var(--text-muted); font-size: 12.5px; line-height: 1.55; max-width: 66ch; margin: -6px 0 16px; }
+
+  #tool-root .pt-card-rows { display: flex; flex-direction: column; gap: 3px; margin-top: 10px; }
+  #tool-root .pt-row { display: grid; grid-template-columns: 13ch minmax(0,1fr) 2.6ch; align-items: center; gap: 8px; font-size: 11.5px; }
+  #tool-root .pt-row .pt-label { color: var(--text-secondary); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  #tool-root .pt-row .pt-track { background: var(--surface-2); border-radius: 3px; height: 7px; overflow: hidden; }
+  #tool-root .pt-row .pt-fill { height: 100%; border-radius: 3px; }
+  #tool-root .pt-row .pt-count { text-align: right; color: var(--text-muted); font-family: "IBM Plex Mono", monospace; }
+
+  #tool-root .flow-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 14px;
+  }
+  #tool-root .flow-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 14px 16px;
+  }
+  #tool-root .flow-card .fc-head { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 8px; }
+  #tool-root .flow-card .fc-head .fc-name { font-size: 13px; font-weight: 600; }
+  #tool-root .flow-card .fc-head .fc-pct { font-family: "IBM Plex Mono", monospace; font-size: 13px; color: var(--text-secondary); }
+  #tool-root .flow-bar { display: flex; height: 14px; border-radius: 4px; overflow: hidden; background: var(--surface-2); }
+  #tool-root .flow-bar .seg-sensitive { height: 100%; }
+  #tool-root .flow-card .fc-caption { font-size: 11.5px; color: var(--text-muted); margin-top: 8px; line-height: 1.5; }
+
+  #tool-root .callout {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--b-device);
+    border-radius: 0 12px 12px 0;
+    padding: 16px 20px;
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--text-secondary);
+  }
+  #tool-root .callout b { color: var(--text-primary); }
+
+  #tool-root footer.tool-foot {
+    color: var(--text-muted);
+    font-size: 11.5px;
+    line-height: 1.7;
+    border-top: 1px solid var(--gridline);
+    padding-top: 16px;
+    max-width: 68ch;
+  }
+
+  @media (max-width: 480px) {
+    #tool-root .rank-row { grid-template-columns: minmax(100px, 15ch) minmax(0,1fr) 4.5ch; }
+    #tool-root header.page-head h1 { font-size: 25px; }
+  }
+</style>
+</head>
+<body style="margin:0; background:var(--page-bg);">
+
+  <div class="brand-topbar">
+    <div class="inner">
+      <a href="projects.html" class="back">&larr; Back to Gabriel Fontaine — Projects</a>
+      <span class="brand-name">Gabriel Fontaine</span>
+    </div>
+  </div>
+
+  <div id="tool-root">
+    <header class="page-head">
+      <h1>Stack Landscape</h1>
+      <p>Every anti-bot, fraud-risk, and device-intelligence vendor spotted across the sites I've
+         visited — grouped into five categories, with no site names attached. Detected client-side
+         from cookies, script paths, and page markup while browsing, by a Chrome extension I built.</p>
+      <div class="meta mono">Generated <span id="meta-date"></span> · site identities are never included in this view</div>
+    </header>
+
+    <div class="stat-row" id="stat-row"></div>
+
+    <section>
+      <h2>By category</h2>
+      <div class="legend-row" id="legend-row"></div>
+      <div class="viz-wrap">
+        <svg id="pack-svg" viewBox="0 0 1040 780"></svg>
+      </div>
+    </section>
+
+    <section>
+      <h2>Every vendor, ranked</h2>
+      <div class="rank-caption" id="rank-caption"></div>
+      <div class="rank-list" id="rank-list"></div>
+    </section>
+
+    <section>
+      <h2>Where each category shows up</h2>
+      <p class="section-note">Site identities are never captured here, so a breakdown by industry isn't possible from
+         this data. This is the closest honest substitute: which stage of a visit — general browsing, login, checkout,
+         signup, password reset — each category's vendors tend to guard.</p>
+      <div class="callout" id="callout" style="margin-bottom:16px;"></div>
+      <div class="flow-grid" id="flow-grid"></div>
+    </section>
+
+    <footer class="tool-foot">
+      <span id="foot-methodology"></span>
+    </footer>
+  </div>
+
+  <div id="tooltip"></div>
+
+  <div class="brand-footer">
+    <div class="inner">
+      Gabriel Fontaine — Executive product leadership, without the full-time overhead. Identity, fraud &amp; compliance specialist, 18+ years. © 2026.
+      <div style="margin-top:10px;"><span id="insights-privacy"></span></div>
+    </div>
+  </div>
+
+<script>
+window.ROLLUP = {"generatedAt": "2026-09-27T02:18:22.680Z", "totalSites": 319, "totalVisits": 1804, "sitesNoVendorDetected": 0, "sitesMultiVendorStack": 62, "buckets": [{"name": "Bot & Traffic Management", "color": "#d6955c", "siteCount": 219, "vendorCount": 5}, {"name": "Challenge / CAPTCHA", "color": "#acd65c", "siteCount": 85, "vendorCount": 3}, {"name": "Fraud & Risk Platforms", "color": "#e04c8f", "siteCount": 51, "vendorCount": 6}, {"name": "Device & Behavioral Intelligence", "color": "#5cd6b9", "siteCount": 23, "vendorCount": 6}, {"name": "Identity & Account Linking", "color": "#5c60d6", "siteCount": 3, "vendorCount": 2}], "vendors": [{"id": "cloudflare-bm", "name": "Cloudflare Bot Management", "color": "#d6955c", "bucket": "Bot & Traffic Management", "siteCount": 147}, {"id": "recaptcha", "name": "Google reCAPTCHA", "color": "#acd65c", "bucket": "Challenge / CAPTCHA", "siteCount": 82}, {"id": "akamai", "name": "Akamai Bot Manager", "color": "#715cd6", "bucket": "Bot & Traffic Management", "siteCount": 48}, {"id": "stripe-radar", "name": "Stripe Radar", "color": "#d65c7a", "bucket": "Fraud & Risk Platforms", "siteCount": 20}, {"id": "imperva-incapsula", "name": "Imperva Incapsula", "color": "#d68a5c", "bucket": "Bot & Traffic Management", "siteCount": 18}, {"id": "kount", "name": "Kount (Equifax)", "color": "#b45cd6", "bucket": "Fraud & Risk Platforms", "siteCount": 9}, {"id": "forter", "name": "Forter", "color": "#5cd677", "bucket": "Fraud & Risk Platforms", "siteCount": 8}, {"id": "human", "name": "HUMAN (PerimeterX)", "color": "#6ad65c", "bucket": "Bot & Traffic Management", "siteCount": 7}, {"id": "fraudlabspro", "name": "FraudLabs Pro", "color": "#e04c8f", "bucket": "Fraud & Risk Platforms", "siteCount": 7}, {"id": "threatmetrix", "name": "ThreatMetrix (LexisNexis Risk Solutions)", "color": "#d5d65c", "bucket": "Device & Behavioral Intelligence", "siteCount": 7}, {"id": "castle", "name": "Castle", "color": "#9a5cd6", "bucket": "Fraud & Risk Platforms", "siteCount": 6}, {"id": "iovation", "name": "iovation / TransUnion TruValidate", "color": "#5cd690", "bucket": "Device & Behavioral Intelligence", "siteCount": 6}, {"id": "fingerprint", "name": "Fingerprint", "color": "#d66c5c", "bucket": "Device & Behavioral Intelligence", "siteCount": 5}, {"id": "hcaptcha", "name": "hCaptcha", "color": "#5c88d6", "bucket": "Challenge / CAPTCHA", "siteCount": 4}, {"id": "datadome", "name": "DataDome", "color": "#d65c8e", "bucket": "Bot & Traffic Management", "siteCount": 4}, {"id": "biocatch", "name": "BioCatch", "color": "#5cd6b9", "bucket": "Device & Behavioral Intelligence", "siteCount": 4}, {"id": "sift", "name": "Sift", "color": "#d65c65", "bucket": "Fraud & Risk Platforms", "siteCount": 3}, {"id": "arkose", "name": "Arkose Labs", "color": "#d65cd0", "bucket": "Challenge / CAPTCHA", "siteCount": 3}, {"id": "incode", "name": "Incode", "color": "#8892a6", "bucket": "Identity & Account Linking", "siteCount": 2}, {"id": "transmit-security", "name": "Transmit Security (Mosaic)", "color": "#8e5cd6", "bucket": "Device & Behavioral Intelligence", "siteCount": 1}, {"id": "seon", "name": "Seon", "color": "#d6be5c", "bucket": "Device & Behavioral Intelligence", "siteCount": 1}, {"id": "plaid", "name": "Plaid Link", "color": "#5c60d6", "bucket": "Identity & Account Linking", "siteCount": 1}], "pageTypeByBucket": [{"bucket": "Bot & Traffic Management", "pageType": "General", "count": 172}, {"bucket": "Fraud & Risk Platforms", "pageType": "General", "count": 35}, {"bucket": "Challenge / CAPTCHA", "pageType": "General", "count": 68}, {"bucket": "Device & Behavioral Intelligence", "pageType": "General", "count": 5}, {"bucket": "Bot & Traffic Management", "pageType": "Login", "count": 39}, {"bucket": "Device & Behavioral Intelligence", "pageType": "Login", "count": 11}, {"bucket": "Challenge / CAPTCHA", "pageType": "Login", "count": 10}, {"bucket": "Device & Behavioral Intelligence", "pageType": "Checkout", "count": 1}, {"bucket": "Fraud & Risk Platforms", "pageType": "Login", "count": 9}, {"bucket": "Fraud & Risk Platforms", "pageType": "Checkout", "count": 1}, {"bucket": "Challenge / CAPTCHA", "pageType": "Checkout", "count": 1}, {"bucket": "Bot & Traffic Management", "pageType": "Signup", "count": 4}, {"bucket": "Fraud & Risk Platforms", "pageType": "Signup", "count": 2}, {"bucket": "Challenge / CAPTCHA", "pageType": "Signup", "count": 4}, {"bucket": "Bot & Traffic Management", "pageType": "Password reset", "count": 1}, {"bucket": "Identity & Account Linking", "pageType": "General", "count": 1}, {"bucket": "Device & Behavioral Intelligence", "pageType": "Unspecified", "count": 6}, {"bucket": "Challenge / CAPTCHA", "pageType": "Unspecified", "count": 2}, {"bucket": "Fraud & Risk Platforms", "pageType": "Unspecified", "count": 4}, {"bucket": "Bot & Traffic Management", "pageType": "Unspecified", "count": 3}, {"bucket": "Identity & Account Linking", "pageType": "Unspecified", "count": 2}]};
+</script>
+<script>
+(function () {
+  const R = window.ROLLUP;
+  const cssVar = (name) => getComputedStyle(document.documentElement).getPropertyValue(name).trim();
+
+  const BUCKET_VAR = {
+    "Bot & Traffic Management": "--b-bot",
+    "Challenge / CAPTCHA": "--b-captcha",
+    "Fraud & Risk Platforms": "--b-fraud",
+    "Device & Behavioral Intelligence": "--b-device",
+    "Identity & Account Linking": "--b-identity",
+  };
+  function bucketColor(name) { return cssVar(BUCKET_VAR[name] || "--text-muted"); }
+
+  // ---------- date ----------
+  document.getElementById("meta-date").textContent = new Date(R.generatedAt).toLocaleDateString(
+    undefined, { year: "numeric", month: "long", day: "numeric" }
+  );
+
+  // ---------- stat tiles ----------
+  const layeredPct = Math.round((R.sitesMultiVendorStack / R.totalSites) * 100);
+  const stats = [
+    { value: R.totalSites.toLocaleString(), label: "Sites monitored" },
+    { value: R.vendors.length, label: "Distinct vendors detected" },
+    { value: R.buckets.length, label: "Categories" },
+    { value: layeredPct + "%", label: "Sites running 2+ layered defenses", highlight: true },
+  ];
+  const statRow = document.getElementById("stat-row");
+  stats.forEach(s => {
+    const el = document.createElement("div");
+    el.className = "stat-tile" + (s.highlight ? " highlight" : "");
+    el.innerHTML = `<div class="value tabular">${s.value}</div><div class="label">${s.label}</div>`;
+    statRow.appendChild(el);
+  });
+
+  // ---------- legend ----------
+  // High-volume commodity categories (Cloudflare, reCAPTCHA, etc.) are real but they crowd out
+  // the categories this view is actually meant to showcase — device/behavioral intelligence,
+  // fraud & risk decisioning, identity linking. Those two start off; still one click away.
+  const OFF_BY_DEFAULT = new Set(["Bot & Traffic Management", "Challenge / CAPTCHA"]);
+  const legendRow = document.getElementById("legend-row");
+  const activeBuckets = new Set(R.buckets.filter(b => !OFF_BY_DEFAULT.has(b.name)).map(b => b.name));
+  R.buckets.forEach(b => {
+    const chip = document.createElement("div");
+    chip.className = "legend-chip" + (activeBuckets.has(b.name) ? "" : " off");
+    chip.dataset.bucket = b.name;
+    chip.innerHTML = `<span class="dot" style="background:${bucketColor(b.name)}"></span>${b.name} <span class="n tabular">${b.siteCount}</span>`;
+    chip.addEventListener("click", () => {
+      if (activeBuckets.has(b.name)) { activeBuckets.delete(b.name); chip.classList.add("off"); }
+      else { activeBuckets.add(b.name); chip.classList.remove("off"); }
+      renderPack();
+      renderRankList();
+      renderFlowGrid();
+    });
+    legendRow.appendChild(chip);
+  });
+
+  // ---------- pack layout ----------
+  const svg = d3.select("#pack-svg");
+  const W = 1040, H = 780;
+  const tooltip = document.getElementById("tooltip");
+
+  // ---- text measurement + wrapping helpers (so labels fit their circles instead of colliding) ----
+  const measureCanvas = document.createElement("canvas");
+  const measureCtx = measureCanvas.getContext("2d");
+  function textWidth(str, px, weight) {
+    measureCtx.font = `${weight || 600} ${px}px "IBM Plex Sans", sans-serif`;
+    return measureCtx.measureText(str).width;
+  }
+  // width of the horizontal chord of a circle radius r at vertical offset dy from center
+  function chordWidth(r, dy, pad) {
+    const inner = r * r - dy * dy;
+    return inner > 0 ? 2 * Math.sqrt(inner) - (pad || 10) : 0;
+  }
+  // greedily wrap `text` into at most maxLines, using widthForLine(lineIndex) as the budget per line
+  function wrapLines(text, widthForLine, px, weight, maxLines) {
+    const words = text.split(/\s+/);
+    const lines = [];
+    let cur = "";
+    let wi = 0;
+    while (wi < words.length && lines.length < maxLines) {
+      const w = words[wi];
+      const test = cur ? cur + " " + w : w;
+      const budget = widthForLine(lines.length);
+      if (!cur || textWidth(test, px, weight) <= budget) {
+        cur = test;
+        wi++;
+      } else {
+        lines.push(cur);
+        cur = "";
+      }
+    }
+    if (cur) lines.push(cur);
+    if (wi < words.length && lines.length) {
+      // leftover words didn't fit — ellipsize the final line
+      const li = lines.length - 1;
+      const budget = widthForLine(li);
+      let last = lines[li];
+      while (last.length > 1 && textWidth(last + "…", px, weight) > budget) last = last.slice(0, -1);
+      lines[li] = last.replace(/\s+$/, "") + "…";
+    }
+    return lines.length ? lines : [""];
+  }
+  const BUCKET_SHORT = {
+    "Bot & Traffic Management": "Bot & Traffic",
+    "Challenge / CAPTCHA": "Challenge / CAPTCHA",
+    "Fraud & Risk Platforms": "Fraud & Risk",
+    "Device & Behavioral Intelligence": "Device & Behavioral",
+    "Identity & Account Linking": "Identity & Linking",
+  };
+
+  function showTooltip(evt, v) {
+    tooltip.innerHTML = `<b>${v.name}</b>${v.bucket}<br><span class="muted">${v.siteCount} of ${R.totalSites} sites monitored</span>`;
+    tooltip.style.left = evt.clientX + "px";
+    tooltip.style.top = evt.clientY + "px";
+    tooltip.style.opacity = "1";
+  }
+  function hideTooltip() { tooltip.style.opacity = "0"; }
+
+  function renderPack() {
+    svg.selectAll("*").remove();
+    const visibleBuckets = R.buckets.filter(b => activeBuckets.has(b.name));
+    const children = visibleBuckets.map(b => ({
+      name: b.name,
+      children: R.vendors.filter(v => v.bucket === b.name).map(v => ({ ...v, value: v.siteCount }))
+    }));
+    const root = d3.hierarchy({ name: "root", children })
+      .sum(d => d.value || 0)
+      .sort((a, b) => (b.value || 0) - (a.value || 0));
+
+    // generous top-level padding keeps whole clusters (and their labels) from crowding each other
+    d3.pack().size([W, H]).padding(d => d.depth === 0 ? 52 : 4)(root);
+
+    const g = svg.append("g");
+
+    const bucketNodes = root.children || [];
+    const bg = g.selectAll(".bucket-bg-g").data(bucketNodes).join("g").attr("class", "bucket-bg-g");
+    bg.append("circle")
+      .attr("class", "bucket-bg")
+      .attr("cx", d => d.x).attr("cy", d => d.y).attr("r", d => d.r)
+      .attr("stroke", d => bucketColor(d.data.name))
+      .attr("stroke-opacity", 0.35)
+      .attr("stroke-width", 1.5)
+      .attr("stroke-dasharray", "3,4");
+
+    const leaves = root.leaves();
+    const node = g.selectAll(".vendor-g").data(leaves).join("g").attr("class", "vendor-g");
+    node.append("circle")
+      .attr("class", "vendor")
+      .attr("cx", d => d.x).attr("cy", d => d.y).attr("r", d => d.r)
+      .attr("fill", d => bucketColor(d.data.bucket))
+      .attr("fill-opacity", d => 0.55 + 0.45 * (d.value / (bucketNodes.find(b=>b.data.name===d.data.bucket)?.children?.[0]?.value || d.value || 1)))
+      .attr("stroke", cssVar("--surface"))
+      .attr("stroke-width", 2)
+      .on("mousemove", (evt, d) => showTooltip(evt, d.data))
+      .on("mouseleave", hideTooltip);
+
+    // Vendor labels: measure real text width against the circle's chord (not a crude char-count guess),
+    // shrink font, then wrap to 2 lines, before ever truncating — so full names show wherever the circle
+    // has room, and only the smallest bubbles fall back to the tooltip alone.
+    node.each(function (d) {
+      const r = d.r;
+      if (r <= 10) return; // too small for any legible label — tooltip covers it
+      const gSel = d3.select(this);
+      const name = d.data.name;
+      const count = String(d.data.siteCount);
+      const chordAt = (dy) => chordWidth(r, dy, 8);
+      const allowTwoLines = r > 17;
+      let fontName = Math.max(7.5, Math.min(13.5, r / 3.1));
+      let lines = [name];
+
+      if (textWidth(name, fontName, 600) > chordAt(3)) {
+        if (allowTwoLines) {
+          const lineH = fontName + 2;
+          lines = wrapLines(name, (li) => chordAt(Math.max(3 - li * lineH, -r * 0.55)), fontName, 600, 2);
+        } else {
+          while (fontName > 7.5 && textWidth(name, fontName, 600) > chordAt(3)) fontName -= 0.5;
+          if (textWidth(name, fontName, 600) > chordAt(3)) {
+            let t = name;
+            while (t.length > 1 && textWidth(t + "…", fontName, 600) > chordAt(3)) t = t.slice(0, -1);
+            lines = [t.length < name.length ? t + "…" : t];
+          } else {
+            lines = [name];
+          }
+        }
+      }
+
+      const lineH = fontName + 2;
+      const nameBlockH = lines.length * lineH;
+      const fontCount = Math.max(7.5, Math.min(11, r / 3.6));
+      // only add the count line if the circle actually has vertical room for it alongside the (now
+      // possibly 2-line) name — otherwise a wrapped name would push the count outside the circle
+      const showCount = r > 14 && (nameBlockH + fontCount + 6) <= r * 1.7;
+      const totalH = nameBlockH + (showCount ? fontCount + 5 : 0);
+      let curY = d.y - totalH / 2 + fontName * 0.85;
+      lines.forEach((line) => {
+        gSel.append("text")
+          .attr("x", d.x).attr("y", curY)
+          .attr("text-anchor", "middle")
+          .attr("font-size", fontName)
+          .attr("font-weight", 600)
+          .text(line);
+        curY += lineH;
+      });
+      if (showCount) {
+        gSel.append("text")
+          .attr("x", d.x).attr("y", curY + 2)
+          .attr("text-anchor", "middle")
+          .attr("font-size", fontCount)
+          .attr("class", "mono")
+          .attr("opacity", 0.75)
+          .text(count);
+      }
+    });
+
+    // Bucket labels, drawn LAST as floating pill badges straddling each cluster's own boundary line.
+    // Vendor circles pack right up to that boundary, so a label placed inside the circle competes with
+    // them for space; a badge centered exactly on the boundary — with an opaque background — never does,
+    // because it's drawn on top of everything else and doesn't depend on the vendors' layout underneath.
+    const badgeLayer = g.append("g").attr("class", "badge-layer");
+    bucketNodes.forEach((d) => {
+      const r = d.r;
+      const full = d.data.name;
+      const short = BUCKET_SHORT[full] || full;
+      const fontPx = 11;
+      const maxWidth = Math.min(230, Math.max(92, r * 1.6));
+      let lines;
+      if (textWidth(full, fontPx, 600) <= maxWidth) lines = [full];
+      else if (textWidth(short, fontPx, 600) <= maxWidth) lines = [short];
+      else lines = wrapLines(short, () => maxWidth, fontPx, 600, 2);
+
+      const lineH = fontPx + 3;
+      const padX = 11, padY = 5;
+      const textW = Math.max(...lines.map((l) => textWidth(l, fontPx, 600)));
+      const boxW = textW + padX * 2;
+      const boxH = lines.length * lineH + padY * 2 - 3;
+      const cx = d.x, cy = d.y - r;
+
+      const bGroup = badgeLayer.append("g");
+      bGroup.append("rect")
+        .attr("x", cx - boxW / 2).attr("y", cy - boxH / 2)
+        .attr("width", boxW).attr("height", boxH)
+        .attr("rx", boxH / 2)
+        .attr("fill", cssVar("--surface"))
+        .attr("stroke", bucketColor(full))
+        .attr("stroke-width", 1)
+        .attr("stroke-opacity", 0.7);
+      lines.forEach((line, i) => {
+        bGroup.append("text")
+          .attr("class", "bucket-label")
+          .attr("x", cx)
+          .attr("y", cy - boxH / 2 + padY + i * lineH + fontPx * 0.78)
+          .attr("text-anchor", "middle")
+          .attr("font-size", fontPx)
+          .text(line);
+      });
+    });
+  }
+  renderPack();
+
+  // ---------- ranked list ----------
+  const rankList = document.getElementById("rank-list");
+  const rankCaption = document.getElementById("rank-caption");
+  function renderRankList() {
+    rankList.innerHTML = "";
+    const visible = R.vendors.filter(v => activeBuckets.has(v.bucket)).sort((a, b) => b.siteCount - a.siteCount);
+    const maxSite = d3.max(visible, v => v.siteCount) || 1;
+    const top = visible[0];
+    rankCaption.textContent = visible.length
+      ? `Ranked by how many of the ${R.totalSites} monitored sites had each vendor detected at least once — ` +
+        `not weighted by visit count or confidence. ${top.name} is #1 (of the categories shown) because it ` +
+        `turned up on the most sites, not because those sites were visited more.`
+      : `No categories selected — toggle one on above to see its vendors ranked.`;
+    visible.forEach(v => {
+      const row = document.createElement("div");
+      row.className = "rank-row";
+      const pct = Math.max(4, Math.round((v.siteCount / maxSite) * 100));
+      row.innerHTML = `
+        <div class="name" title="${v.name}">${v.name}</div>
+        <div class="bar-track"><div class="bar-fill" style="width:${pct}%; background:${bucketColor(v.bucket)}"></div></div>
+        <div class="count tabular">${v.siteCount}</div>`;
+      rankList.appendChild(row);
+    });
+  }
+  renderRankList();
+
+  // ---------- flow (sensitive vs general, + full page-type cross-tab per category) ----------
+  const SENSITIVE_TYPES = new Set(["Login", "Signup", "Checkout", "Password reset"]);
+  const byBucket = {};
+  R.pageTypeByBucket.forEach(r => {
+    byBucket[r.bucket] = byBucket[r.bucket] || { sensitive: 0, total: 0, types: [] };
+    byBucket[r.bucket].total += r.count;
+    byBucket[r.bucket].types.push({ pageType: r.pageType, count: r.count });
+    if (SENSITIVE_TYPES.has(r.pageType)) byBucket[r.bucket].sensitive += r.count;
+  });
+  const flowGrid = document.getElementById("flow-grid");
+  const calloutEl = document.getElementById("callout");
+  function renderFlowGrid() {
+    flowGrid.innerHTML = "";
+    const visibleBuckets = R.buckets.filter(b => activeBuckets.has(b.name));
+    let topBucket = null, topPct = -1;
+    visibleBuckets.forEach(b => {
+      const d = byBucket[b.name] || { sensitive: 0, total: 1, types: [] };
+      const pct = Math.round((d.sensitive / d.total) * 100);
+      if (pct > topPct) { topPct = pct; topBucket = b.name; }
+      const types = d.types.slice().sort((a, c) => c.count - a.count);
+      const maxType = d3.max(types, t => t.count) || 1;
+      const rows = types.map(t => `
+        <div class="pt-row">
+          <div class="pt-label" title="${t.pageType}">${t.pageType}</div>
+          <div class="pt-track"><div class="pt-fill" style="width:${Math.max(4, Math.round((t.count / maxType) * 100))}%; background:${bucketColor(b.name)}"></div></div>
+          <div class="pt-count tabular">${t.count}</div>
+        </div>`).join("");
+      const card = document.createElement("div");
+      card.className = "flow-card";
+      card.innerHTML = `
+        <div class="fc-head"><span class="fc-name">${b.name}</span><span class="fc-pct tabular">${pct}% sensitive</span></div>
+        <div class="pt-card-rows">${rows}</div>`;
+      flowGrid.appendChild(card);
+    });
+
+    calloutEl.innerHTML = topBucket
+      ? `<b>${topBucket}</b> concentrates on sensitive flows far more than any other category shown — ` +
+        `<b>${topPct}%</b> of its detections happen at login, signup, checkout, or password reset. ` +
+        `That matches how these tools are actually deployed: broad bot management sits on every page, but ` +
+        `device- and behavior-based risk scoring gets reserved for the moments that matter most.`
+      : `No categories selected — toggle one on above to see where its detections happen.`;
+  }
+  renderFlowGrid();
+
+  document.getElementById("foot-methodology").innerHTML =
+    `Detection is client-side and confidence-weighted (cookie names, script paths, DOM markers). ` +
+    `${R.sitesNoVendorDetected} of ${R.totalSites} monitored sites showed no recognized vendor. ` +
+    `This view never includes the hostnames or URLs of visited sites — only vendor and category aggregates.`;
+})();
+</script>
+</body>
+</html>

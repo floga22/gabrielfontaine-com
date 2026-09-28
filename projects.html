@@ -25,6 +25,13 @@
 <style>
   summary::-webkit-details-marker { display: none; }
   summary { list-style: none; }
+  .examples-bar { transition: border-color .15s ease, box-shadow .15s ease; }
+  .examples-bar:hover { border-color: rgba(91,95,239,0.45); }
+  .examples-bar:hover .proj-chevron { border-color: rgba(67,56,202,0.4); color: #4338CA; }
+  .examples-bar:focus-visible { outline: 2px solid #4338CA; outline-offset: 4px; }
+  .proj-chevron { transition: transform 0.2s ease; }
+  .examples-details[open] > .examples-bar { border-color: rgba(91,95,239,0.45); }
+  .examples-details[open] > .examples-bar .proj-chevron { transform: rotate(180deg); }
 </style>
 <!-- site-insights-kit: analytics, session replay, device intelligence. Public IDs only. -->
 <script>
@@ -112,7 +119,7 @@
         A few things I've built, not just led.
       </h1>
       <p class="text-lg text-ink-900/70 leading-relaxed">
-        Three small, working systems: a fast decision engine applied to everyday judgment calls, a live look at the device-intelligence stack already running on this site, and the same decision engine turned on job postings. All illustrative. All actually running.
+        Three small, working systems: a fast decision engine applied to everyday judgment calls, a live look at the device-intelligence stack already running on this site — plus, nested inside it, a browser extension that maps the same kind of stack across the wider web — and the same decision engine turned on job postings. All illustrative or self-reported. All actually running: open any "Try it" bar to use the live demos.
       </p>
     </section>
 
@@ -151,6 +158,18 @@
         </div>
       </div>
 
+      <details class="examples-details mb-0">
+        <summary class="examples-bar flex items-center justify-between gap-4 bg-white rounded-2xl border border-ink-900/10 px-6 sm:px-8 py-5 cursor-pointer list-none">
+          <div>
+            <span class="text-xs font-bold uppercase tracking-widest text-accent-600">Try it</span>
+            <span class="block font-serif text-xl font-semibold text-ink-950 mt-1">Three live demos: inbox triage, scam texts, account risk routing</span>
+            <span class="block text-sm text-ink-900/50 mt-1">Run each one through Jev in real time: under a second each, for a fraction of a cent.</span>
+          </div>
+          <span class="proj-chevron shrink-0 w-9 h-9 rounded-full border border-ink-900/15 bg-white flex items-center justify-center text-ink-900/50">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+          </span>
+        </summary>
+        <div class="pt-6">
       <!-- Flow graphic -->
       <div class="bg-accent-600 rounded-2xl p-8 sm:p-10 mb-10">
         <div class="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4 text-white">
@@ -362,6 +381,9 @@
         </div>
         </div>
       </div>
+
+        </div>
+      </details>
     </section>
 
     <!-- ============================================================ -->
@@ -395,6 +417,18 @@
         </div>
       </div>
 
+      <details class="examples-details mb-6">
+        <summary class="examples-bar flex items-center justify-between gap-4 bg-white rounded-2xl border border-ink-900/10 px-6 sm:px-8 py-5 cursor-pointer list-none">
+          <div>
+            <span class="text-xs font-bold uppercase tracking-widest text-accent-600">Try it</span>
+            <span class="block font-serif text-xl font-semibold text-ink-950 mt-1">Run a live check on your own device</span>
+            <span class="block text-sm text-ink-900/50 mt-1">One click shows what a fraud-grade signal stack reads about your current visit.</span>
+          </div>
+          <span class="proj-chevron shrink-0 w-9 h-9 rounded-full border border-ink-900/15 bg-white flex items-center justify-center text-ink-900/50">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+          </span>
+        </summary>
+        <div class="pt-6">
       <div class="bg-white rounded-2xl border border-ink-900/10 p-6 sm:p-8 space-y-5">
         <div>
           <h3 class="font-serif text-xl font-semibold text-ink-950">Check what this visit looks like from the other side</h3>
@@ -407,6 +441,53 @@
         <div id="profile-results" class="hidden space-y-5"></div>
         <p class="text-xs text-ink-900/40 italic">Live check of your own current visit. Uses the same signals already active on this site — see the Privacy note in the footer. Nothing here is used to grant, deny, or score anything, and results are shown only to you.</p>
       </div>
+
+        </div>
+      </details>
+
+      <!-- Nested sub-build: Stack Landscape (Chrome extension) -->
+      <details class="examples-details mb-0">
+        <summary class="examples-bar flex items-center justify-between gap-4 bg-white rounded-2xl border border-ink-900/10 px-6 sm:px-8 py-5 cursor-pointer list-none">
+          <div>
+            <span class="text-xs font-bold uppercase tracking-widest text-accent-600">Nested build</span>
+            <span class="block font-serif text-xl font-semibold text-ink-950 mt-1">Stack Landscape: the same detection, across the web</span>
+            <span class="block text-sm text-ink-900/50 mt-1">A Chrome extension I built that maps which fraud and bot-detection vendors run on the sites I browse.</span>
+          </div>
+          <span class="proj-chevron shrink-0 w-9 h-9 rounded-full border border-ink-900/15 bg-white flex items-center justify-center text-ink-900/50">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+          </span>
+        </summary>
+        <div class="pt-6">
+      <div>
+        <p class="text-ink-900/70 leading-relaxed mb-6">
+          The live check shows what one signal stack sees about one visit to this one site. I also built a Chrome
+          extension that runs the same kind of client-side detection passively, in the background, on every site I
+          browse — recognizing anti-bot, fraud-risk, and device-intelligence vendors by their script domains, cookie
+          names, and global JS objects, then rolling the sightings up into a category-level view. No site names or
+          URLs are ever stored in the rollup, only vendor and category aggregates.
+        </p>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-5 mb-6">
+          <div class="bg-lavender-50 p-5 rounded-2xl border border-ink-900/10 space-y-2">
+            <span class="text-xs font-mono text-accent-600 font-bold uppercase tracking-wider">Why it matters</span>
+            <p class="text-sm text-ink-900/60 leading-relaxed">Same signal categories as the panel above, seen in the wild across hundreds of real production sites instead of just one.</p>
+          </div>
+          <div class="bg-lavender-50 p-5 rounded-2xl border border-ink-900/10 space-y-2">
+            <span class="text-xs font-mono text-accent-600 font-bold uppercase tracking-wider">Why it matters</span>
+            <p class="text-sm text-ink-900/60 leading-relaxed">The harder tools — device/behavioral intelligence, fraud & risk decisioning — concentrate almost entirely at login, signup, checkout, and password reset, exactly where the stakes are highest.</p>
+          </div>
+          <div class="bg-lavender-50 p-5 rounded-2xl border border-ink-900/10 space-y-2">
+            <span class="text-xs font-mono text-accent-600 font-bold uppercase tracking-wider">Why it matters</span>
+            <p class="text-sm text-ink-900/60 leading-relaxed">The privacy constraint is built into the tool, not bolted on after: it detects vendors, not sites — no hostname or URL ever leaves the local rollup.</p>
+          </div>
+        </div>
+        <div class="flex items-center gap-4">
+          <a href="stack-landscape.html" class="inline-block text-xs font-semibold uppercase tracking-wider bg-ink-900 text-white px-6 py-3 rounded-full hover:bg-accent-600 transition-all">View the Stack Landscape →</a>
+          <span class="text-xs text-ink-900/40 italic">Real data from my own browsing — not a synthetic demo.</span>
+        </div>
+      </div>
+
+        </div>
+      </details>
     </section>
 
     <!-- ============================================================ -->
@@ -442,6 +523,18 @@
 
       <p class="text-xs text-ink-900/40 italic mb-6">Illustrative demo with a fictional candidate persona, fictional companies, and fictional postings. The dashboard below is a static snapshot, not a live account.</p>
 
+      <details class="examples-details mb-0">
+        <summary class="examples-bar flex items-center justify-between gap-4 bg-white rounded-2xl border border-ink-900/10 px-6 sm:px-8 py-5 cursor-pointer list-none">
+          <div>
+            <span class="text-xs font-bold uppercase tracking-widest text-accent-600">Try it</span>
+            <span class="block font-serif text-xl font-semibold text-ink-950 mt-1">Pick a posting, run its candidate, browse the tracker</span>
+            <span class="block text-sm text-ink-900/50 mt-1">A live Jev fit analysis on three fictional postings, plus a 14-application dashboard snapshot.</span>
+          </div>
+          <span class="proj-chevron shrink-0 w-9 h-9 rounded-full border border-ink-900/15 bg-white flex items-center justify-center text-ink-900/50">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+          </span>
+        </summary>
+        <div class="pt-6">
       <!-- Interactive fit tool -->
       <div class="bg-white rounded-2xl border border-ink-900/10 p-6 sm:p-8 mb-10 space-y-5">
         <div>
@@ -525,6 +618,9 @@
           </div>
         </div>
       </div>
+
+        </div>
+      </details>
     </section>
 
   </main>
