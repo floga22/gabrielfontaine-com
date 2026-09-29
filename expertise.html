@@ -1,431 +1,54 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en" data-audience="candidate">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Expertise & Experience — Gabriel Fontaine</title>
-<script src="https://cdn.tailwindcss.com"></script>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-<script>
-  tailwind.config = {
-    theme: {
-      extend: {
-        fontFamily: { serif: ['Playfair Display','serif'], sans: ['Inter','sans-serif'] },
-        colors: {
-          ink: { 950:'#0A0E27', 900:'#10163A', 800:'#1B2250', 700:'#2A3268' },
-          lavender: { 50:'#F3F4FC', 100:'#E9EBFA', 200:'#DBDFF6' },
-          accent: { 400:'#7C7FF2', 500:'#5B5FEF', 600:'#4338CA' }
-        }
-      }
-    }
-  }
-</script>
-<!-- site-insights-kit: analytics, session replay, device intelligence. Public IDs only. -->
-<script>
-  window.INSIGHTS_CONFIG = {
-    site: "gabrielfontaine.com",
-    ownerName: "Gabriel Fontaine",
-    contactEmail: "privacy@gabrielfontaine.com",
-    consent: "none",
-    ga4: "G-Z56L1BHZS1",
-    clarity: "yo1qncaepu",
-    fingerprint: {
-      key: "71BAprWdJzzeJSgcyPcL",
-      region: "us",
-      endpoint: "https://metrics.gabrielfontaine.com"
-    },
-    // worker: "https://...",   // add when the Cloudflare Worker is deployed
-    // clickstream: true,
-    debug: false
-  };
-</script>
-<script src="https://cdn.jsdelivr.net/gh/floga22/site-insights-kit@v1.1.0/src/insights.js" defer></script>
-<style>:root{--insights-accent:#4338CA;--insights-bg:#fff;--insights-text:#10163A}</style>
+<title>Expertise — Gabriel Fontaine</title>
+<meta name="description" content="Identity verification and CIP/KYC, fraud prevention and decisioning, data quality and identity resolution, regulatory and risk, AI-enabled product ops, and team leadership.">
+<link rel="canonical" href="https://gabrielfontaine.com/expertise">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Expertise — Gabriel Fontaine">
+<meta property="og:description" content="Identity verification and CIP/KYC, fraud prevention and decisioning, data quality and identity resolution, regulatory and risk, AI-enabled product ops, and team leadership.">
+<meta property="og:url" content="https://gabrielfontaine.com/expertise">
+<meta property="og:image" content="https://gabrielfontaine.com/gabe-headshot.png">
+<meta name="theme-color" content="#0e7c86">
+<link rel="icon" href="/gabe-headshot.png" type="image/png">
+<link rel="stylesheet" href="/assets/site.css">
+<script src="/assets/analytics.js"></script>
 </head>
-<body class="bg-lavender-100 text-ink-900 font-sans antialiased selection:bg-accent-500 selection:text-white">
+<body class="site" data-site="personal">
+<a class="skip" href="#main">Skip to content</a>
+<header class="hdr">
+  <a class="logo" href="/">Gabriel Fontaine<small>Product leader · Identity &amp; Fraud</small></a>
+  <button class="burger" id="burger" aria-label="Menu" aria-expanded="false" aria-controls="nav">&#9776;</button>
+  <nav class="nav" id="nav" aria-label="Main"><a href="/">Home</a><a href="/experience">Experience</a><a href="/expertise" class="on" aria-current="page">Expertise</a><a href="/projects">Projects</a><a href="/fractional" data-track="to_fractional">Fractional</a><a href="/contact">Contact</a><a class="btn" href="/experience" data-track="resume_view" style="padding:9px 18px">Resume</a></nav>
+ </header>
+ <main id="main">
 
-  <!-- Header -->
-  <header class="sticky top-0 z-50 bg-lavender-100/90 backdrop-blur-md border-b border-ink-900/10">
-    <div class="max-w-6xl mx-auto px-6 h-18 sm:h-20 flex items-center justify-between py-4 gap-3">
-      <a href="index.html" class="font-serif italic text-xl font-semibold text-accent-600 shrink-0">Gabriel Fontaine</a>
-      <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-ink-900/70">
-        <a href="index.html" class="hover:text-ink-900 transition-colors">Home</a>
-        <a href="about.html" class="hover:text-ink-900 transition-colors">About</a>
-        <a href="services.html" class="hover:text-ink-900 transition-colors">Services</a>
-        <a href="expertise.html" class="text-accent-600 font-semibold">Expertise</a>
-        <a href="projects.html" class="hover:text-ink-900 transition-colors">Projects</a>
-        <a href="index.html#signal" class="hover:text-ink-900 transition-colors">Signal</a>
-      </nav>
-      <div class="flex items-center gap-2 sm:gap-3 shrink-0">
-        <a href="index.html#contact" data-track="book_call" class="text-xs font-semibold uppercase tracking-wider bg-ink-900 text-white px-4 sm:px-5 py-2.5 rounded-full hover:bg-accent-600 transition-all whitespace-nowrap">Book a Call</a>
-        <button type="button" id="mobile-menu-toggle" aria-expanded="false" aria-controls="mobile-menu" aria-label="Open menu" class="md:hidden inline-flex items-center justify-center w-9 h-9 rounded-full border border-ink-900/15 text-ink-900 hover:bg-white/60 transition-colors shrink-0">
-          <svg id="mobile-menu-icon-open" class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
-          <svg id="mobile-menu-icon-close" class="w-5 h-5 hidden" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
-        </button>
-      </div>
-    </div>
-    <nav id="mobile-menu" class="hidden md:hidden border-t border-ink-900/10 bg-lavender-100/95 backdrop-blur-md">
-      <div class="max-w-6xl mx-auto px-6 py-2 flex flex-col text-sm font-medium text-ink-900/70">
-        <a href="index.html" class="py-2.5 border-b border-ink-900/10 hover:text-ink-900">Home</a>
-        <a href="about.html" class="py-2.5 border-b border-ink-900/10 hover:text-ink-900">About</a>
-        <a href="services.html" class="py-2.5 border-b border-ink-900/10 hover:text-ink-900">Services</a>
-        <a href="expertise.html" class="py-2.5 border-b border-ink-900/10 text-accent-600 font-semibold">Expertise</a>
-        <a href="projects.html" class="py-2.5 border-b border-ink-900/10 hover:text-ink-900">Projects</a>
-        <a href="index.html#signal" class="py-2.5 hover:text-ink-900">Signal</a>
-      </div>
-    </nav>
-  </header>
-  <script>
-    (function () {
-      var btn = document.getElementById("mobile-menu-toggle");
-      var menu = document.getElementById("mobile-menu");
-      var iconOpen = document.getElementById("mobile-menu-icon-open");
-      var iconClose = document.getElementById("mobile-menu-icon-close");
-      if (!btn || !menu) return;
-      function setOpen(open) {
-        menu.classList.toggle("hidden", !open);
-        if (iconOpen) iconOpen.classList.toggle("hidden", open);
-        if (iconClose) iconClose.classList.toggle("hidden", !open);
-        btn.setAttribute("aria-expanded", String(open));
-      }
-      btn.addEventListener("click", function () {
-        setOpen(menu.classList.contains("hidden"));
-      });
-      menu.querySelectorAll("a").forEach(function (a) {
-        a.addEventListener("click", function () { setOpen(false); });
-      });
-    })();
-  </script>
-
-  <main>
-
-    <!-- Page hero -->
-    <section class="max-w-6xl mx-auto px-6 pt-20 pb-16 max-w-3xl space-y-6">
-      <span class="text-xs font-bold uppercase tracking-widest text-accent-600">Expertise & Experience</span>
-      <h1 class="font-serif text-4xl sm:text-5xl leading-[1.15] font-semibold text-ink-950">
-        Broad pattern recognition. Specific operating judgment.
-      </h1>
-      <p class="text-lg text-ink-900/70 leading-relaxed">
-        18+ years in product, the last 11+ almost entirely inside identity, fraud, and compliance data. Six domains where that experience translates directly to your roadmap.
-      </p>
-    </section>
-
-    <!-- Domain grid -->
-    <section class="max-w-6xl mx-auto px-6 pb-24">
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        <div class="bg-white p-7 rounded-2xl border border-ink-900/10 hover:border-accent-500/40 hover:shadow-lg hover:shadow-ink-900/5 transition-all duration-300 space-y-3">
-          <span class="text-xs font-mono text-accent-600 font-bold uppercase tracking-wider">01 · Identity</span>
-          <h3 class="text-lg font-semibold text-ink-950">Identity Verification & CIP/KYC</h3>
-          <p class="text-ink-900/60 text-sm leading-relaxed">Directed the USIS Credit Header API and a Purpose View data-governance framework at Equifax — permissible-use rules mapped directly to CIP, KYC, and KYB requirements. Also led DIT 1.0/2.0 (Digital Identity Trust) and the internal RAE (Risk Assessment Engine) — used across my.equifax.com, my.equifax.ca, Contact Center and IVR authentication, ID Watchdog, and Equifax Workforce Solutions. RAE served 11 tenants across 17 identity-verification, device-assessment, and authentication workflows, completing end-to-end risk assessment and decisioning for every consumer registration, login, and account-takeover event.</p>
-        </div>
-        <div class="bg-white p-7 rounded-2xl border border-ink-900/10 hover:border-accent-500/40 hover:shadow-lg hover:shadow-ink-900/5 transition-all duration-300 space-y-3">
-          <span class="text-xs font-mono text-accent-600 font-bold uppercase tracking-wider">02 · Fraud</span>
-          <h3 class="text-lg font-semibold text-ink-950">Fraud Prevention & Risk Decisioning</h3>
-          <p class="text-ink-900/60 text-sm leading-relaxed">Hands-on testing and comparison of device-intelligence and fraud vendor stacks — ThreatMetrix, iovation, Kount, Socure, Prove — not secondhand vendor comparisons.</p>
-        </div>
-        <div class="bg-white p-7 rounded-2xl border border-ink-900/10 hover:border-accent-500/40 hover:shadow-lg hover:shadow-ink-900/5 transition-all duration-300 space-y-3">
-          <span class="text-xs font-mono text-accent-600 font-bold uppercase tracking-wider">03 · Architecture</span>
-          <h3 class="text-lg font-semibold text-ink-950">Platform & Data Architecture</h3>
-          <p class="text-ink-900/60 text-sm leading-relaxed">Built FReD (frequency/recency/duration) — a patent-pending identity-resolution model — aggregating 7–11 data sources via graph technology at Equifax scale.</p>
-        </div>
-        <div class="bg-white p-7 rounded-2xl border border-ink-900/10 hover:border-accent-500/40 hover:shadow-lg hover:shadow-ink-900/5 transition-all duration-300 space-y-3">
-          <span class="text-xs font-mono text-accent-600 font-bold uppercase tracking-wider">04 · Regulatory</span>
-          <h3 class="text-lg font-semibold text-ink-950">Regulatory & Risk</h3>
-          <p class="text-ink-900/60 text-sm leading-relaxed">Fluent in FCRA, GLBA, KYC, KYB, and AML — and in the legal line between identity verification and FCRA-governed creditworthiness decisions most fraud teams miss.</p>
-        </div>
-        <div class="bg-white p-7 rounded-2xl border border-ink-900/10 hover:border-accent-500/40 hover:shadow-lg hover:shadow-ink-900/5 transition-all duration-300 space-y-3">
-          <span class="text-xs font-mono text-accent-600 font-bold uppercase tracking-wider">05 · AI Ops</span>
-          <h3 class="text-lg font-semibold text-ink-950">AI-Enabled Product Ops</h3>
-          <p class="text-ink-900/60 text-sm leading-relaxed">Operational, not theoretical: Gemini, NotebookLM, and Claude run against real compliance datasets, plus custom Python/Co-Lab data-processing scripts.</p>
-        </div>
-        <div class="bg-white p-7 rounded-2xl border border-ink-900/10 hover:border-accent-500/40 hover:shadow-lg hover:shadow-ink-900/5 transition-all duration-300 space-y-3">
-          <span class="text-xs font-mono text-accent-600 font-bold uppercase tracking-wider">06 · Leadership</span>
-          <h3 class="text-lg font-semibold text-ink-950">Team & Org Leadership</h3>
-          <p class="text-ink-900/60 text-sm leading-relaxed">Ran a 45-person cross-functional product and engineering org through Agile transformation, with direct throughput accountability for multiple years.</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- Experience timeline -->
-    <section class="bg-white border-y border-ink-900/10">
-      <div class="max-w-6xl mx-auto px-6 py-24">
-        <div class="max-w-2xl mb-14">
-          <span class="text-xs font-bold uppercase tracking-widest text-accent-600">Career History</span>
-          <h2 class="font-serif text-3xl sm:text-4xl mt-3 text-ink-950">18 years across Jarden Consumer Solutions, NTT, LexisNexis, and Equifax.</h2>
-        </div>
-
-        <!-- Flex-based timeline: year gutter | rail+dot column | card. No absolute-position math, so nothing overlaps at any width. -->
-        <div class="relative">
-          <div class="absolute top-3 bottom-3 w-0.5 bg-ink-900/10 left-[68px] sm:left-[98px]"></div>
-          <div class="space-y-8">
-
-            <div class="flex items-start gap-3 sm:gap-5">
-              <div class="w-14 sm:w-20 shrink-0 text-right pt-1.5">
-                <span class="block font-serif text-2xl text-ink-950 leading-none">2026</span>
-                <span class="block text-[11px] text-ink-900/40 mt-1">4 yrs</span>
-              </div>
-              <div class="w-3 shrink-0 flex justify-center pt-3.5 relative z-10">
-                <span class="w-3 h-3 rounded-full bg-accent-500 ring-4 ring-white"></span>
-              </div>
-              <div class="flex-1 bg-lavender-100 p-8 rounded-2xl border border-ink-900/10 space-y-2">
-                <span class="text-xs font-semibold tracking-wider text-accent-600 uppercase">Apr 2022 – Jun 2026</span>
-                <h3 class="text-lg font-semibold text-ink-950">Senior Director, Product Management — Identity, Fraud & Compliance</h3>
-                <p class="text-sm font-medium text-ink-900/50">Equifax, Alpharetta, GA</p>
-                <p class="text-ink-900/60 text-sm leading-relaxed pt-2">Directed the Contact & Locate Suite — six products building an $8M+ enterprise sales pipeline — and the USIS Credit Header API and Purpose View governance framework. Extended a RAE vendor-consolidation initiative begun in the prior role, capturing a further ~$6M in annual savings.</p>
-              </div>
-            </div>
-
-            <div class="flex items-start gap-3 sm:gap-5">
-              <div class="w-14 sm:w-20 shrink-0 text-right pt-1.5">
-                <span class="block font-serif text-2xl text-ink-950 leading-none">2022</span>
-                <span class="block text-[11px] text-ink-900/40 mt-1">1 yr</span>
-              </div>
-              <div class="w-3 shrink-0 flex justify-center pt-3.5 relative z-10">
-                <span class="w-3 h-3 rounded-full bg-accent-500 ring-4 ring-white"></span>
-              </div>
-              <div class="flex-1 bg-lavender-100 p-8 rounded-2xl border border-ink-900/10 space-y-2">
-                <span class="text-xs font-semibold tracking-wider text-accent-600 uppercase">May 2021 – Apr 2022</span>
-                <h3 class="text-lg font-semibold text-ink-950">Director, Product Management</h3>
-                <p class="text-sm font-medium text-ink-900/50">Equifax, Alpharetta, GA</p>
-                <p class="text-ink-900/60 text-sm leading-relaxed pt-2">Launched 16 new use-case workflows in under a year and directed the RAE & DIT suite's AWS→GCP migration — a 69% cloud cost cut with zero downtime, on a $4M budget. Also directed a fraud-signal vendor-consolidation initiative for RAE — leading the rules-editor team to substitute overlapping third-party signals with existing vendor data and newly available in-house cloud datasets, saving $4M annually.</p>
-              </div>
-            </div>
-
-            <div class="flex items-start gap-3 sm:gap-5">
-              <div class="w-14 sm:w-20 shrink-0 text-right pt-1.5">
-                <span class="block font-serif text-2xl text-ink-950 leading-none">2021</span>
-                <span class="block text-[11px] text-ink-900/40 mt-1">2 yrs</span>
-              </div>
-              <div class="w-3 shrink-0 flex justify-center pt-3.5 relative z-10">
-                <span class="w-3 h-3 rounded-full bg-accent-500 ring-4 ring-white"></span>
-              </div>
-              <div class="flex-1 bg-lavender-100 p-8 rounded-2xl border border-ink-900/10 space-y-2">
-                <span class="text-xs font-semibold tracking-wider text-accent-600 uppercase">Jan 2019 – Apr 2021</span>
-                <h3 class="text-lg font-semibold text-ink-950">Senior Product Manager, Customer Identity Access Management & Fraud</h3>
-                <p class="text-sm font-medium text-ink-900/50">LexisNexis Risk Solutions, Alpharetta, GA</p>
-                <p class="text-ink-900/60 text-sm leading-relaxed pt-2">Drove the Risk Defense Platform's expansion into insurance for KYC/AML, introduced device-intelligence strategy via ThreatMetrix, and architected a Bundled Solutions pricing strategy.</p>
-              </div>
-            </div>
-
-            <div class="flex items-start gap-3 sm:gap-5">
-              <div class="w-14 sm:w-20 shrink-0 text-right pt-1.5">
-                <span class="block font-serif text-2xl text-ink-950 leading-none">2019</span>
-                <span class="block text-[11px] text-ink-900/40 mt-1">3 yrs</span>
-              </div>
-              <div class="w-3 shrink-0 flex justify-center pt-3.5 relative z-10">
-                <span class="w-3 h-3 rounded-full bg-accent-500 ring-4 ring-white"></span>
-              </div>
-              <div class="flex-1 bg-lavender-100 p-8 rounded-2xl border border-ink-900/10 space-y-2">
-                <span class="text-xs font-semibold tracking-wider text-accent-600 uppercase">Jan 2016 – Dec 2018</span>
-                <h3 class="text-lg font-semibold text-ink-950">Senior Product Manager, Identity & Fraud Management Solutions</h3>
-                <p class="text-sm font-medium text-ink-900/50">LexisNexis Risk Solutions, Alpharetta, GA</p>
-                <p class="text-ink-900/60 text-sm leading-relaxed pt-2">Owned the Risk Defense Platform's growth strategy, drove a 45-person org through Agile transformation, and authored the business case that won $6M in executive funding.</p>
-              </div>
-            </div>
-
-            <div class="flex items-start gap-3 sm:gap-5">
-              <div class="w-14 sm:w-20 shrink-0 text-right pt-1.5">
-                <span class="block font-serif text-2xl text-ink-950 leading-none">2016</span>
-                <span class="block text-[11px] text-ink-900/40 mt-1">3 yrs</span>
-              </div>
-              <div class="w-3 shrink-0 flex justify-center pt-3.5 relative z-10">
-                <span class="w-3 h-3 rounded-full bg-accent-500 ring-4 ring-white"></span>
-              </div>
-              <div class="flex-1 bg-lavender-100 p-8 rounded-2xl border border-ink-900/10 space-y-2">
-                <span class="text-xs font-semibold tracking-wider text-accent-600 uppercase">Jan 2013 – Jan 2016</span>
-                <h3 class="text-lg font-semibold text-ink-950">Manager, Product Management — Business Applications</h3>
-                <p class="text-sm font-medium text-ink-900/50">NTT America & NTT Communications, Boca Raton, FL</p>
-                <p class="text-ink-900/60 text-sm leading-relaxed pt-2">Built and coached a 9-person product marketing and management team; secured 25 new products in 18 months onto Verio's OSS/BSS platform.</p>
-              </div>
-            </div>
-
-            <div class="flex items-start gap-3 sm:gap-5">
-              <div class="w-14 sm:w-20 shrink-0 text-right pt-1.5">
-                <span class="block font-serif text-2xl text-ink-950 leading-none">2013</span>
-                <span class="block text-[11px] text-ink-900/40 mt-1">3 yrs</span>
-              </div>
-              <div class="w-3 shrink-0 flex justify-center pt-3.5 relative z-10">
-                <span class="w-3 h-3 rounded-full bg-accent-500 ring-4 ring-white"></span>
-              </div>
-              <div class="flex-1 bg-lavender-100 p-8 rounded-2xl border border-ink-900/10 space-y-2">
-                <span class="text-xs font-semibold tracking-wider text-accent-600 uppercase">Jan 2010 – Dec 2012</span>
-                <h3 class="text-lg font-semibold text-ink-950">Senior Product Manager</h3>
-                <p class="text-sm font-medium text-ink-900/50">NTT America & NTT Communications, Boca Raton, FL</p>
-                <p class="text-ink-900/60 text-sm leading-relaxed pt-2">Partnered with stakeholders to drive new functionality for a $28M product line growing at 10%, supervising teams across development, QA, support, sales, and marketing.</p>
-              </div>
-            </div>
-
-            <div class="flex items-start gap-3 sm:gap-5">
-              <div class="w-14 sm:w-20 shrink-0 text-right pt-1.5">
-                <span class="block font-serif text-2xl text-ink-950 leading-none">2010</span>
-                <span class="block text-[11px] text-ink-900/40 mt-1">~2 yrs</span>
-              </div>
-              <div class="w-3 shrink-0 flex justify-center pt-3.5 relative z-10">
-                <span class="w-3 h-3 rounded-full bg-accent-500 ring-4 ring-white"></span>
-              </div>
-              <div class="flex-1 bg-lavender-100 p-8 rounded-2xl border border-ink-900/10 space-y-2">
-                <span class="text-xs font-semibold tracking-wider text-accent-600 uppercase">c. 2008</span>
-                <h3 class="text-lg font-semibold text-ink-950">Product Manager, Portable Heaters & Humidifiers</h3>
-                <p class="text-sm font-medium text-ink-900/50">Jarden Consumer Solutions (brands: Sunbeam, Bionaire, Holmes, Oster — now Newell Brands)</p>
-                <p class="text-ink-900/60 text-sm leading-relaxed pt-2">Owned the product category for portable humidifiers (5 technology platforms) and heaters (4 technology platforms) — secured funding for new tooling and led a design firm through form factors adaptable across brands and private label. Sold through major hardware, pharmacy, and big-box retailers.</p>
-              </div>
-            </div>
-
-            <div class="flex items-start gap-3 sm:gap-5">
-              <div class="w-14 sm:w-20 shrink-0 text-right pt-1.5">
-                <span class="block font-serif text-2xl text-ink-900/40 leading-none">2008</span>
-                <span class="block text-[11px] text-ink-900/40 mt-1">Career start</span>
-              </div>
-              <div class="w-3 shrink-0 flex justify-center pt-3.5 relative z-10">
-                <span class="w-3 h-3 rounded-full bg-ink-900/30 ring-4 ring-white"></span>
-              </div>
-              <div class="flex-1 bg-lavender-100 p-8 rounded-2xl border border-ink-900/10 space-y-2">
-                <span class="text-xs font-semibold tracking-wider text-ink-900/40 uppercase">2008 and prior</span>
-                <h3 class="text-lg font-semibold text-ink-950">Automotive Electronics & Motorsports</h3>
-                <ul class="text-ink-900/60 text-sm leading-relaxed pt-2 list-disc list-outside pl-4 space-y-1">
-                  <li>Led reverse-engineering teams rebuilding automotive electronics systems</li>
-                  <li>Built rotary engines and turbochargers</li>
-                  <li>Racing crew member — Rolex 24 at Daytona (two consecutive years), Petit Le Mans, and other national races</li>
-                </ul>
-              </div>
-            </div>
-
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Vendor landscape comparison -->
-    <section class="max-w-6xl mx-auto px-6 pb-24">
-      <div class="max-w-2xl mb-10">
-        <span class="text-xs font-bold uppercase tracking-widest text-accent-600">The Vendor Landscape</span>
-        <h2 class="font-serif text-3xl mt-3 text-ink-950">Directly comparing capabilities.</h2>
-        <p class="mt-4 text-ink-900/70 leading-relaxed">Five categories, one underlying job: proving a visitor is who — and what — they claim to be. Knowing where each one is strong, and where it isn't, is what keeps a stack from being over- or under-built.</p>
-      </div>
-
-      <div class="bg-white rounded-2xl border border-ink-900/10 overflow-hidden">
-        <!-- Desktop / tablet: full table -->
-        <div class="hidden md:block overflow-x-auto">
-          <table class="w-full text-sm text-left border-collapse">
-            <thead>
-              <tr class="bg-lavender-50 border-b border-ink-900/10">
-                <th scope="col" class="px-6 py-4 font-semibold text-ink-950 whitespace-nowrap">Category</th>
-                <th scope="col" class="px-6 py-4 font-semibold text-ink-950 whitespace-nowrap">Primary Focus</th>
-                <th scope="col" class="px-6 py-4 font-semibold text-ink-950 whitespace-nowrap">Best Suited For</th>
-                <th scope="col" class="px-6 py-4 font-semibold text-ink-950">Key Strengths</th>
-              </tr>
-            </thead>
-            <tbody class="divide-y divide-ink-900/10">
-              <tr>
-                <td class="px-6 py-5 font-semibold text-ink-950 align-top whitespace-nowrap">Dedicated Device Intelligence</td>
-                <td class="px-6 py-5 text-ink-900/70 align-top">Hardware &amp; connection telemetry</td>
-                <td class="px-6 py-5 text-ink-900/70 align-top">Dev-focused API stacks, mobile apps, low-latency APIs</td>
-                <td class="px-6 py-5 text-ink-900/70 align-top">Detects VMs, proxies, app cloners, and RATs</td>
-              </tr>
-              <tr>
-                <td class="px-6 py-5 font-semibold text-ink-950 align-top whitespace-nowrap">Digital Identity Networks</td>
-                <td class="px-6 py-5 text-ink-900/70 align-top">Cross-merchant behavior networks</td>
-                <td class="px-6 py-5 text-ink-900/70 align-top">Government, traditional banks, insurance compliance</td>
-                <td class="px-6 py-5 text-ink-900/70 align-top">Massive historical databases matching devices to identities</td>
-              </tr>
-              <tr>
-                <td class="px-6 py-5 font-semibold text-ink-950 align-top whitespace-nowrap">Lifecycle IDV Stacks</td>
-                <td class="px-6 py-5 text-ink-900/70 align-top">Document &amp; KYC onboarding</td>
-                <td class="px-6 py-5 text-ink-900/70 align-top">FinTech, digital banks, HIPAA portals</td>
-                <td class="px-6 py-5 text-ink-900/70 align-top">Unified compliance checking, biometric liveness validation</td>
-              </tr>
-              <tr>
-                <td class="px-6 py-5 font-semibold text-ink-950 align-top whitespace-nowrap">Fraud Decisioning Engines</td>
-                <td class="px-6 py-5 text-ink-900/70 align-top">Core risk orchestration</td>
-                <td class="px-6 py-5 text-ink-900/70 align-top">Complex enterprise fraud ecosystems</td>
-                <td class="px-6 py-5 text-ink-900/70 align-top">Unsupervised machine learning; uncovers grouped fraud rings</td>
-              </tr>
-              <tr>
-                <td class="px-6 py-5 font-semibold text-ink-950 align-top whitespace-nowrap">Edge Security Platforms</td>
-                <td class="px-6 py-5 text-ink-900/70 align-top">Cloud/CDN traffic filtering</td>
-                <td class="px-6 py-5 text-ink-900/70 align-top">High-volume applications, blocking bot scale</td>
-                <td class="px-6 py-5 text-ink-900/70 align-top">Intercepts attacks at the perimeter before server load</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-
-        <!-- Mobile: stacked cards -->
-        <div class="md:hidden divide-y divide-ink-900/10">
-          <div class="p-6 space-y-3">
-            <h3 class="font-semibold text-ink-950">Dedicated Device Intelligence</h3>
-            <div class="text-sm"><span class="block text-[11px] font-bold uppercase tracking-wider text-accent-600/80 mb-0.5">Primary Focus</span><span class="text-ink-900/70">Hardware &amp; connection telemetry</span></div>
-            <div class="text-sm"><span class="block text-[11px] font-bold uppercase tracking-wider text-accent-600/80 mb-0.5">Best Suited For</span><span class="text-ink-900/70">Dev-focused API stacks, mobile apps, low-latency APIs</span></div>
-            <div class="text-sm"><span class="block text-[11px] font-bold uppercase tracking-wider text-accent-600/80 mb-0.5">Key Strengths</span><span class="text-ink-900/70">Detects VMs, proxies, app cloners, and RATs</span></div>
-          </div>
-          <div class="p-6 space-y-3">
-            <h3 class="font-semibold text-ink-950">Digital Identity Networks</h3>
-            <div class="text-sm"><span class="block text-[11px] font-bold uppercase tracking-wider text-accent-600/80 mb-0.5">Primary Focus</span><span class="text-ink-900/70">Cross-merchant behavior networks</span></div>
-            <div class="text-sm"><span class="block text-[11px] font-bold uppercase tracking-wider text-accent-600/80 mb-0.5">Best Suited For</span><span class="text-ink-900/70">Government, traditional banks, insurance compliance</span></div>
-            <div class="text-sm"><span class="block text-[11px] font-bold uppercase tracking-wider text-accent-600/80 mb-0.5">Key Strengths</span><span class="text-ink-900/70">Massive historical databases matching devices to identities</span></div>
-          </div>
-          <div class="p-6 space-y-3">
-            <h3 class="font-semibold text-ink-950">Lifecycle IDV Stacks</h3>
-            <div class="text-sm"><span class="block text-[11px] font-bold uppercase tracking-wider text-accent-600/80 mb-0.5">Primary Focus</span><span class="text-ink-900/70">Document &amp; KYC onboarding</span></div>
-            <div class="text-sm"><span class="block text-[11px] font-bold uppercase tracking-wider text-accent-600/80 mb-0.5">Best Suited For</span><span class="text-ink-900/70">FinTech, digital banks, HIPAA portals</span></div>
-            <div class="text-sm"><span class="block text-[11px] font-bold uppercase tracking-wider text-accent-600/80 mb-0.5">Key Strengths</span><span class="text-ink-900/70">Unified compliance checking, biometric liveness validation</span></div>
-          </div>
-          <div class="p-6 space-y-3">
-            <h3 class="font-semibold text-ink-950">Fraud Decisioning Engines</h3>
-            <div class="text-sm"><span class="block text-[11px] font-bold uppercase tracking-wider text-accent-600/80 mb-0.5">Primary Focus</span><span class="text-ink-900/70">Core risk orchestration</span></div>
-            <div class="text-sm"><span class="block text-[11px] font-bold uppercase tracking-wider text-accent-600/80 mb-0.5">Best Suited For</span><span class="text-ink-900/70">Complex enterprise fraud ecosystems</span></div>
-            <div class="text-sm"><span class="block text-[11px] font-bold uppercase tracking-wider text-accent-600/80 mb-0.5">Key Strengths</span><span class="text-ink-900/70">Unsupervised machine learning; uncovers grouped fraud rings</span></div>
-          </div>
-          <div class="p-6 space-y-3">
-            <h3 class="font-semibold text-ink-950">Edge Security Platforms</h3>
-            <div class="text-sm"><span class="block text-[11px] font-bold uppercase tracking-wider text-accent-600/80 mb-0.5">Primary Focus</span><span class="text-ink-900/70">Cloud/CDN traffic filtering</span></div>
-            <div class="text-sm"><span class="block text-[11px] font-bold uppercase tracking-wider text-accent-600/80 mb-0.5">Best Suited For</span><span class="text-ink-900/70">High-volume applications, blocking bot scale</span></div>
-            <div class="text-sm"><span class="block text-[11px] font-bold uppercase tracking-wider text-accent-600/80 mb-0.5">Key Strengths</span><span class="text-ink-900/70">Intercepts attacks at the perimeter before server load</span></div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Tools & stack -->
-    <section class="max-w-6xl mx-auto px-6 pb-24">
-      <div class="max-w-2xl mb-10">
-        <span class="text-xs font-bold uppercase tracking-widest text-accent-600">Tools & Platforms</span>
-        <h2 class="font-serif text-3xl mt-3 text-ink-950">Hands-on, not theoretical.</h2>
-      </div>
-      <div class="bg-white p-8 rounded-2xl border border-ink-900/10">
-        <div class="flex flex-wrap gap-2">
-          <span class="text-xs font-medium px-3 py-1.5 rounded-full bg-lavender-50 text-accent-600 border border-lavender-200">Socure</span>
-          <span class="text-xs font-medium px-3 py-1.5 rounded-full bg-lavender-50 text-accent-600 border border-lavender-200">Prove</span>
-          <span class="text-xs font-medium px-3 py-1.5 rounded-full bg-lavender-50 text-accent-600 border border-lavender-200">ThreatMetrix</span>
-          <span class="text-xs font-medium px-3 py-1.5 rounded-full bg-lavender-50 text-accent-600 border border-lavender-200">Kount</span>
-          <span class="text-xs font-medium px-3 py-1.5 rounded-full bg-lavender-50 text-accent-600 border border-lavender-200">iovation</span>
-          <span class="text-xs font-medium px-3 py-1.5 rounded-full bg-lavender-50 text-accent-600 border border-lavender-200">Telesign</span>
-          <span class="text-xs font-medium px-3 py-1.5 rounded-full bg-lavender-50 text-accent-600 border border-lavender-200">Zumigo</span>
-          <span class="text-xs font-medium px-3 py-1.5 rounded-full bg-lavender-50 text-accent-600 border border-lavender-200">OAuth</span>
-          <span class="text-xs font-medium px-3 py-1.5 rounded-full bg-lavender-50 text-accent-600 border border-lavender-200">WebAuthn</span>
-          <span class="text-xs font-medium px-3 py-1.5 rounded-full bg-lavender-50 text-accent-600 border border-lavender-200">AWS → GCP</span>
-          <span class="text-xs font-medium px-3 py-1.5 rounded-full bg-lavender-50 text-accent-600 border border-lavender-200">Neo4j / Graph</span>
-          <span class="text-xs font-medium px-3 py-1.5 rounded-full bg-lavender-50 text-accent-600 border border-lavender-200">FCRA · GLBA</span>
-          <span class="text-xs font-medium px-3 py-1.5 rounded-full bg-lavender-50 text-accent-600 border border-lavender-200">KYC · KYB · AML</span>
-          <span class="text-xs font-medium px-3 py-1.5 rounded-full bg-lavender-50 text-accent-600 border border-lavender-200">Gemini</span>
-          <span class="text-xs font-medium px-3 py-1.5 rounded-full bg-lavender-50 text-accent-600 border border-lavender-200">NotebookLM</span>
-          <span class="text-xs font-medium px-3 py-1.5 rounded-full bg-lavender-50 text-accent-600 border border-lavender-200">Claude</span>
-          <span class="text-xs font-medium px-3 py-1.5 rounded-full bg-lavender-50 text-accent-600 border border-lavender-200">Python / Co-Lab</span>
-        </div>
-      </div>
-    </section>
-
+  <section class="hero" style="padding-bottom:8px">
+   <div><div class="eyebrow">Expertise</div><h2 style="font-size:clamp(28px,4cqw,40px)">Six domains where the experience translates directly to your roadmap.</h2><p>Hands-on with the tools, not secondhand vendor comparisons.</p></div>
+   <div class="ph portrait"><img alt="Fingerprint scanner, device identity" src="/assets/img/fingerprint.jpg" style="aspect-ratio:3/2"></div>
+  </section>
+  <section class="sec tight"><div class="grid g3">
+    <div class="card"><div class="ico"><i class="fai fa-id-card" aria-hidden="true"></i></div><h3>Identity verification &amp; CIP/KYC</h3><p>Directed the USIS Credit Header API and Purpose View governance framework; led DIT 1.0/2.0 and the RAE risk engine.</p></div>
+    <div class="card"><div class="ico"><i class="fai fa-user-shield" aria-hidden="true"></i></div><h3>Fraud prevention &amp; decisioning</h3><p>Hands-on testing and comparison of ThreatMetrix, iovation, Kount, Socure and Prove.</p></div>
+    <div class="card"><div class="ico"><i class="fai fa-diagram-project" aria-hidden="true"></i></div><h3>Data quality &amp; identity resolution</h3><p>FReD (Frequency, Recency, Duration): a patent-pending model that collapses the many addresses, phones and emails tied to one consumer, each with its own timestamps, some correct and some as entered, into a ranked, scored, deduplicated list of true uniques. One well-written address instead of the same address malformed 14 times. Just as important, I set the standards that cleaned and validated PII before it reached the discovery service, so identity resolution received the right input combinations to find the best key.</p></div>
+    <div class="card"><div class="ico"><i class="fai fa-scale-balanced" aria-hidden="true"></i></div><h3>Regulatory &amp; risk</h3><p>FCRA, GLBA, KYC, KYB and AML, including the identity-versus-creditworthiness line most fraud teams miss.</p></div>
+    <div class="card"><div class="ico"><i class="fai fa-wand-magic-sparkles" aria-hidden="true"></i></div><h3>AI-enabled product ops</h3><p>Gemini, NotebookLM and Claude run against real compliance datasets, plus custom Python scripts.</p></div>
+    <div class="card"><div class="ico"><i class="fai fa-people-group" aria-hidden="true"></i></div><h3>Team &amp; org leadership</h3><p>A 45-person cross-functional product and engineering org through Agile transformation.</p></div>
+   </div>
+   <div style="margin-top:18px"><span class="chip">Socure</span><span class="chip">Prove</span><span class="chip">ThreatMetrix</span><span class="chip">Kount</span><span class="chip">iovation</span><span class="chip">Telesign</span><span class="chip">Zumigo</span><span class="chip">OAuth</span><span class="chip">WebAuthn</span><span class="chip">AWS → GCP</span><span class="chip">Neo4j / Graph</span><span class="chip">FCRA · GLBA</span><span class="chip">KYC · KYB · AML</span></div></section>
+  <section class="sec tight"><details class="card"><summary style="cursor:pointer;font-weight:700">The vendor landscape: five categories, one job (expand)</summary>
+   <div style="overflow:auto;margin-top:12px"><table class="cmp"><tr><th>Category</th><th>Primary focus</th><th>Best suited for</th></tr>
+    <tr><td>Dedicated device intelligence</td><td>Hardware &amp; connection telemetry</td><td>Dev-focused API stacks, mobile apps</td></tr>
+    <tr><td>Digital identity networks</td><td>Cross-merchant behavior networks</td><td>Government, banks, insurance compliance</td></tr>
+    <tr><td>Lifecycle IDV stacks</td><td>Document &amp; KYC onboarding</td><td>FinTech, digital banks, HIPAA portals</td></tr>
+    <tr><td>Fraud decisioning engines</td><td>Core risk orchestration</td><td>Complex enterprise fraud ecosystems</td></tr>
+    <tr><td>Edge security platforms</td><td>Cloud/CDN traffic filtering</td><td>High-volume apps, blocking bots at scale</td></tr></table></div></details></section>
   </main>
-
-  <!-- Footer -->
-  <footer class="bg-ink-900 text-white/60 py-10">
-    <div class="max-w-6xl mx-auto px-6 text-xs">
-      Gabriel Fontaine — Executive product leadership, without the full-time overhead. Identity, fraud & compliance specialist, 18+ years. © 2026.
-      <div class="mt-3"><span id="insights-privacy"></span></div>
-    </div>
-  </footer>
-
+ <div class="stickycta"><a class="btn ghost" href="/experience" data-track="resume_view">Resume</a><a class="btn" href="/contact" data-track="contact_click">Contact</a></div>
+ <footer class="f">© 2026 Gabriel Fontaine · <a href="/fractional" style="text-decoration:underline" data-track="to_fractional">Fractional services</a> · <span id="insights-privacy"></span>
+  <div class="credits">Photos: Unsplash (George Prentzas, Vitaly Gariev). Icons: Font Awesome Free, CC BY 4.0.</div></footer>
+ <script src="/assets/site.js"></script>
 </body>
 </html>

@@ -1,5 +1,7 @@
-# Old addresses -> current pages, tagged so visits from old links show up in analytics
-/leadership   /about?utm_source=legacy&utm_campaign=leadership     301
-/leadership/  /about?utm_source=legacy&utm_campaign=leadership     301
-/fractional   /services?utm_source=legacy&utm_campaign=fractional  301
-/fractional/  /services?utm_source=legacy&utm_campaign=fractional  301
+# Old addresses -> new pages, tagged so visits from old links show up in analytics
+/about        /?utm_source=legacy&utm_campaign=about                          301
+/about/       /?utm_source=legacy&utm_campaign=about                          301
+/services     /fractional/services?utm_source=legacy&utm_campaign=services    301
+/services/    /fractional/services?utm_source=legacy&utm_campaign=services    301
+/leadership   /?utm_source=legacy&utm_campaign=leadership                     301
+/leadership/  /?utm_source=legacy&utm_campaign=leadership                     301

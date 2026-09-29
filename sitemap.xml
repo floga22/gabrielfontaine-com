@@ -1,8 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url><loc>https://gabrielfontaine.com/</loc></url>
-<url><loc>https://gabrielfontaine.com/about</loc></url>
-<url><loc>https://gabrielfontaine.com/services</loc></url>
+<url><loc>https://gabrielfontaine.com/experience</loc></url>
 <url><loc>https://gabrielfontaine.com/expertise</loc></url>
 <url><loc>https://gabrielfontaine.com/projects</loc></url>
+<url><loc>https://gabrielfontaine.com/contact</loc></url>
+<url><loc>https://gabrielfontaine.com/fractional</loc></url>
+<url><loc>https://gabrielfontaine.com/fractional/services</loc></url>
+<url><loc>https://gabrielfontaine.com/fractional/results</loc></url>
+<url><loc>https://gabrielfontaine.com/fractional/contact</loc></url>
+<url><loc>https://gabrielfontaine.com/stack-landscape</loc></url>
 </urlset>
