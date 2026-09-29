@@ -1,88 +1,42 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-audience="candidate">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Stack Landscape — Gabriel Fontaine</title>
-<meta name="description" content="Every anti-bot, fraud-risk, and device-intelligence vendor recognized across the sites I've browsed — a Chrome extension side project, rolled up by category with no site names attached.">
 <meta name="robots" content="noindex, follow">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,600&family=Inter:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js"></script>
-<!-- site-insights-kit: analytics, session replay, device intelligence. Public IDs only. -->
-<script>
-  window.INSIGHTS_CONFIG = {
-    site: "gabrielfontaine.com",
-    ownerName: "Gabriel Fontaine",
-    contactEmail: "privacy@gabrielfontaine.com",
-    consent: "none",
-    ga4: "G-Z56L1BHZS1",
-    clarity: "yo1qncaepu",
-    fingerprint: {
-      key: "71BAprWdJzzeJSgcyPcL",
-      region: "us",
-      endpoint: "https://metrics.gabrielfontaine.com"
-    },
-    // worker: "https://...",   // add when the Cloudflare Worker is deployed
-    // clickstream: true,
-    debug: false
-  };
-</script>
-<script src="https://cdn.jsdelivr.net/gh/floga22/site-insights-kit@v1.1.0/src/insights.js" defer></script>
-
+<meta name="description" content="Every anti-bot, fraud-risk and device-intelligence vendor recognized across the sites I've browsed, a Chrome extension side project, rolled up by category with no site names attached.">
+<link rel="canonical" href="https://gabrielfontaine.com/stack-landscape">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Stack Landscape — Gabriel Fontaine">
+<meta property="og:description" content="Every anti-bot, fraud-risk and device-intelligence vendor recognized across the sites I've browsed, a Chrome extension side project, rolled up by category with no site names attached.">
+<meta property="og:url" content="https://gabrielfontaine.com/stack-landscape">
+<meta property="og:image" content="https://gabrielfontaine.com/gabe-headshot.png">
+<meta name="theme-color" content="#0e7c86">
+<link rel="icon" href="/gabe-headshot.png" type="image/png">
+<link rel="stylesheet" href="/assets/site.css">
+<script src="/assets/analytics.js"></script>
+</head>
+<body class="site" data-site="personal">
+<a class="skip" href="#main">Skip to content</a>
+<header class="hdr">
+  <a class="logo" href="/">Gabriel Fontaine<small>Product leader · Identity &amp; Fraud</small></a>
+  <button class="burger" id="burger" aria-label="Menu" aria-expanded="false" aria-controls="nav">&#9776;</button>
+  <nav class="nav" id="nav" aria-label="Main"><a href="/">Home</a><a href="/experience">Experience</a><a href="/expertise">Expertise</a><a href="/projects" class="on" aria-current="page">Projects</a><a href="/fractional" data-track="to_fractional">Fractional</a><a href="/contact">Contact</a><a class="btn" href="/experience" data-track="resume_view" style="padding:9px 18px">Resume</a></nav>
+ </header>
+ <main id="main">
 <style>
-  /* ---- minimal brand top bar / footer, independent of the tool's own theme below ---- */
-  :root { --brand-accent: #4338CA; --brand-ink: #10163A; }
-  .brand-topbar {
-    font-family: "Inter", system-ui, sans-serif;
-    background: #F3F4FC;
-    border-bottom: 1px solid rgba(16,22,58,0.10);
-    padding: 14px 16px;
-  }
-  .brand-topbar .inner {
-    max-width: 1180px;
-    margin-inline: auto;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 12px;
-  }
-  .brand-topbar a.back {
-    color: var(--brand-accent);
-    font-weight: 600;
-    font-size: 13.5px;
-    text-decoration: none;
-  }
-  .brand-topbar a.back:hover { text-decoration: underline; }
-  .brand-topbar .brand-name {
-    font-family: "Playfair Display", serif;
-    font-style: italic;
-    font-weight: 600;
-    font-size: 15px;
-    color: var(--brand-ink);
-  }
-  .brand-footer {
-    font-family: "Inter", system-ui, sans-serif;
-    background: var(--brand-ink);
-    color: rgba(255,255,255,0.6);
-    padding: 28px 16px;
-    font-size: 12px;
-    line-height: 1.7;
-  }
-  .brand-footer .inner { max-width: 1180px; margin-inline: auto; }
-
   /* ---- Stack Landscape tool theme (scoped to the rest of this page) ---- */
   :root {
     color-scheme: light;
-    --page-bg: #f9f9f7;
-    --surface: #fcfcfb;
-    --surface-2: #f2f1ed;
-    --text-primary: #0b0b0b;
-    --text-secondary: #52514e;
-    --text-muted: #898781;
-    --border: rgba(11,11,11,0.10);
-    --gridline: #e1e0d9;
+    --page-bg: #f7f4ee;
+    --surface: #ffffff;
+    --surface-2: #e6efee;
+    --text-primary: #12212e;
+    --text-secondary: #4b5966;
+    --text-muted: #5f6d79;
+    --border: rgba(18,33,46,0.12);
+    --gridline: #d9e2e1;
 
     --b-bot:      #2a78d6;  /* Bot & Traffic Management  -- blue */
     --b-captcha:  #eb6834;  /* Challenge / CAPTCHA       -- orange */
@@ -90,56 +44,17 @@
     --b-device:  #eda100;  /* Device & Behavioral Intel -- yellow */
     --b-identity: #e87ba4;  /* Identity & Account Linking -- magenta */
   }
-  @media (prefers-color-scheme: dark) {
-    :root:not([data-theme="light"]) {
-      color-scheme: dark;
-      --page-bg: #0d0d0d;
-      --surface: #17171a;
-      --surface-2: #1f1f22;
-      --text-primary: #ffffff;
-      --text-secondary: #c3c2b7;
-      --text-muted: #8b8a86;
-      --border: rgba(255,255,255,0.10);
-      --gridline: #2c2c2a;
-
-      --b-bot:      #3987e5;
-      --b-captcha:  #d95926;
-      --b-fraud:    #199e70;
-      --b-device:  #c98500;
-      --b-identity: #d55181;
-    }
-    .brand-topbar { background: #17171a; border-bottom-color: rgba(255,255,255,0.10); }
-    .brand-topbar .brand-name { color: #ffffff; }
-  }
-  :root[data-theme="dark"] {
-    color-scheme: dark;
-    --page-bg: #0d0d0d;
-    --surface: #17171a;
-    --surface-2: #1f1f22;
-    --text-primary: #ffffff;
-    --text-secondary: #c3c2b7;
-    --text-muted: #8b8a86;
-    --border: rgba(255,255,255,0.10);
-    --gridline: #2c2c2a;
-
-    --b-bot:      #3987e5;
-    --b-captcha:  #d95926;
-    --b-fraud:    #199e70;
-    --b-device:  #c98500;
-    --b-identity: #d55181;
-  }
-
   #tool-root * { box-sizing: border-box; }
   #tool-root {
     background: var(--page-bg);
     color: var(--text-primary);
-    font-family: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+    font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
     padding-inline: 16px;
     padding-block: 28px 48px;
     max-width: 1180px;
     margin-inline: auto;
   }
-  #tool-root .mono { font-family: "IBM Plex Mono", ui-monospace, monospace; }
+  #tool-root .mono { font-family: ui-monospace,SFMono-Regular,Menlo,Consolas,monospace; }
   #tool-root .tabular { font-variant-numeric: tabular-nums; }
 
   #tool-root header.page-head { margin-bottom: 28px; }
@@ -176,7 +91,7 @@
     padding: 16px 18px;
   }
   #tool-root .stat-tile .value {
-    font-family: "IBM Plex Mono", ui-monospace, monospace;
+    font-family: ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
     font-size: 26px;
     font-weight: 600;
     line-height: 1.1;
@@ -229,7 +144,7 @@
     padding: 8px;
   }
   #tool-root #pack-svg { width: 100%; height: auto; display: block; }
-  #tool-root #pack-svg text { font-family: "IBM Plex Sans", sans-serif; fill: var(--text-primary); pointer-events: none; }
+  #tool-root #pack-svg text { font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif; fill: var(--text-primary); pointer-events: none; }
   #tool-root #pack-svg .bucket-label { fill: var(--text-secondary); font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em; }
   #tool-root #pack-svg circle.vendor { cursor: pointer; }
   #tool-root #pack-svg circle.bucket-bg { fill: none; }
@@ -276,7 +191,7 @@
   #tool-root .pt-row .pt-label { color: var(--text-secondary); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
   #tool-root .pt-row .pt-track { background: var(--surface-2); border-radius: 3px; height: 7px; overflow: hidden; }
   #tool-root .pt-row .pt-fill { height: 100%; border-radius: 3px; }
-  #tool-root .pt-row .pt-count { text-align: right; color: var(--text-muted); font-family: "IBM Plex Mono", monospace; }
+  #tool-root .pt-row .pt-count { text-align: right; color: var(--text-muted); font-family: ui-monospace,SFMono-Regular,Menlo,Consolas,monospace; }
 
   #tool-root .flow-grid {
     display: grid;
@@ -291,7 +206,7 @@
   }
   #tool-root .flow-card .fc-head { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 8px; }
   #tool-root .flow-card .fc-head .fc-name { font-size: 13px; font-weight: 600; }
-  #tool-root .flow-card .fc-head .fc-pct { font-family: "IBM Plex Mono", monospace; font-size: 13px; color: var(--text-secondary); }
+  #tool-root .flow-card .fc-head .fc-pct { font-family: ui-monospace,SFMono-Regular,Menlo,Consolas,monospace; font-size: 13px; color: var(--text-secondary); }
   #tool-root .flow-bar { display: flex; height: 14px; border-radius: 4px; overflow: hidden; background: var(--surface-2); }
   #tool-root .flow-bar .seg-sensitive { height: 100%; }
   #tool-root .flow-card .fc-caption { font-size: 11.5px; color: var(--text-muted); margin-top: 8px; line-height: 1.5; }
@@ -321,17 +236,13 @@
     #tool-root .rank-row { grid-template-columns: minmax(100px, 15ch) minmax(0,1fr) 4.5ch; }
     #tool-root header.page-head h1 { font-size: 25px; }
   }
+
+  #tool-root h1{font-family:Georgia,"Times New Roman",serif;color:#12212e}
+  #tool-root{padding-inline:32px}
+  @media (max-width:760px){#tool-root{padding-inline:16px}}
+
 </style>
-</head>
-<body style="margin:0; background:var(--page-bg);">
-
-  <div class="brand-topbar">
-    <div class="inner">
-      <a href="/projects" class="back">&larr; Back to Gabriel Fontaine — Projects</a>
-      <span class="brand-name">Gabriel Fontaine</span>
-    </div>
-  </div>
-
+<div class="row" style="padding:18px 32px 0"><a class="btn ghost" href="/projects#device" style="padding:8px 16px;font-size:13px">&larr; Back to Projects</a></div>
   <div id="tool-root">
     <header class="page-head">
       <h1>Stack Landscape</h1>
@@ -373,13 +284,12 @@
 
   <div id="tooltip"></div>
 
-  <div class="brand-footer">
-    <div class="inner">
-      Gabriel Fontaine — Executive product leadership, without the full-time overhead. Identity, fraud &amp; compliance specialist, 18+ years. © 2026.
-      <div style="margin-top:10px;"><span id="insights-privacy"></span></div>
-    </div>
-  </div>
-
+ </main>
+ <div class="stickycta"><a class="btn ghost" href="/experience" data-track="resume_view">Resume</a><a class="btn" href="/contact" data-track="contact_click">Contact</a></div>
+ <footer class="f">© 2026 Gabriel Fontaine · <a href="/fractional" style="text-decoration:underline" data-track="to_fractional">Fractional services</a> · <span id="insights-privacy"></span>
+  <div class="credits">Photos: Unsplash (George Prentzas, Vitaly Gariev). Icons: Font Awesome Free, CC BY 4.0.</div></footer>
+ <script src="/assets/site.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js"></script>
 <script>
 window.ROLLUP = {"generatedAt": "2026-09-28T20:55:01.000Z", "totalSites": 418, "totalVisits": 2040, "sitesNoVendorDetected": 0, "sitesMultiVendorStack": 92, "buckets": [{"name": "Bot & Traffic Management", "color": "#d6955c", "siteCount": 296, "vendorCount": 6}, {"name": "Challenge / CAPTCHA", "color": "#acd65c", "siteCount": 107, "vendorCount": 3}, {"name": "Fraud & Risk Platforms", "color": "#e04c8f", "siteCount": 56, "vendorCount": 9}, {"name": "Device & Behavioral Intelligence", "color": "#5cd6b9", "siteCount": 45, "vendorCount": 8}, {"name": "Identity & Account Linking", "color": "#5c60d6", "siteCount": 8, "vendorCount": 5}], "vendors": [{"id": "cloudflare-bm", "name": "Cloudflare Bot Management", "color": "#8892a6", "bucket": "Bot & Traffic Management", "siteCount": 187}, {"id": "recaptcha", "name": "Google reCAPTCHA", "color": "#8892a6", "bucket": "Challenge / CAPTCHA", "siteCount": 103}, {"id": "akamai", "name": "Akamai Bot Manager", "color": "#8892a6", "bucket": "Bot & Traffic Management", "siteCount": 69}, {"id": "imperva-incapsula", "name": "Imperva Incapsula", "color": "#d68a5c", "bucket": "Bot & Traffic Management", "siteCount": 34}, {"id": "stripe-radar", "name": "Stripe Radar", "color": "#d65c7a", "bucket": "Fraud & Risk Platforms", "siteCount": 24}, {"id": "threatmetrix", "name": "ThreatMetrix (LexisNexis Risk Solutions)", "color": "#8892a6", "bucket": "Device & Behavioral Intelligence", "siteCount": 18}, {"id": "biocatch", "name": "BioCatch", "color": "#5cd6b9", "bucket": "Device & Behavioral Intelligence", "siteCount": 12}, {"id": "kount", "name": "Kount (Equifax)", "color": "#8892a6", "bucket": "Fraud & Risk Platforms", "siteCount": 9}, {"id": "fingerprint", "name": "Fingerprint", "color": "#d66c5c", "bucket": "Device & Behavioral Intelligence", "siteCount": 8}, {"id": "human", "name": "HUMAN (PerimeterX)", "color": "#6ad65c", "bucket": "Bot & Traffic Management", "siteCount": 8}, {"id": "forter", "name": "Forter", "color": "#5cd677", "bucket": "Fraud & Risk Platforms", "siteCount": 8}, {"id": "iovation", "name": "iovation / TransUnion TruValidate", "color": "#8892a6", "bucket": "Device & Behavioral Intelligence", "siteCount": 7}, {"id": "datadome", "name": "DataDome", "color": "#d65c8e", "bucket": "Bot & Traffic Management", "siteCount": 6}, {"id": "fraudlabspro", "name": "FraudLabs Pro", "color": "#e04c8f", "bucket": "Fraud & Risk Platforms", "siteCount": 6}, {"id": "castle", "name": "Castle", "color": "#9a5cd6", "bucket": "Fraud & Risk Platforms", "siteCount": 6}, {"id": "arkose", "name": "Arkose Labs", "color": "#d65cd0", "bucket": "Challenge / CAPTCHA", "siteCount": 4}, {"id": "hcaptcha", "name": "hCaptcha", "color": "#8892a6", "bucket": "Challenge / CAPTCHA", "siteCount": 4}, {"id": "sardine", "name": "Sardine", "color": "#68d39d", "bucket": "Device & Behavioral Intelligence", "siteCount": 3}, {"id": "incode", "name": "Incode", "color": "#8892a6", "bucket": "Identity & Account Linking", "siteCount": 3}, {"id": "aws-waf", "name": "AWS WAF (Bot Control)", "color": "#d6a05c", "bucket": "Bot & Traffic Management", "siteCount": 2}, {"id": "persona", "name": "Persona", "color": "#5ccbd6", "bucket": "Identity & Account Linking", "siteCount": 2}, {"id": "sift", "name": "Sift", "color": "#d65c65", "bucket": "Fraud & Risk Platforms", "siteCount": 2}, {"id": "regula", "name": "Regula (document verification)", "color": "#8e5cd6", "bucket": "Identity & Account Linking", "siteCount": 1}, {"id": "socure", "name": "Socure (Digital Intelligence)", "color": "#d3688c", "bucket": "Fraud & Risk Platforms", "siteCount": 1}, {"id": "ipqs", "name": "IPQualityScore", "color": "#d65c65", "bucket": "Fraud & Risk Platforms", "siteCount": 1}, {"id": "onefootprint", "name": "Footprint (onefootprint.com)", "color": "#5c8ed6", "bucket": "Identity & Account Linking", "siteCount": 1}, {"id": "plaid", "name": "Plaid Link", "color": "#5c60d6", "bucket": "Identity & Account Linking", "siteCount": 1}, {"id": "transmit-security", "name": "Transmit Security (Mosaic)", "color": "#8e5cd6", "bucket": "Device & Behavioral Intelligence", "siteCount": 1}, {"id": "seon", "name": "Seon", "color": "#d6be5c", "bucket": "Device & Behavioral Intelligence", "siteCount": 1}], "pageTypeByBucket": [{"bucket": "Bot & Traffic Management", "pageType": "General", "count": 228}, {"bucket": "Challenge / CAPTCHA", "pageType": "General", "count": 85}, {"bucket": "Bot & Traffic Management", "pageType": "Login", "count": 62}, {"bucket": "Fraud & Risk Platforms", "pageType": "General", "count": 36}, {"bucket": "Device & Behavioral Intelligence", "pageType": "Login", "count": 27}, {"bucket": "Challenge / CAPTCHA", "pageType": "Login", "count": 16}, {"bucket": "Device & Behavioral Intelligence", "pageType": "General", "count": 14}, {"bucket": "Fraud & Risk Platforms", "pageType": "Login", "count": 13}, {"bucket": "Bot & Traffic Management", "pageType": "Signup", "count": 8}, {"bucket": "Bot & Traffic Management", "pageType": "Password reset", "count": 6}, {"bucket": "Challenge / CAPTCHA", "pageType": "Signup", "count": 6}, {"bucket": "Device & Behavioral Intelligence", "pageType": "Unspecified", "count": 5}, {"bucket": "Fraud & Risk Platforms", "pageType": "Unspecified", "count": 4}, {"bucket": "Identity & Account Linking", "pageType": "Login", "count": 3}, {"bucket": "Device & Behavioral Intelligence", "pageType": "Signup", "count": 2}, {"bucket": "Identity & Account Linking", "pageType": "General", "count": 2}, {"bucket": "Challenge / CAPTCHA", "pageType": "Checkout", "count": 2}, {"bucket": "Fraud & Risk Platforms", "pageType": "Signup", "count": 2}, {"bucket": "Bot & Traffic Management", "pageType": "Unspecified", "count": 2}, {"bucket": "Identity & Account Linking", "pageType": "Unspecified", "count": 2}, {"bucket": "Device & Behavioral Intelligence", "pageType": "Password reset", "count": 1}, {"bucket": "Challenge / CAPTCHA", "pageType": "Password reset", "count": 1}, {"bucket": "Fraud & Risk Platforms", "pageType": "Password reset", "count": 1}, {"bucket": "Identity & Account Linking", "pageType": "Checkout", "count": 1}, {"bucket": "Device & Behavioral Intelligence", "pageType": "Checkout", "count": 1}, {"bucket": "Fraud & Risk Platforms", "pageType": "Checkout", "count": 1}, {"bucket": "Challenge / CAPTCHA", "pageType": "Unspecified", "count": 1}], "sensitivePagesNoVendor": 80};
 </script>
@@ -449,7 +359,7 @@ window.ROLLUP = {"generatedAt": "2026-09-28T20:55:01.000Z", "totalSites": 418, "
   const measureCanvas = document.createElement("canvas");
   const measureCtx = measureCanvas.getContext("2d");
   function textWidth(str, px, weight) {
-    measureCtx.font = `${weight || 600} ${px}px "IBM Plex Sans", sans-serif`;
+    measureCtx.font = `${weight || 600} ${px}px -apple-system, "Segoe UI", sans-serif`;
     return measureCtx.measureText(str).width;
   }
   // width of the horizontal chord of a circle radius r at vertical offset dy from center
