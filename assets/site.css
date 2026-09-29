@@ -210,6 +210,11 @@ form.f label{display:block;font-size:11px;font-weight:700;letter-spacing:.06em;t
 form.f label small{text-transform:none;letter-spacing:0;font-weight:400}
 .formnote{font-size:13px;color:var(--mut)}
 .credits{font-size:11px;opacity:.75;margin-top:6px}
+.marquee{display:flex;overflow:hidden;gap:0;padding:8px 0;flex-wrap:nowrap;justify-content:flex-start;-webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}
+.marquee .track{display:flex;flex:none;gap:48px;padding-right:48px;min-width:100%;justify-content:space-around;white-space:nowrap;animation:mq 32s linear infinite}
+.marquee:hover .track,.marquee:focus-within .track{animation-play-state:paused}
+@keyframes mq{to{transform:translateX(-100%)}}
+@media (prefers-reduced-motion:reduce){.marquee{flex-wrap:wrap;justify-content:center;-webkit-mask-image:none;mask-image:none}.marquee .track{animation:none;flex-wrap:wrap;justify-content:center;white-space:normal;padding:0}.marquee .track[aria-hidden]{display:none}}
 @media (max-width:760px){body[data-site=fractional] .hero .portrait{max-width:100%;border-radius:var(--r)}body[data-site=fractional] .hero .portrait img{border-radius:var(--r);aspect-ratio:16/9!important}}
 .notfound{max-width:640px;margin:0 auto;padding:80px 24px;text-align:center}
 @media (max-width:760px){.pgrid,.formrow{grid-template-columns:1fr}}
