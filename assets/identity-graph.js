@@ -6,7 +6,7 @@
    Icons: Tabler Icons (c) Pawel Kuna, MIT License, https://tabler.io/icons */
 (function () {
   "use strict";
-  var ICONS = {"user":"<path d=\"M8 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0\" /> <path d=\"M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2\" />","mail":"<path d=\"M3 7a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v10a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-10z\" /> <path d=\"M3 7l9 6l9 -6\" />","phone":"<path d=\"M5 4h4l2 5l-2.5 1.5a11 11 0 0 0 5 5l1.5 -2.5l5 2v4a2 2 0 0 1 -2 2a16 16 0 0 1 -15 -15a2 2 0 0 1 2 -2\" />","world":"<path d=\"M3 12a9 9 0 1 0 18 0a9 9 0 0 0 -18 0\" /> <path d=\"M3.6 9h16.8\" /> <path d=\"M3.6 15h16.8\" /> <path d=\"M11.5 3a17 17 0 0 0 0 18\" /> <path d=\"M12.5 3a17 17 0 0 1 0 18\" />","home":"<path d=\"M5 12l-2 0l9 -9l9 9l-2 0\" /> <path d=\"M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7\" /> <path d=\"M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6\" />","building":"<path d=\"M3 21l18 0\" /> <path d=\"M9 8l1 0\" /> <path d=\"M9 12l1 0\" /> <path d=\"M9 16l1 0\" /> <path d=\"M14 8l1 0\" /> <path d=\"M14 12l1 0\" /> <path d=\"M14 16l1 0\" /> <path d=\"M5 21v-16a2 2 0 0 1 2 -2h10a2 2 0 0 1 2 2v16\" />","mailbox":"<path d=\"M10 21v-6.5a3.5 3.5 0 0 0 -7 0v6.5h18v-6a4 4 0 0 0 -4 -4h-10.5\" /> <path d=\"M12 11v-8h4l2 2l-2 2h-4\" /> <path d=\"M6 15h1\" />","package":"<path d=\"M12 3l8 4.5l0 9l-8 4.5l-8 -4.5l0 -9l8 -4.5\" /> <path d=\"M12 12l8 -4.5\" /> <path d=\"M12 12l0 9\" /> <path d=\"M12 12l-8 -4.5\" /> <path d=\"M16 5.25l-8 4.5\" />","credit-card":"<path d=\"M3 5m0 3a3 3 0 0 1 3 -3h12a3 3 0 0 1 3 3v8a3 3 0 0 1 -3 3h-12a3 3 0 0 1 -3 -3z\" /> <path d=\"M3 10l18 0\" /> <path d=\"M7 15l.01 0\" /> <path d=\"M11 15l2 0\" />","cake":"<path d=\"M3 20h18v-8a3 3 0 0 0 -3 -3h-12a3 3 0 0 0 -3 3v8z\" /> <path d=\"M3 14.803c.312 .135 .654 .204 1 .197a2.4 2.4 0 0 0 2 -1a2.4 2.4 0 0 1 2 -1a2.4 2.4 0 0 1 2 1a2.4 2.4 0 0 0 2 1a2.4 2.4 0 0 0 2 -1a2.4 2.4 0 0 1 2 -1a2.4 2.4 0 0 1 2 1a2.4 2.4 0 0 0 2 1c.35 .007 .692 -.062 1 -.197\" /> <path d=\"M12 4l1.465 1.638a2 2 0 1 1 -3.015 .099l1.55 -1.737z\" />","id":"<path d=\"M3 4m0 3a3 3 0 0 1 3 -3h12a3 3 0 0 1 3 3v10a3 3 0 0 1 -3 3h-12a3 3 0 0 1 -3 -3z\" /> <path d=\"M9 10m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0\" /> <path d=\"M15 8l2 0\" /> <path d=\"M15 12l2 0\" /> <path d=\"M7 16l10 0\" />","building-bank":"<path d=\"M3 21l18 0\" /> <path d=\"M3 10l18 0\" /> <path d=\"M5 6l7 -3l7 3\" /> <path d=\"M4 10l0 11\" /> <path d=\"M20 10l0 11\" /> <path d=\"M8 14l0 3\" /> <path d=\"M12 14l0 3\" /> <path d=\"M16 14l0 3\" />","coins":"<path d=\"M9 14c0 1.657 2.686 3 6 3s6 -1.343 6 -3s-2.686 -3 -6 -3s-6 1.343 -6 3z\" /> <path d=\"M9 14v4c0 1.656 2.686 3 6 3s6 -1.344 6 -3v-4\" /> <path d=\"M3 6c0 1.072 1.144 2.062 3 2.598s4.144 .536 6 0c1.856 -.536 3 -1.526 3 -2.598c0 -1.072 -1.144 -2.062 -3 -2.598s-4.144 -.536 -6 0c-1.856 .536 -3 1.526 -3 2.598z\" /> <path d=\"M3 6v10c0 .888 .772 1.45 2 2\" /> <path d=\"M3 11c0 .888 .772 1.45 2 2\" />","fingerprint":"<path d=\"M18.9 7a8 8 0 0 1 1.1 5v1a6 6 0 0 0 .8 3\" /> <path d=\"M8 11a4 4 0 0 1 8 0v1a10 10 0 0 0 2 6\" /> <path d=\"M12 11v2a14 14 0 0 0 2.5 8\" /> <path d=\"M8 15a18 18 0 0 0 1.8 6\" /> <path d=\"M4.9 19a22 22 0 0 1 -.9 -7v-1a8 8 0 0 1 12 -6.95\" />","alert-triangle":"<path d=\"M12 9v4\" /> <path d=\"M10.363 3.591l-8.106 13.534a1.914 1.914 0 0 0 1.636 2.871h16.214a1.914 1.914 0 0 0 1.636 -2.87l-8.106 -13.536a1.914 1.914 0 0 0 -3.274 0z\" /> <path d=\"M12 16h.01\" />","database":"<path d=\"M12 6m-8 0a8 3 0 1 0 16 0a8 3 0 1 0 -16 0\" /> <path d=\"M4 6v6a8 3 0 0 0 16 0v-6\" /> <path d=\"M4 12v6a8 3 0 0 0 16 0v-6\" />","scale":"<path d=\"M7 20l10 0\" /> <path d=\"M6 6l6 -1l6 1\" /> <path d=\"M12 3l0 17\" /> <path d=\"M9 12l-3 -6l-3 6a3 3 0 0 0 6 0\" /> <path d=\"M21 12l-3 -6l-3 6a3 3 0 0 0 6 0\" />","arrows-maximize":"<path d=\"M16 4l4 0l0 4\" /> <path d=\"M14 10l6 -6\" /> <path d=\"M8 20l-4 0l0 -4\" /> <path d=\"M4 20l6 -6\" /> <path d=\"M16 20l4 0l0 -4\" /> <path d=\"M14 14l6 6\" /> <path d=\"M8 4l-4 0l0 4\" /> <path d=\"M4 4l6 6\" />","x":"<path d=\"M18 6l-12 12\" /> <path d=\"M6 6l12 12\" />","arrow-right":"<path d=\"M5 12l14 0\" /> <path d=\"M13 18l6 -6\" /> <path d=\"M13 6l6 6\" />"};
+  var ICONS = {"user":"<path d=\"M8 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0\" /> <path d=\"M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2\" />","mail":"<path d=\"M3 7a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v10a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-10z\" /> <path d=\"M3 7l9 6l9 -6\" />","phone":"<path d=\"M5 4h4l2 5l-2.5 1.5a11 11 0 0 0 5 5l1.5 -2.5l5 2v4a2 2 0 0 1 -2 2a16 16 0 0 1 -15 -15a2 2 0 0 1 2 -2\" />","world":"<path d=\"M3 12a9 9 0 1 0 18 0a9 9 0 0 0 -18 0\" /> <path d=\"M3.6 9h16.8\" /> <path d=\"M3.6 15h16.8\" /> <path d=\"M11.5 3a17 17 0 0 0 0 18\" /> <path d=\"M12.5 3a17 17 0 0 1 0 18\" />","home":"<path d=\"M5 12l-2 0l9 -9l9 9l-2 0\" /> <path d=\"M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7\" /> <path d=\"M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6\" />","building":"<path d=\"M3 21l18 0\" /> <path d=\"M9 8l1 0\" /> <path d=\"M9 12l1 0\" /> <path d=\"M9 16l1 0\" /> <path d=\"M14 8l1 0\" /> <path d=\"M14 12l1 0\" /> <path d=\"M14 16l1 0\" /> <path d=\"M5 21v-16a2 2 0 0 1 2 -2h10a2 2 0 0 1 2 2v16\" />","mailbox":"<path d=\"M10 21v-6.5a3.5 3.5 0 0 0 -7 0v6.5h18v-6a4 4 0 0 0 -4 -4h-10.5\" /> <path d=\"M12 11v-8h4l2 2l-2 2h-4\" /> <path d=\"M6 15h1\" />","package":"<path d=\"M12 3l8 4.5l0 9l-8 4.5l-8 -4.5l0 -9l8 -4.5\" /> <path d=\"M12 12l8 -4.5\" /> <path d=\"M12 12l0 9\" /> <path d=\"M12 12l-8 -4.5\" /> <path d=\"M16 5.25l-8 4.5\" />","credit-card":"<path d=\"M3 5m0 3a3 3 0 0 1 3 -3h12a3 3 0 0 1 3 3v8a3 3 0 0 1 -3 3h-12a3 3 0 0 1 -3 -3z\" /> <path d=\"M3 10l18 0\" /> <path d=\"M7 15l.01 0\" /> <path d=\"M11 15l2 0\" />","cake":"<path d=\"M3 20h18v-8a3 3 0 0 0 -3 -3h-12a3 3 0 0 0 -3 3v8z\" /> <path d=\"M3 14.803c.312 .135 .654 .204 1 .197a2.4 2.4 0 0 0 2 -1a2.4 2.4 0 0 1 2 -1a2.4 2.4 0 0 1 2 1a2.4 2.4 0 0 0 2 1a2.4 2.4 0 0 0 2 -1a2.4 2.4 0 0 1 2 -1a2.4 2.4 0 0 1 2 1a2.4 2.4 0 0 0 2 1c.35 .007 .692 -.062 1 -.197\" /> <path d=\"M12 4l1.465 1.638a2 2 0 1 1 -3.015 .099l1.55 -1.737z\" />","id":"<path d=\"M3 4m0 3a3 3 0 0 1 3 -3h12a3 3 0 0 1 3 3v10a3 3 0 0 1 -3 3h-12a3 3 0 0 1 -3 -3z\" /> <path d=\"M9 10m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0\" /> <path d=\"M15 8l2 0\" /> <path d=\"M15 12l2 0\" /> <path d=\"M7 16l10 0\" />","building-bank":"<path d=\"M3 21l18 0\" /> <path d=\"M3 10l18 0\" /> <path d=\"M5 6l7 -3l7 3\" /> <path d=\"M4 10l0 11\" /> <path d=\"M20 10l0 11\" /> <path d=\"M8 14l0 3\" /> <path d=\"M12 14l0 3\" /> <path d=\"M16 14l0 3\" />","coins":"<path d=\"M9 14c0 1.657 2.686 3 6 3s6 -1.343 6 -3s-2.686 -3 -6 -3s-6 1.343 -6 3z\" /> <path d=\"M9 14v4c0 1.656 2.686 3 6 3s6 -1.344 6 -3v-4\" /> <path d=\"M3 6c0 1.072 1.144 2.062 3 2.598s4.144 .536 6 0c1.856 -.536 3 -1.526 3 -2.598c0 -1.072 -1.144 -2.062 -3 -2.598s-4.144 -.536 -6 0c-1.856 .536 -3 1.526 -3 2.598z\" /> <path d=\"M3 6v10c0 .888 .772 1.45 2 2\" /> <path d=\"M3 11c0 .888 .772 1.45 2 2\" />","fingerprint":"<path d=\"M18.9 7a8 8 0 0 1 1.1 5v1a6 6 0 0 0 .8 3\" /> <path d=\"M8 11a4 4 0 0 1 8 0v1a10 10 0 0 0 2 6\" /> <path d=\"M12 11v2a14 14 0 0 0 2.5 8\" /> <path d=\"M8 15a18 18 0 0 0 1.8 6\" /> <path d=\"M4.9 19a22 22 0 0 1 -.9 -7v-1a8 8 0 0 1 12 -6.95\" />","alert-triangle":"<path d=\"M12 9v4\" /> <path d=\"M10.363 3.591l-8.106 13.534a1.914 1.914 0 0 0 1.636 2.871h16.214a1.914 1.914 0 0 0 1.636 -2.87l-8.106 -13.536a1.914 1.914 0 0 0 -3.274 0z\" /> <path d=\"M12 16h.01\" />","database":"<path d=\"M12 6m-8 0a8 3 0 1 0 16 0a8 3 0 1 0 -16 0\" /> <path d=\"M4 6v6a8 3 0 0 0 16 0v-6\" /> <path d=\"M4 12v6a8 3 0 0 0 16 0v-6\" />","scale":"<path d=\"M7 20l10 0\" /> <path d=\"M6 6l6 -1l6 1\" /> <path d=\"M12 3l0 17\" /> <path d=\"M9 12l-3 -6l-3 6a3 3 0 0 0 6 0\" /> <path d=\"M21 12l-3 -6l-3 6a3 3 0 0 0 6 0\" />","arrows-maximize":"<path d=\"M16 4l4 0l0 4\" /> <path d=\"M14 10l6 -6\" /> <path d=\"M8 20l-4 0l0 -4\" /> <path d=\"M4 20l6 -6\" /> <path d=\"M16 20l4 0l0 -4\" /> <path d=\"M14 14l6 6\" /> <path d=\"M8 4l-4 0l0 4\" /> <path d=\"M4 4l6 6\" />","x":"<path d=\"M18 6l-12 12\" /> <path d=\"M6 6l12 12\" />","arrow-right":"<path d=\"M5 12l14 0\" /> <path d=\"M13 18l6 -6\" /> <path d=\"M13 6l6 6\" />","device-mobile":"<path d=\"M6 5a2 2 0 0 1 2 -2h8a2 2 0 0 1 2 2v14a2 2 0 0 1 -2 2h-8a2 2 0 0 1 -2 -2v-14z\" /> <path d=\"M11 4h2\" /> <path d=\"M12 17v.01\" />","link":"<path d=\"M9 15l6 -6\" /> <path d=\"M11 6l.463 -.536a5 5 0 0 1 7.071 7.072l-.534 .464\" /> <path d=\"M13 18l-.397 .534a5.068 5.068 0 0 1 -7.127 0a4.972 4.972 0 0 1 0 -7.071l.524 -.463\" />","shield-check":"<path d=\"M11.46 20.846a12 12 0 0 1 -7.96 -14.846a12 12 0 0 0 8.5 -3a12 12 0 0 0 8.5 3a12 12 0 0 1 -.09 7.06\" /> <path d=\"M15 19l2 2l4 -4\" />","message-circle":"<path d=\"M3 20l1.3 -3.9c-2.324 -3.437 -1.426 -7.872 2.1 -10.374c3.526 -2.501 8.59 -2.296 11.845 .48c3.255 2.777 3.695 7.266 1.029 10.501c-2.666 3.235 -7.615 4.215 -11.574 2.293l-4.7 1\" />"};
   var D3_SRC = "/assets/d3-graph.min.js?v=5094cf9c";
   var mounts = document.querySelectorAll("[data-identity-graph]");
   if (!mounts.length) return;
@@ -62,15 +62,17 @@
   var DC = { approve: ["#9FE1CB", "#0F6E56", "Approve"], review: ["#FAC775", "#854F0B", "Review"], decline: ["#F7C1C1", "#A32D2D", "Decline"] };
   var PAL = [["#F5C4B3", "#993C1D"], ["#B5D4F4", "#185FA5"], ["#C0DD97", "#3B6D11"], ["#FAC775", "#854F0B"], ["#CECBF6", "#534AB7"]];
   var NEU = ["#D3D1C7", "#5F5E5A"];
-  var TN = { em: "Email", ph: "Phone", ip: "IP address", ma: "Mailing address", sa: "Shipping address", cd: "Payment token", bk: "", ld: "", db: "Date of birth", ss: "SSN" };
-  var SHT = { em: 1, ph: 1, ip: 1, ma: 1, sa: 1, cd: 1, db: 1, ss: 1 };
+  var TN = { dv: "Device", em: "Email", ph: "Phone", ip: "IP address", ma: "Mailing address", sa: "Shipping address", cd: "Payment token", bk: "", ld: "", db: "Date of birth", ss: "SSN" };
+  var SHT = { dv: 1, em: 1, ph: 1, ip: 1, ma: 1, sa: 1, cd: 1, db: 1, ss: 1 };
   var WT = { em: 4, ph: 3, ss: 6, db: 1, cd: 2, ip: 0.5, ma: 0.5, sa: 0.75 };
-  var ET = { e: "e-commerce", a: "credit app", l: "bank login" };
-  var DASH = { e: null, a: "7 4", l: "2 4" };
+  var ET = { e: "e-commerce", a: "credit app", l: "bank login", c: "step-up challenge" };
+  var DASH = { e: null, a: "7 4", l: "2 4", c: "10 3 2 3" };
+  var METH = { doc: ["id", "License scan", 3], passkey: ["fingerprint", "Passkey", 4], link: ["link", "Email link", 2], otp: ["message-circle", "Text or email code", 1] };
+  var AS = { high: ["#85B7EB", "#0C447C", "High"], medium: ["#B5D4F4", "#185FA5", "Medium"], low: ["#E6F1FB", "#378ADD", "Low", "#185FA5"] };
   function iconName(d) {
     if (d.t === "p") return "user";
     if (d.t === "ma") return /PO Box/.test(d.lb) ? "mailbox" : /Plaza|Suite/.test(d.lb) ? "building" : "home";
-    return { em: "mail", ph: "phone", ip: "world", sa: "package", cd: "credit-card", bk: "building-bank", ld: "coins", db: "cake", ss: "id" }[d.t];
+    return { dv: "device-mobile", em: "mail", ph: "phone", ip: "world", sa: "package", cd: "credit-card", bk: "building-bank", ld: "coins", db: "cake", ss: "id" }[d.t];
   }
   var R = {
     Mary: ["good", [["em:mary@gmail.com", "a", 1], ["ph:404-555-0142", "a", 1], ["db:1984-06-12", "a", 1], ["ss:***-**-3381", "a", 1], ["ma:12 Oak Ln", "a", 1], ["sa:12 Oak Ln", "e", 14], ["ip:198.51.100.21", "e", 30], ["cd:tok_7c21ab9f", "e", 18], ["cd:tok_1de904a3", "e", 22], ["bk:Bank A", "l", 20], ["bk:Bank B", "l", 5], ["ld:Lender A", "a", 1]]],
@@ -89,6 +91,25 @@
     Kim: ["syn", [["em:kim.tr4n@mail.ru", "a", 1], ["ph:678-555-0403", "a", 1], ["db:1997-01-01", "a", 1], ["ss:***-**-0784", "a", 1], ["ma:2100 Peach Plaza #310", "a", 2], ["sa:2100 Peach Plaza #310", "e", 2], ["ip:203.0.113.90", "e", 3], ["cd:tok_71f4d0a9", "e", 3], ["ld:Lender C", "a", 3], ["ld:Lender B", "a", 3], ["bk:Bank C", "l", 1]]]
   };
 
+  /* Step-up challenges: [device, methods passed, days since the last pass]. Illustrative. */
+  var CH = {
+    Mary: [["Mary's phone", ["passkey"], 3]], Tom: [["Tom's laptop", ["passkey"], 10]], Amy: [["Amy's phone", ["doc", "passkey"], 5]],
+    Grace: [["Grace's phone", ["link"], 60]], Paul: [["Paul's phone", ["otp"], 200]], Carlos: [["Carlos's phone", ["passkey"], 7]],
+    Rick: [["Ring device 1", ["link", "otp"], 2]], Sam: [["Ring device 1", ["otp"], 3]], Omar: [["Ring device 1", ["otp"], 5]],
+    Joe: [["Joe's phone", ["doc", "passkey"], 400]], Dave: [["Dave's phone", ["doc"], 420]],
+    Lena: [["Ring device 2", ["doc"], 12]], Nina: [["Ring device 2", ["doc"], 22]], Kim: [["Ring device 2", ["link"], 35]]
+  };
+  /* First and last seen, in days ago. Deterministic pseudo-random within a range per kind of actor. */
+  function hs(s) { var h = 2166136261; for (var i = 0; i < s.length; i++) { h ^= s.charCodeAt(i); h = Math.imul(h, 16777619); } return (h >>> 0) / 4294967296; }
+  var RNG = { good: [500, 3500, 0, 20], fraud: [12, 110, 0, 4], bust: [350, 1100, 0, 10], syn: [25, 200, 2, 40] };
+  var OV = { "fraud:ss": [900, 3000, 0, 4], "bust:ld": [5, 30, 0, 10], "syn:ss": [60, 200, 2, 40] };
+  function seenFor(cls, who, key, t) {
+    if (t === "db") return null;
+    var r = OV[cls + ":" + t] || RNG[cls], f = Math.round(r[0] + hs(who + key + "f") * (r[1] - r[0])), l = Math.round(r[2] + hs(who + key + "l") * (r[3] - r[2]));
+    return { first: f, last: Math.min(l, f) };
+  }
+  function ago(d) { if (d <= 0) return "today"; if (d < 45) return d + "d ago"; if (d < 730) return Math.round(d / 30) + " mo ago"; return (d / 365).toFixed(1) + " yr ago"; }
+
   function build() {
     var people = [], attrs = {}, links = [];
     Object.keys(R).forEach(function (name) {
@@ -98,27 +119,50 @@
         var key = r[0];
         if (!attrs[key]) attrs[key] = { id: key, t: key.slice(0, 2), lb: key.slice(3), ppl: [] };
         attrs[key].ppl.push(p);
-        links.push({ source: p, target: attrs[key], k: r[1], c: r[2] });
+        var sn = seenFor(v[0], name, key, key.slice(0, 2));
+        links.push({ source: p, target: attrs[key], k: r[1], c: r[2], first: sn ? sn.first : null, last: sn ? sn.last : null });
+      });
+      (CH[name] || []).forEach(function (ch) {
+        var key = "dv:" + ch[0];
+        if (!attrs[key]) attrs[key] = { id: key, t: "dv", lb: ch[0], ppl: [] };
+        attrs[key].ppl.push(p);
+        links.push({ source: p, target: attrs[key], k: "c", c: ch[1].length, ms: ch[1], first: ch[2], last: ch[2] });
       });
     });
     var al = Object.keys(attrs).map(function (k) { return attrs[k]; });
     al.forEach(function (a) { a.shared = !!SHT[a.t] && a.ppl.length >= 2; });
+    links.forEach(function (l) {
+      var t = l.target; if (l.first == null) return;
+      t.first = t.first == null ? l.first : Math.max(t.first, l.first);
+      t.last = t.last == null ? l.last : Math.min(t.last, l.last);
+    });
     var par = new Map(); people.forEach(function (p) { par.set(p, p); });
     function f(x) { while (par.get(x) !== x) { par.set(x, par.get(par.get(x))); x = par.get(x); } return x; }
-    al.filter(function (a) { return a.shared; }).forEach(function (a) { a.ppl.slice(1).forEach(function (q) { par.set(f(q), f(a.ppl[0])); }); });
+    al.filter(function (a) { return a.shared && a.t !== "dv"; }).forEach(function (a) { a.ppl.slice(1).forEach(function (q) { par.set(f(q), f(a.ppl[0])); }); });
     var sizes = new Map(); people.forEach(function (p) { var r = f(p); sizes.set(r, (sizes.get(r) || 0) + 1); });
     var roots = []; sizes.forEach(function (n, r) { if (n > 1) roots.push(r); });
     people.forEach(function (p) {
       var r = f(p); p.csize = sizes.get(r); p.comp = p.csize > 1 ? roots.indexOf(r) : -1;
       var s = 0, lv = 0;
       links.forEach(function (l) {
-        if (l.source !== p) return;
+        if (l.source !== p || l.k === "c") return;
         if (l.target.shared) s += WT[l.target.t] * (l.target.ppl.length - 1);
         if (l.target.t === "ld") lv += l.c;
       });
       if (lv >= 6) s += 4;
       if (p.csize >= 3) s += 3;
       p.score = s; p.dec = s >= 10 ? "decline" : s >= 5 ? "review" : "approve";
+      var best = null, sd = false;
+      links.forEach(function (l) {
+        if (l.source !== p || l.k !== "c") return;
+        if (l.target.ppl.length >= 2) sd = true;
+        l.ms.forEach(function (m) {
+          var v = METH[m][2] * (l.first <= 30 ? 1 : l.first <= 90 ? 0.7 : l.first <= 180 ? 0.4 : 0.2);
+          if (!best || v > best.v) best = { v: v, m: m, d: l.first };
+        });
+      });
+      p.as = null;
+      if (best) { var sc = best.v - (sd ? 2 : 0); p.as = { v: sc, lvl: sc >= 2.5 ? "high" : sc >= 1.2 ? "medium" : "low", best: best.m, d: best.d, flag: sd }; }
     });
     return { people: people, al: al, links: links, all: people.concat(al) };
   }
@@ -132,7 +176,7 @@
     var D = build(), people = D.people, al = D.al, links = D.links, all = D.all;
     function jit() { return { x: W / 2 + (Math.random() - 0.5) * W * 0.7, y: H / 2 + (Math.random() - 0.5) * H * 0.7 }; }
     all.forEach(function (n) { Object.assign(n, jit()); });
-    var S = { e: true, a: true, l: true, shared: false, mode: "neutral", cls: { good: true, fraud: true, bust: true, syn: true }, min: 1, focus: null, sel: null };
+    var S = { e: true, a: true, l: true, shared: false, mode: "neutral", cls: { good: true, fraud: true, bust: true, syn: true }, min: 1, focus: null, sel: null, c: false, recent: false, fresh: false };
     function sw(c) { return (1 + Math.min(Math.sqrt(c) * 0.8, 6)) * (mini ? 0.5 : 1); }
     var root = svg.append("g"), lg = root.append("g"), ng = root.append("g");
     if (!mini) svg.call(d3.zoom().scaleExtent([0.4, 4]).on("zoom", function (ev) { root.attr("transform", ev.transform); })).on("dblclick.zoom", null);
@@ -146,12 +190,13 @@
     function pcol(d) {
       if (S.mode === "class") return CL[d.cls];
       if (S.mode === "decision") return DC[d.dec];
+      if (S.mode === "assurance") return d.as ? AS[d.as.lvl] : NEU;
       if (S.mode === "cluster") return d.comp < 0 ? NEU : PAL[d.comp % PAL.length];
       return NEU;
     }
     function update() {
       var pOn = new Set(people.filter(function (p) { return S.cls[p.cls]; }));
-      var act = links.filter(function (l) { return S[l.k] && l.c >= S.min && pOn.has(l.source); });
+      var act = links.filter(function (l) { return S[l.k] && l.c >= S.min && pOn.has(l.source) && (!S.recent || (l.last != null && l.last <= 30)) && (!S.fresh || (l.first != null && l.first <= 90)); });
       var dg = new Map(); act.forEach(function (l) { if (!dg.has(l.target)) dg.set(l.target, new Set()); dg.get(l.target).add(l.source); });
       var va = new Set(al.filter(function (a) { return dg.has(a) && dg.get(a).size >= (S.shared ? 2 : 1) && (!S.shared || SHT[a.t]); }));
       vl = act.filter(function (l) { return va.has(l.target); });
@@ -159,7 +204,7 @@
       vis = people.filter(function (p) { return vp.has(p); }).concat(Array.from(va));
       lk = lg.selectAll("line").data(vl, function (d) { return d.source.id + "|" + d.target.id; });
       lk.exit().remove();
-      lk = lk.enter().append("line").attr("stroke", "#888780").merge(lk).attr("stroke-width", function (d) { return sw(d.c); }).attr("stroke-dasharray", function (d) { return mini ? null : DASH[d.k]; });
+      lk = lk.enter().append("line").merge(lk).attr("stroke", function (d) { return d.k === "c" ? "#378ADD" : "#888780"; }).attr("stroke-width", function (d) { return sw(d.c); }).attr("stroke-dasharray", function (d) { return mini ? null : DASH[d.k]; });
       nd = ng.selectAll("g.idg-node").data(vis, function (d) { return d.id; });
       nd.exit().remove();
       var e = nd.enter().append("g").attr("class", "idg-node");
@@ -178,12 +223,13 @@
       sim.nodes(vis); sim.force("link").links(vl);
       sim.alpha(mini ? 0.4 : 0.8).restart();
     }
+    function flag(d) { return S.mode === "assurance" && d.t === "p" && d.as && d.as.flag; }
     function restyle() {
       nd.select("circle")
         .attr("r", function (d) { return mini ? (d.t === "p" ? 5.5 : d.shared ? 4 : 2.5) : (d.t === "p" ? 16 : d.shared ? 12 : 9); })
-        .attr("fill", function (d) { return d.t === "p" ? pcol(d)[0] : (d.shared ? "#B4B2A9" : "#F1EFE8"); })
-        .attr("stroke", function (d) { return d.t === "p" ? pcol(d)[1] : (d.shared ? "#444441" : "#888780"); })
-        .attr("stroke-width", function (d) { return mini ? 1 : (d.t === "p" || d.shared ? 2 : 1); });
+        .attr("fill", function (d) { return d.t === "p" ? pcol(d)[0] : d.t === "dv" ? (d.shared ? "#85B7EB" : "#E6F1FB") : (d.shared ? "#B4B2A9" : "#F1EFE8"); })
+        .attr("stroke", function (d) { return d.t === "p" ? (flag(d) ? "#BA7517" : pcol(d)[1]) : d.t === "dv" ? "#185FA5" : (d.shared ? "#444441" : "#888780"); })
+        .attr("stroke-width", function (d) { return mini ? 1 : flag(d) ? 3.5 : (d.t === "p" || d.shared ? 2 : 1); });
       nd.style("opacity", function (d) {
         var op = (d.t === "p" || d.shared) ? 1 : (mini ? 0.85 : 0.78);
         if (S.focus && d.t !== "p" && !S.focus.has(d.t)) op = 0.14;
@@ -196,27 +242,32 @@
       });
       if (!mini) {
         nd.select(".idg-nico").each(function (d) {
-          var s = d.t === "p" ? 17 : d.shared ? 15 : 12, nm = iconName(d), col = d.t === "p" ? pcol(d)[1] : (d.shared ? "#2C2C2A" : "#5F5E5A");
+          var s = d.t === "p" ? 17 : d.shared ? 15 : 12, nm = iconName(d), col = d.t === "p" ? pcol(d)[1] : d.t === "dv" ? "#0C447C" : (d.shared ? "#2C2C2A" : "#5F5E5A");
           this.setAttribute("transform", "translate(" + (-s / 2) + "," + (-s / 2) + ") scale(" + (s / 24) + ")");
           this.setAttribute("fill", "none"); this.setAttribute("stroke", col); this.setAttribute("stroke-width", "2.2");
           this.setAttribute("stroke-linecap", "round"); this.setAttribute("stroke-linejoin", "round");
           if (d._ic !== nm) { this.innerHTML = ICONS[nm]; d._ic = nm; }
         });
         nd.select(".lb").attr("y", function (d) { return d.t === "p" ? 29 : 21; }).attr("font-weight", function (d) { return d.t === "p" ? 600 : 400; }).attr("font-size", function (d) { return d.t === "p" ? 12 : 11; })
-          .text(function (d) { return d.t === "p" ? d.lb : (S.shared && d.shared ? d.lb : ""); });
+          .text(function (d) { return d.t === "p" || d.t === "dv" ? d.lb : (S.shared && d.shared ? d.lb : ""); });
       }
     }
     function select(d) {
       S.sel = d; restyle();
-      var c = links.filter(function (l) { return l.source === d || l.target === d; }), t;
+      var c = links.filter(function (l) { return (l.source === d || l.target === d) && (l.k !== "c" || S.c); }), t;
       if (d.t === "p") {
-        var sa = c.filter(function (l) { return l.target.shared; }), others = {};
+        var sa = c.filter(function (l) { return l.target.shared && l.target.t !== "dv"; }), others = {};
         sa.forEach(function (l) { l.target.ppl.forEach(function (p) { if (p !== d) others[p.id] = 1; }); });
         var on = Object.keys(others);
         t = d.lb + (S.mode === "class" ? " (" + CL[d.cls][2] + ")" : "") + (S.mode === "decision" ? ", score " + d.score.toFixed(1) + ": " + DC[d.dec][2] : "") + ". " + c.length + " links, " + sa.length + " shared attributes with " + on.length + " other " + (on.length === 1 ? "person" : "people") + (on.length ? " (" + on.join(", ") + ")" : "") + ".";
+        var nw = null; c.forEach(function (l) { if (l.k !== "c" && l.first != null && (!nw || l.first < nw.first)) nw = l; });
+        if (nw) t += " Newest identifier: " + (TN[nw.target.t] ? TN[nw.target.t] + " " : "") + nw.target.lb + ", first seen " + ago(nw.first) + ".";
+        if (S.c && d.as) t += " Step-up: " + AS[d.as.lvl][2].toLowerCase() + " assurance (" + METH[d.as.best][1].toLowerCase() + ", " + ago(d.as.d) + ")" + (d.as.flag ? ", on a device shared with others" : "") + ".";
+      } else if (d.t === "dv") {
+        t = d.lb + ": step-up challenges passed by " + d.ppl.length + " " + (d.ppl.length > 1 ? "people" : "person") + ". " + c.map(function (l) { return l.source.id + " via " + l.ms.map(function (m) { return METH[m][1].toLowerCase(); }).join(" + ") + ", " + ago(l.first); }).join("; ") + "." + (d.ppl.length > 1 ? " One device clearing challenges for several supposedly separate people is a red flag." : "");
       } else {
         var nm = TN[d.t] ? TN[d.t] + " " + d.lb : d.lb;
-        t = nm + ": " + d.ppl.length + " " + (d.ppl.length > 1 ? "people" : "person") + ". " + c.map(function (l) { return l.source.id + " " + ET[l.k] + " " + l.c; }).join(", ") + ".";
+        t = nm + ": " + d.ppl.length + " " + (d.ppl.length > 1 ? "people" : "person") + ". " + c.map(function (l) { return l.source.id + " " + ET[l.k] + " " + l.c; }).join(", ") + "." + (d.first != null ? " First seen " + ago(d.first) + ", last seen " + ago(d.last) + "." : "");
       }
       if (o.onInfo) o.onInfo(t);
     }
@@ -295,7 +346,7 @@
 
   /* ---------- explorer modal ---------- */
   var PICKS = [["good", "Good actor"], ["fraud", "Fraudster"], ["bust", "Bust-out"], ["syn", "Synthetic ID"], ["all", "Everyone, labeled"], ["none", "Everyone, raw"]];
-  var LEGEND = [["user", "Person"], ["mail", "Email"], ["phone", "Phone"], ["world", "IP"], ["home", "Home"], ["building", "Office"], ["mailbox", "PO box / drop"], ["package", "Shipping"], ["credit-card", "Card token"], ["cake", "DOB"], ["id", "SSN"], ["building-bank", "Bank"], ["coins", "Lender"]];
+  var LEGEND = [["user", "Person"], ["mail", "Email"], ["phone", "Phone"], ["world", "IP"], ["home", "Home"], ["building", "Office"], ["mailbox", "PO box / drop"], ["package", "Shipping"], ["credit-card", "Card token"], ["cake", "DOB"], ["id", "SSN"], ["building-bank", "Bank"], ["coins", "Lender"], ["device-mobile", "Device"]];
   var HINT = "Tap any dot for details.";
   var cur = { lens: null, pick: null };
 
@@ -315,10 +366,10 @@
       '<div class="idg-step"><span class="idg-lbl"><b>2</b> How does each discipline read it?</span><div class="idg-row" data-role="lenses"></div></div></div>' +
       '<div class="idg-lower"><div class="idg-body"></div><div class="idg-aside">' +
       '<div class="idg-legend">' + LEGEND.map(function (l) { return "<span>" + ico(l[0], 15) + l[1] + "</span>"; }).join("") + "</div>" +
-      '<p class="idg-fine">Line thickness = number of transactions or events. Solid = e-commerce, dashed = credit application, dotted = bank login. Large ringed dots are shared by two or more people.</p>' +
+      '<p class="idg-fine">Line thickness = number of transactions or events. Solid = e-commerce, dashed = credit application, dotted = bank login, blue dash-dot = step-up challenge. Large ringed dots are shared by two or more people. First and last seen dates are illustrative.</p>' +
       '<details class="idg-filters"><summary>Filters</summary><div class="idg-row">' +
       '<button class="idg-chip" data-f="e" type="button">E-commerce</button><button class="idg-chip" data-f="a" type="button">Credit app</button><button class="idg-chip" data-f="l" type="button">Bank login</button>' +
-      '<button class="idg-chip" data-f="shared" type="button">Shared only</button><button class="idg-chip" data-f="reshuffle" type="button">Reshuffle</button></div>' +
+      '<button class="idg-chip" data-f="recent" type="button">Seen in last 30 days</button><button class="idg-chip" data-f="fresh" type="button">New in last 90 days</button><button class="idg-chip" data-f="shared" type="button">Shared only</button><button class="idg-chip" data-f="reshuffle" type="button">Reshuffle</button></div>' +
       '<label class="idg-slider"><span>Min count per link</span><input type="range" min="1" max="40" value="1" data-f="min"><span class="idg-sv">1</span></label></details>' +
       "</div></div></div>";
     document.body.appendChild(modalEl);
@@ -354,7 +405,8 @@
     });
     q(".idg-body").addEventListener("click", function (e) {
       var n = e.target.closest("[data-next]");
-      if (n) applyPick(n.getAttribute("data-next"), true);
+      if (n) { applyPick(n.getAttribute("data-next"), true); return; }
+      if (e.target.closest('[data-act="challenge"]')) applyChallenge(!fg.S.c);
     });
   }
   function syncUI() {
@@ -362,7 +414,7 @@
     qa("[data-pick]").forEach(function (b) { b.classList.toggle("on", cur.pick === b.getAttribute("data-pick")); });
     qa("[data-lens]").forEach(function (b) { b.classList.toggle("on", cur.lens === b.getAttribute("data-lens")); });
     ["e", "a", "l"].forEach(function (k) { q('[data-f="' + k + '"]').classList.toggle("off", !S[k]); });
-    q('[data-f="shared"]').classList.toggle("on", !!S.shared);
+    ["shared", "recent", "fresh"].forEach(function (k) { q('[data-f="' + k + '"]').classList.toggle("on", !!S[k]); });
     q('[data-f="min"]').value = S.min; q(".idg-sv").textContent = S.min;
   }
   function esc(s) { return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;"); }
@@ -381,9 +433,22 @@
   }
   function renderLens(k) {
     var L = CFG.lenses[k], h = "<h3>" + L.title + "</h3><p>" + L.text + "</p>";
-    if (L.note) h += '<p class="idg-note">' + L.note + "</p>";
+    if (L.note && !(k === "idv" && fg.S.c)) h += '<p class="idg-note">' + L.note + "</p>";
     if (L.proof && L.proof.length) {
       h += '<div class="idg-proof"><span class="idg-lbl">From my work</span><ul>' + L.proof.map(function (x) { return "<li>" + esc(x.t) + (x.href ? ' <a href="' + x.href + '" data-track="idg_proof_link">' + esc(x.a) + "</a>" : "") + "</li>"; }).join("") + "</ul></div>";
+    }
+    if (k === "idv") {
+      var on = fg.S.c;
+      h += '<button class="idg-next" type="button" data-act="challenge">' + ico("shield-check", 16) + (on ? "Remove the step-up challenge" : "Add a step-up challenge") + "</button>";
+      if (on) {
+        h += '<p class="idg-note">A passed challenge is fresh evidence that a real person controls the identity right now. Trust depends on the method (passkey on a trusted device, then license scan, email link, code) and fades with age. A device that clears challenges for several supposedly different people lowers trust instead.</p>' +
+          '<span class="idg-lbl">Illustrative assurance level</span>';
+        fg.people.slice().sort(function (a, b) { return b.as.v - a.as.v; }).forEach(function (p) {
+          var a = p.as, c = AS[a.lvl], t = CL[p.cls];
+          h += '<div class="idg-as"><span>' + p.lb + '</span><span class="idg-asm">' + ico(METH[a.best][0], 14) + METH[a.best][1] + ", " + ago(a.d) + (a.flag ? ' <em class="idg-flag">shared device</em>' : "") + '</span><span class="idg-pill" style="background:' + c[0] + ";color:" + (c[3] || c[1]) + '">' + c[2] + '</span></div>';
+        });
+        h += '<p class="idg-fine">Bust-out accounts drop to low because their last challenge is a year old. Ring and synthetic identities drop because one device passed challenges for several of them. Amber outline = shared device.</p>';
+      }
     }
     if (k === "risk") {
       h += '<span class="idg-lbl">Illustrative score: shared attributes, lender velocity, cluster size</span>';
@@ -397,7 +462,7 @@
   }
   function applyPick(k, user) {
     var S = fg.S;
-    Object.assign(S, { e: true, a: true, l: true, min: 1, focus: null, sel: null });
+    Object.assign(S, { e: true, a: true, l: true, min: 1, focus: null, sel: null, shared: false, c: false, recent: false, fresh: false });
     Object.keys(S.cls).forEach(function (c) { S.cls[c] = (k === "none" || k === "all" || c === k); });
     S.mode = k === "none" ? "neutral" : "class";
     cur.pick = k; cur.lens = null;
@@ -406,11 +471,18 @@
   }
   function applyLens(k) {
     var S = fg.S, P = CFG.lenses[k].preset;
-    Object.assign(S, { e: true, a: true, l: true, min: 1, shared: P.shared, mode: P.mode, focus: P.focus ? new Set(P.focus) : null, sel: null });
+    Object.assign(S, { e: true, a: true, l: true, min: 1, shared: P.shared, mode: P.mode, focus: P.focus ? new Set(P.focus) : null, sel: null, c: false, recent: false, fresh: false });
     Object.keys(S.cls).forEach(function (c) { S.cls[c] = true; });
     cur.lens = k; cur.pick = P.mode === "class" ? "all" : null;
     fg.update(); syncUI(); renderLens(k); q(".idg-info").textContent = HINT;
     track("idg_lens_" + k);
+  }
+  function applyChallenge(on) {
+    var S = fg.S, P = CFG.lenses.idv.preset;
+    S.c = on; S.mode = on ? "assurance" : P.mode; S.focus = new Set(P.focus.concat(on ? ["dv"] : [])); S.sel = null;
+    fg.update(); syncUI(); renderLens("idv");
+    q(".idg-info").textContent = on ? "Blue dash-dot lines are step-up challenges. Tap a device or a person for details." : HINT;
+    track("idg_challenge_" + (on ? "on" : "off"));
   }
   function openModal(T) {
     curCta = T.cta; lastFocus = document.activeElement;
