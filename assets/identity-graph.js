@@ -6,7 +6,7 @@
    Icons: Tabler Icons (c) Pawel Kuna, MIT License, https://tabler.io/icons */
 (function () {
   "use strict";
-  var ICONS = {"user":"<path d=\"M8 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0\" /> <path d=\"M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2\" />","mail":"<path d=\"M3 7a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v10a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-10z\" /> <path d=\"M3 7l9 6l9 -6\" />","phone":"<path d=\"M5 4h4l2 5l-2.5 1.5a11 11 0 0 0 5 5l1.5 -2.5l5 2v4a2 2 0 0 1 -2 2a16 16 0 0 1 -15 -15a2 2 0 0 1 2 -2\" />","world":"<path d=\"M3 12a9 9 0 1 0 18 0a9 9 0 0 0 -18 0\" /> <path d=\"M3.6 9h16.8\" /> <path d=\"M3.6 15h16.8\" /> <path d=\"M11.5 3a17 17 0 0 0 0 18\" /> <path d=\"M12.5 3a17 17 0 0 1 0 18\" />","home":"<path d=\"M5 12l-2 0l9 -9l9 9l-2 0\" /> <path d=\"M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7\" /> <path d=\"M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6\" />","building":"<path d=\"M3 21l18 0\" /> <path d=\"M9 8l1 0\" /> <path d=\"M9 12l1 0\" /> <path d=\"M9 16l1 0\" /> <path d=\"M14 8l1 0\" /> <path d=\"M14 12l1 0\" /> <path d=\"M14 16l1 0\" /> <path d=\"M5 21v-16a2 2 0 0 1 2 -2h10a2 2 0 0 1 2 2v16\" />","mailbox":"<path d=\"M10 21v-6.5a3.5 3.5 0 0 0 -7 0v6.5h18v-6a4 4 0 0 0 -4 -4h-10.5\" /> <path d=\"M12 11v-8h4l2 2l-2 2h-4\" /> <path d=\"M6 15h1\" />","package":"<path d=\"M12 3l8 4.5l0 9l-8 4.5l-8 -4.5l0 -9l8 -4.5\" /> <path d=\"M12 12l8 -4.5\" /> <path d=\"M12 12l0 9\" /> <path d=\"M12 12l-8 -4.5\" /> <path d=\"M16 5.25l-8 4.5\" />","credit-card":"<path d=\"M3 5m0 3a3 3 0 0 1 3 -3h12a3 3 0 0 1 3 3v8a3 3 0 0 1 -3 3h-12a3 3 0 0 1 -3 -3z\" /> <path d=\"M3 10l18 0\" /> <path d=\"M7 15l.01 0\" /> <path d=\"M11 15l2 0\" />","cake":"<path d=\"M3 20h18v-8a3 3 0 0 0 -3 -3h-12a3 3 0 0 0 -3 3v8z\" /> <path d=\"M3 14.803c.312 .135 .654 .204 1 .197a2.4 2.4 0 0 0 2 -1a2.4 2.4 0 0 1 2 -1a2.4 2.4 0 0 1 2 1a2.4 2.4 0 0 0 2 1a2.4 2.4 0 0 0 2 -1a2.4 2.4 0 0 1 2 -1a2.4 2.4 0 0 1 2 1a2.4 2.4 0 0 0 2 1c.35 .007 .692 -.062 1 -.197\" /> <path d=\"M12 4l1.465 1.638a2 2 0 1 1 -3.015 .099l1.55 -1.737z\" />","id":"<path d=\"M3 4m0 3a3 3 0 0 1 3 -3h12a3 3 0 0 1 3 3v10a3 3 0 0 1 -3 3h-12a3 3 0 0 1 -3 -3z\" /> <path d=\"M9 10m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0\" /> <path d=\"M15 8l2 0\" /> <path d=\"M15 12l2 0\" /> <path d=\"M7 16l10 0\" />","building-bank":"<path d=\"M3 21l18 0\" /> <path d=\"M3 10l18 0\" /> <path d=\"M5 6l7 -3l7 3\" /> <path d=\"M4 10l0 11\" /> <path d=\"M20 10l0 11\" /> <path d=\"M8 14l0 3\" /> <path d=\"M12 14l0 3\" /> <path d=\"M16 14l0 3\" />","coins":"<path d=\"M9 14c0 1.657 2.686 3 6 3s6 -1.343 6 -3s-2.686 -3 -6 -3s-6 1.343 -6 3z\" /> <path d=\"M9 14v4c0 1.656 2.686 3 6 3s6 -1.344 6 -3v-4\" /> <path d=\"M3 6c0 1.072 1.144 2.062 3 2.598s4.144 .536 6 0c1.856 -.536 3 -1.526 3 -2.598c0 -1.072 -1.144 -2.062 -3 -2.598s-4.144 -.536 -6 0c-1.856 .536 -3 1.526 -3 2.598z\" /> <path d=\"M3 6v10c0 .888 .772 1.45 2 2\" /> <path d=\"M3 11c0 .888 .772 1.45 2 2\" />","fingerprint":"<path d=\"M18.9 7a8 8 0 0 1 1.1 5v1a6 6 0 0 0 .8 3\" /> <path d=\"M8 11a4 4 0 0 1 8 0v1a10 10 0 0 0 2 6\" /> <path d=\"M12 11v2a14 14 0 0 0 2.5 8\" /> <path d=\"M8 15a18 18 0 0 0 1.8 6\" /> <path d=\"M4.9 19a22 22 0 0 1 -.9 -7v-1a8 8 0 0 1 12 -6.95\" />","alert-triangle":"<path d=\"M12 9v4\" /> <path d=\"M10.363 3.591l-8.106 13.534a1.914 1.914 0 0 0 1.636 2.871h16.214a1.914 1.914 0 0 0 1.636 -2.87l-8.106 -13.536a1.914 1.914 0 0 0 -3.274 0z\" /> <path d=\"M12 16h.01\" />","database":"<path d=\"M12 6m-8 0a8 3 0 1 0 16 0a8 3 0 1 0 -16 0\" /> <path d=\"M4 6v6a8 3 0 0 0 16 0v-6\" /> <path d=\"M4 12v6a8 3 0 0 0 16 0v-6\" />","scale":"<path d=\"M7 20l10 0\" /> <path d=\"M6 6l6 -1l6 1\" /> <path d=\"M12 3l0 17\" /> <path d=\"M9 12l-3 -6l-3 6a3 3 0 0 0 6 0\" /> <path d=\"M21 12l-3 -6l-3 6a3 3 0 0 0 6 0\" />","arrows-maximize":"<path d=\"M16 4l4 0l0 4\" /> <path d=\"M14 10l6 -6\" /> <path d=\"M8 20l-4 0l0 -4\" /> <path d=\"M4 20l6 -6\" /> <path d=\"M16 20l4 0l0 -4\" /> <path d=\"M14 14l6 6\" /> <path d=\"M8 4l-4 0l0 4\" /> <path d=\"M4 4l6 6\" />","x":"<path d=\"M18 6l-12 12\" /> <path d=\"M6 6l12 12\" />","arrow-right":"<path d=\"M5 12l14 0\" /> <path d=\"M13 18l6 -6\" /> <path d=\"M13 6l6 6\" />","device-mobile":"<path d=\"M6 5a2 2 0 0 1 2 -2h8a2 2 0 0 1 2 2v14a2 2 0 0 1 -2 2h-8a2 2 0 0 1 -2 -2v-14z\" /> <path d=\"M11 4h2\" /> <path d=\"M12 17v.01\" />","link":"<path d=\"M9 15l6 -6\" /> <path d=\"M11 6l.463 -.536a5 5 0 0 1 7.071 7.072l-.534 .464\" /> <path d=\"M13 18l-.397 .534a5.068 5.068 0 0 1 -7.127 0a4.972 4.972 0 0 1 0 -7.071l.524 -.463\" />","shield-check":"<path d=\"M11.46 20.846a12 12 0 0 1 -7.96 -14.846a12 12 0 0 0 8.5 -3a12 12 0 0 0 8.5 3a12 12 0 0 1 -.09 7.06\" /> <path d=\"M15 19l2 2l4 -4\" />","message-circle":"<path d=\"M3 20l1.3 -3.9c-2.324 -3.437 -1.426 -7.872 2.1 -10.374c3.526 -2.501 8.59 -2.296 11.845 .48c3.255 2.777 3.695 7.266 1.029 10.501c-2.666 3.235 -7.615 4.215 -11.574 2.293l-4.7 1\" />"};
+  var ICONS = {"user":"<path d=\"M8 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0\" /> <path d=\"M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2\" />","mail":"<path d=\"M3 7a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v10a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-10z\" /> <path d=\"M3 7l9 6l9 -6\" />","phone":"<path d=\"M5 4h4l2 5l-2.5 1.5a11 11 0 0 0 5 5l1.5 -2.5l5 2v4a2 2 0 0 1 -2 2a16 16 0 0 1 -15 -15a2 2 0 0 1 2 -2\" />","world":"<path d=\"M3 12a9 9 0 1 0 18 0a9 9 0 0 0 -18 0\" /> <path d=\"M3.6 9h16.8\" /> <path d=\"M3.6 15h16.8\" /> <path d=\"M11.5 3a17 17 0 0 0 0 18\" /> <path d=\"M12.5 3a17 17 0 0 1 0 18\" />","home":"<path d=\"M5 12l-2 0l9 -9l9 9l-2 0\" /> <path d=\"M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7\" /> <path d=\"M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6\" />","building":"<path d=\"M3 21l18 0\" /> <path d=\"M9 8l1 0\" /> <path d=\"M9 12l1 0\" /> <path d=\"M9 16l1 0\" /> <path d=\"M14 8l1 0\" /> <path d=\"M14 12l1 0\" /> <path d=\"M14 16l1 0\" /> <path d=\"M5 21v-16a2 2 0 0 1 2 -2h10a2 2 0 0 1 2 2v16\" />","mailbox":"<path d=\"M10 21v-6.5a3.5 3.5 0 0 0 -7 0v6.5h18v-6a4 4 0 0 0 -4 -4h-10.5\" /> <path d=\"M12 11v-8h4l2 2l-2 2h-4\" /> <path d=\"M6 15h1\" />","package":"<path d=\"M12 3l8 4.5l0 9l-8 4.5l-8 -4.5l0 -9l8 -4.5\" /> <path d=\"M12 12l8 -4.5\" /> <path d=\"M12 12l0 9\" /> <path d=\"M12 12l-8 -4.5\" /> <path d=\"M16 5.25l-8 4.5\" />","credit-card":"<path d=\"M3 5m0 3a3 3 0 0 1 3 -3h12a3 3 0 0 1 3 3v8a3 3 0 0 1 -3 3h-12a3 3 0 0 1 -3 -3z\" /> <path d=\"M3 10l18 0\" /> <path d=\"M7 15l.01 0\" /> <path d=\"M11 15l2 0\" />","cake":"<path d=\"M3 20h18v-8a3 3 0 0 0 -3 -3h-12a3 3 0 0 0 -3 3v8z\" /> <path d=\"M3 14.803c.312 .135 .654 .204 1 .197a2.4 2.4 0 0 0 2 -1a2.4 2.4 0 0 1 2 -1a2.4 2.4 0 0 1 2 1a2.4 2.4 0 0 0 2 1a2.4 2.4 0 0 0 2 -1a2.4 2.4 0 0 1 2 -1a2.4 2.4 0 0 1 2 1a2.4 2.4 0 0 0 2 1c.35 .007 .692 -.062 1 -.197\" /> <path d=\"M12 4l1.465 1.638a2 2 0 1 1 -3.015 .099l1.55 -1.737z\" />","id":"<path d=\"M3 4m0 3a3 3 0 0 1 3 -3h12a3 3 0 0 1 3 3v10a3 3 0 0 1 -3 3h-12a3 3 0 0 1 -3 -3z\" /> <path d=\"M9 10m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0\" /> <path d=\"M15 8l2 0\" /> <path d=\"M15 12l2 0\" /> <path d=\"M7 16l10 0\" />","building-bank":"<path d=\"M3 21l18 0\" /> <path d=\"M3 10l18 0\" /> <path d=\"M5 6l7 -3l7 3\" /> <path d=\"M4 10l0 11\" /> <path d=\"M20 10l0 11\" /> <path d=\"M8 14l0 3\" /> <path d=\"M12 14l0 3\" /> <path d=\"M16 14l0 3\" />","coins":"<path d=\"M9 14c0 1.657 2.686 3 6 3s6 -1.343 6 -3s-2.686 -3 -6 -3s-6 1.343 -6 3z\" /> <path d=\"M9 14v4c0 1.656 2.686 3 6 3s6 -1.344 6 -3v-4\" /> <path d=\"M3 6c0 1.072 1.144 2.062 3 2.598s4.144 .536 6 0c1.856 -.536 3 -1.526 3 -2.598c0 -1.072 -1.144 -2.062 -3 -2.598s-4.144 -.536 -6 0c-1.856 .536 -3 1.526 -3 2.598z\" /> <path d=\"M3 6v10c0 .888 .772 1.45 2 2\" /> <path d=\"M3 11c0 .888 .772 1.45 2 2\" />","fingerprint":"<path d=\"M18.9 7a8 8 0 0 1 1.1 5v1a6 6 0 0 0 .8 3\" /> <path d=\"M8 11a4 4 0 0 1 8 0v1a10 10 0 0 0 2 6\" /> <path d=\"M12 11v2a14 14 0 0 0 2.5 8\" /> <path d=\"M8 15a18 18 0 0 0 1.8 6\" /> <path d=\"M4.9 19a22 22 0 0 1 -.9 -7v-1a8 8 0 0 1 12 -6.95\" />","alert-triangle":"<path d=\"M12 9v4\" /> <path d=\"M10.363 3.591l-8.106 13.534a1.914 1.914 0 0 0 1.636 2.871h16.214a1.914 1.914 0 0 0 1.636 -2.87l-8.106 -13.536a1.914 1.914 0 0 0 -3.274 0z\" /> <path d=\"M12 16h.01\" />","database":"<path d=\"M12 6m-8 0a8 3 0 1 0 16 0a8 3 0 1 0 -16 0\" /> <path d=\"M4 6v6a8 3 0 0 0 16 0v-6\" /> <path d=\"M4 12v6a8 3 0 0 0 16 0v-6\" />","scale":"<path d=\"M7 20l10 0\" /> <path d=\"M6 6l6 -1l6 1\" /> <path d=\"M12 3l0 17\" /> <path d=\"M9 12l-3 -6l-3 6a3 3 0 0 0 6 0\" /> <path d=\"M21 12l-3 -6l-3 6a3 3 0 0 0 6 0\" />","arrows-maximize":"<path d=\"M16 4l4 0l0 4\" /> <path d=\"M14 10l6 -6\" /> <path d=\"M8 20l-4 0l0 -4\" /> <path d=\"M4 20l6 -6\" /> <path d=\"M16 20l4 0l0 -4\" /> <path d=\"M14 14l6 6\" /> <path d=\"M8 4l-4 0l0 4\" /> <path d=\"M4 4l6 6\" />","x":"<path d=\"M18 6l-12 12\" /> <path d=\"M6 6l12 12\" />","arrow-right":"<path d=\"M5 12l14 0\" /> <path d=\"M13 18l6 -6\" /> <path d=\"M13 6l6 6\" />","device-mobile":"<path d=\"M6 5a2 2 0 0 1 2 -2h8a2 2 0 0 1 2 2v14a2 2 0 0 1 -2 2h-8a2 2 0 0 1 -2 -2v-14z\" /> <path d=\"M11 4h2\" /> <path d=\"M12 17v.01\" />","link":"<path d=\"M9 15l6 -6\" /> <path d=\"M11 6l.463 -.536a5 5 0 0 1 7.071 7.072l-.534 .464\" /> <path d=\"M13 18l-.397 .534a5.068 5.068 0 0 1 -7.127 0a4.972 4.972 0 0 1 0 -7.071l.524 -.463\" />","shield-check":"<path d=\"M11.46 20.846a12 12 0 0 1 -7.96 -14.846a12 12 0 0 0 8.5 -3a12 12 0 0 0 8.5 3a12 12 0 0 1 -.09 7.06\" /> <path d=\"M15 19l2 2l4 -4\" />","message-circle":"<path d=\"M3 20l1.3 -3.9c-2.324 -3.437 -1.426 -7.872 2.1 -10.374c3.526 -2.501 8.59 -2.296 11.845 .48c3.255 2.777 3.695 7.266 1.029 10.501c-2.666 3.235 -7.615 4.215 -11.574 2.293l-4.7 1\" />","at":"<path d=\"M12 12m-4 0a4 4 0 1 0 8 0a4 4 0 1 0 -8 0\" />\n  <path d=\"M16 12v1.5a2.5 2.5 0 0 0 5 0v-1.5a9 9 0 1 0 -5.5 8.28\" />","truck-delivery":"<path d=\"M7 17m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0\" />\n  <path d=\"M17 17m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0\" />\n  <path d=\"M5 17h-2v-4m-1 -8h11v12m-4 0h6m4 0h2v-6h-8m0 -5h5l3 5\" />\n  <path d=\"M3 9l4 0\" />","currency-dollar":"<path d=\"M16.7 8a3 3 0 0 0 -2.7 -2h-4a3 3 0 0 0 0 6h4a3 3 0 0 1 0 6h-4a3 3 0 0 1 -2.7 -2\" />\n  <path d=\"M12 3v3m0 12v3\" />","device-landline-phone":"<path d=\"M20 3h-2a2 2 0 0 0 -2 2v14a2 2 0 0 0 2 2h2a2 2 0 0 0 2 -2v-14a2 2 0 0 0 -2 -2z\" />\n  <path d=\"M16 4h-11a3 3 0 0 0 -3 3v10a3 3 0 0 0 3 3h11\" />\n  <path d=\"M12 8h-6v3h6z\" />\n  <path d=\"M12 14v.01\" />\n  <path d=\"M9 14v.01\" />\n  <path d=\"M6 14v.01\" />\n  <path d=\"M12 17v.01\" />\n  <path d=\"M9 17v.01\" />\n  <path d=\"M6 17v.01\" />","ip":"<text x=\"12\" y=\"16.4\" text-anchor=\"middle\" font-size=\"13\" font-weight=\"800\" font-family=\"system-ui,-apple-system,Segoe UI,sans-serif\" fill=\"currentColor\" stroke=\"none\">IP</text>","dob":"<text x=\"12\" y=\"16.4\" text-anchor=\"middle\" font-size=\"10.5\" font-weight=\"800\" font-family=\"system-ui,-apple-system,Segoe UI,sans-serif\" fill=\"currentColor\" stroke=\"none\">DoB</text>","dmf":"<text x=\"12\" y=\"16.4\" text-anchor=\"middle\" font-size=\"9.5\" font-weight=\"800\" font-family=\"system-ui,-apple-system,Segoe UI,sans-serif\" fill=\"currentColor\" stroke=\"none\">DMF</text>"};
   var D3_SRC = "/assets/d3-graph.min.js?v=5094cf9c";
   var mounts = document.querySelectorAll("[data-identity-graph]");
   if (!mounts.length) return;
@@ -31,8 +31,8 @@
       idv: { icon: "fingerprint", label: "Identity verification", title: "Identity verification",
         text: "Every field here passes its own check: valid emails, working phone numbers, plausible birth dates and SSNs. Verification asks whether the data is genuine and consistent. The graph asks the second question: who else is using it?",
         proof: [{ t: "Directed the USIS Credit Header API and Purpose View governance framework; led DIT 1.0/2.0 and the RAE risk engine." }],
-        note: "Dots are gray on purpose: identity checks alone cannot tell these people apart. Faded icons are attributes outside this lens.",
-        preset: { mode: "neutral", shared: false, focus: ["em", "ph", "db", "ss"] } },
+        note: "Dots are gray on purpose: identity checks alone cannot tell these people apart. Faded icons are attributes outside this lens. The red DMF badge is a Death Master File hit on an SSN: decisive when present, but a clean result proves little, since synthetic identities are built to pass it.",
+        preset: { mode: "neutral", shared: false, focus: ["em", "ph", "db", "ss", "dm"] } },
       fraud: { icon: "alert-triangle", label: "Fraud detection", title: "Fraud detection and prevention",
         text: "Strip out everything unshared and the rings, synthetic clusters and bust-out pairs surface. Each field looks clean; what gives them away is how they are shared: a mail drop, a proxy IP, a passed-around card token.",
         proof: [{ t: "Directed the RAE risk engine, which served 11 tenants across 17 identity-verification, device-assessment and authentication workflows." }],
@@ -62,7 +62,7 @@
   var DC = { approve: ["#9FE1CB", "#0F6E56", "Approve"], review: ["#FAC775", "#854F0B", "Review"], decline: ["#F7C1C1", "#A32D2D", "Decline"] };
   var PAL = [["#F5C4B3", "#993C1D"], ["#B5D4F4", "#185FA5"], ["#C0DD97", "#3B6D11"], ["#FAC775", "#854F0B"], ["#CECBF6", "#534AB7"]];
   var NEU = ["#D3D1C7", "#5F5E5A"];
-  var TN = { dv: "Device", em: "Email", ph: "Phone", ip: "IP address", ma: "Mailing address", sa: "Shipping address", cd: "Payment token", bk: "", ld: "", db: "Date of birth", ss: "SSN" };
+  var TN = { dm: "Death Master File", dv: "Device", em: "Email", ph: "Phone", ip: "IP address", ma: "Mailing address", sa: "Shipping address", cd: "Payment token", bk: "", ld: "", db: "Date of birth", ss: "SSN" };
   var SHT = { dv: 1, em: 1, ph: 1, ip: 1, ma: 1, sa: 1, cd: 1, db: 1, ss: 1 };
   var WT = { em: 4, ph: 3, ss: 6, db: 1, cd: 2, ip: 0.5, ma: 0.5, sa: 0.75 };
   var ET = { e: "e-commerce", a: "credit app", l: "bank login", c: "step-up challenge" };
@@ -71,9 +71,11 @@
   var AS = { high: ["#85B7EB", "#0C447C", "High"], medium: ["#B5D4F4", "#185FA5", "Medium"], low: ["#E6F1FB", "#378ADD", "Low", "#185FA5"] };
   function iconName(d) {
     if (d.t === "p") return "user";
+    if (d.t === "ph") return d.land ? "device-landline-phone" : "phone";
     if (d.t === "ma") return /PO Box/.test(d.lb) ? "mailbox" : /Plaza|Suite/.test(d.lb) ? "building" : "home";
-    return { dv: "device-mobile", em: "mail", ph: "phone", ip: "world", sa: "package", cd: "credit-card", bk: "building-bank", ld: "coins", db: "cake", ss: "id" }[d.t];
+    return { dv: "device-mobile", em: "at", ip: "ip", sa: "truck-delivery", cd: "currency-dollar", bk: "building-bank", ld: "coins", db: "dob", ss: "id", dm: "dmf" }[d.t];
   }
+  var LAND = { "404-555-0188": 1, "770-555-0163": 1, "404-555-0303": 1 }; /* landline or VoIP numbers */
   var R = {
     Mary: ["good", [["em:mary@gmail.com", "a", 1], ["ph:404-555-0142", "a", 1], ["db:1984-06-12", "a", 1], ["ss:***-**-3381", "a", 1], ["ma:12 Oak Ln", "a", 1], ["sa:12 Oak Ln", "e", 14], ["ip:198.51.100.21", "e", 30], ["cd:tok_7c21ab9f", "e", 18], ["cd:tok_1de904a3", "e", 22], ["bk:Bank A", "l", 20], ["bk:Bank B", "l", 5], ["ld:Lender A", "a", 1]]],
     Tom: ["good", [["em:tom.h@outlook.com", "a", 1], ["ph:404-555-0177", "a", 1], ["db:1982-11-03", "a", 1], ["ss:***-**-7720", "a", 1], ["ma:12 Oak Ln", "a", 1], ["sa:12 Oak Ln", "e", 9], ["ip:198.51.100.21", "e", 22], ["cd:tok_7c21ab9f", "e", 12], ["bk:Bank A", "l", 6]]],
@@ -83,7 +85,7 @@
     Carlos: ["good", [["em:cmartin@hotmail.com", "a", 1], ["ph:470-555-0125", "a", 1], ["db:1986-07-21", "a", 1], ["ss:***-**-1907", "a", 1], ["ma:41 Lake Dr", "a", 1], ["sa:41 Lake Dr", "e", 15], ["ip:198.51.100.77", "e", 24], ["ip:203.0.113.7", "l", 8], ["cd:tok_5a7d33c8", "e", 20], ["bk:Bank A", "l", 13], ["ld:Lender A", "a", 1]]],
     Rick: ["fraud", [["em:shopper32@hotmail.com", "a", 1], ["ph:404-555-0301", "a", 1], ["db:1988-04-02", "a", 1], ["ss:***-**-4417", "a", 1], ["ma:PO Box 4471", "a", 1], ["sa:88 Dock St", "e", 26], ["ip:203.0.113.50", "e", 40], ["ip:203.0.113.51", "l", 12], ["cd:tok_c0ffee01", "e", 30], ["cd:tok_bad11a22", "e", 28], ["bk:Bank A", "l", 4], ["bk:Bank B", "l", 6], ["ld:Lender B", "a", 1]]],
     Sam: ["fraud", [["em:s.kravets77@mail.ru", "a", 1], ["ph:678-555-0302", "a", 1], ["db:1988-04-02", "a", 1], ["ss:***-**-9052", "a", 1], ["ma:PO Box 4471", "a", 1], ["sa:88 Dock St", "e", 22], ["ip:203.0.113.50", "e", 33], ["ip:203.0.113.51", "l", 9], ["cd:tok_bad11a22", "e", 25], ["cd:tok_9e7f4d10", "e", 21], ["bk:Bank B", "l", 7], ["bk:Bank C", "l", 5]]],
-    Omar: ["fraud", [["em:omar.deals@mail.ru", "a", 1], ["ph:404-555-0303", "a", 1], ["db:1993-12-19", "a", 1], ["ss:***-**-6638", "a", 1], ["ma:PO Box 4471", "a", 1], ["sa:88 Dock St", "e", 18], ["sa:17 Cargo Way", "e", 12], ["ip:203.0.113.50", "e", 28], ["ip:203.0.113.52", "l", 8], ["cd:tok_9e7f4d10", "e", 19], ["cd:tok_2a6b8c33", "e", 24], ["bk:Bank A", "l", 5], ["ld:Lender C", "a", 1]]],
+    Omar: ["fraud", [["em:omar.deals@mail.ru", "a", 1], ["ph:404-555-0303", "a", 1], ["db:1993-12-19", "a", 1], ["ss:***-**-6638", "a", 1], ["dm:Deceased 2019-03", "a", 1], ["ma:PO Box 4471", "a", 1], ["sa:88 Dock St", "e", 18], ["sa:17 Cargo Way", "e", 12], ["ip:203.0.113.50", "e", 28], ["ip:203.0.113.52", "l", 8], ["cd:tok_9e7f4d10", "e", 19], ["cd:tok_2a6b8c33", "e", 24], ["bk:Bank A", "l", 5], ["ld:Lender C", "a", 1]]],
     Joe: ["bust", [["em:joe.b@gmail.com", "a", 1], ["ph:470-555-0201", "a", 1], ["db:1985-05-08", "a", 1], ["ss:***-**-2419", "a", 1], ["ma:700 Ridge Blvd", "a", 1], ["sa:700 Ridge Blvd", "e", 12], ["sa:22 Freight Ln", "e", 20], ["ip:198.51.100.140", "e", 28], ["ip:192.0.2.150", "l", 14], ["cd:tok_11aa22bb", "e", 34], ["cd:tok_22bb33cc", "e", 31], ["cd:tok_33cc44dd", "e", 29], ["ld:Lender A", "a", 3], ["ld:Lender B", "a", 3], ["ld:Lender C", "a", 2], ["bk:Bank A", "l", 12], ["bk:Bank B", "l", 10]]],
     Dave: ["bust", [["em:dave.m@yahoo.com", "a", 1], ["ph:770-555-0202", "a", 1], ["db:1987-08-24", "a", 1], ["ss:***-**-3175", "a", 1], ["ma:700 Ridge Blvd", "a", 1], ["sa:22 Freight Ln", "e", 18], ["ip:192.0.2.150", "l", 11], ["ip:198.51.100.141", "e", 22], ["cd:tok_33cc44dd", "e", 17], ["cd:tok_44dd55ee", "e", 26], ["ld:Lender A", "a", 2], ["ld:Lender B", "a", 2], ["ld:Lender C", "a", 2], ["bk:Bank B", "l", 8]]],
     Lena: ["syn", [["em:lena.k91@gmail.com", "a", 1], ["ph:404-555-0401", "a", 2], ["db:1997-01-01", "a", 1], ["ss:***-**-6120", "a", 2], ["ma:2100 Peach Plaza #310", "a", 2], ["sa:2100 Peach Plaza #310", "e", 3], ["ip:203.0.113.90", "e", 4], ["cd:tok_5e0a11f4", "e", 5], ["ld:Lender A", "a", 4], ["ld:Lender B", "a", 3], ["ld:Lender C", "a", 3]]],
@@ -104,7 +106,7 @@
   var RNG = { good: [500, 3500, 0, 20], fraud: [12, 110, 0, 4], bust: [350, 1100, 0, 10], syn: [25, 200, 2, 40] };
   var OV = { "fraud:ss": [900, 3000, 0, 4], "bust:ld": [5, 30, 0, 10], "syn:ss": [60, 200, 2, 40] };
   function seenFor(cls, who, key, t) {
-    if (t === "db") return null;
+    if (t === "db" || t === "dm") return null;
     var r = OV[cls + ":" + t] || RNG[cls], f = Math.round(r[0] + hs(who + key + "f") * (r[1] - r[0])), l = Math.round(r[2] + hs(who + key + "l") * (r[3] - r[2]));
     return { first: f, last: Math.min(l, f) };
   }
@@ -117,7 +119,7 @@
       people.push(p);
       v[1].forEach(function (r) {
         var key = r[0];
-        if (!attrs[key]) attrs[key] = { id: key, t: key.slice(0, 2), lb: key.slice(3), ppl: [] };
+        if (!attrs[key]) attrs[key] = { id: key, t: key.slice(0, 2), lb: key.slice(3), ppl: [], land: !!LAND[key.slice(3)] };
         attrs[key].ppl.push(p);
         var sn = seenFor(v[0], name, key, key.slice(0, 2));
         links.push({ source: p, target: attrs[key], k: r[1], c: r[2], first: sn ? sn.first : null, last: sn ? sn.last : null });
@@ -148,6 +150,7 @@
         if (l.source !== p || l.k === "c") return;
         if (l.target.shared) s += WT[l.target.t] * (l.target.ppl.length - 1);
         if (l.target.t === "ld") lv += l.c;
+        if (l.target.t === "dm") s += 8;
       });
       if (lv >= 6) s += 4;
       if (p.csize >= 3) s += 3;
@@ -185,7 +188,7 @@
       .force("link", d3.forceLink().distance(function (d) { return (75 - Math.min(d.c, 40) * 0.6) * sc; }).strength(function (d) { return 0.3 + Math.min(d.c, 40) / 100; }))
       .force("charge", d3.forceManyBody().strength(-150 * sc * sc))
       .force("x", d3.forceX(W / 2).strength(0.09)).force("y", d3.forceY(H / 2).strength(0.11))
-      .force("collide", d3.forceCollide(mini ? 6 : 15 * Math.max(sc, 0.8))).on("tick", tick);
+      .force("collide", d3.forceCollide(mini ? 6 : 18 * Math.max(sc, 0.8))).on("tick", tick);
 
     function pcol(d) {
       if (S.mode === "class") return CL[d.cls];
@@ -226,12 +229,12 @@
     function flag(d) { return S.mode === "assurance" && d.t === "p" && d.as && d.as.flag; }
     function restyle() {
       nd.select("circle")
-        .attr("r", function (d) { return mini ? (d.t === "p" ? 5.5 : d.shared ? 4 : 2.5) : (d.t === "p" ? 16 : d.shared ? 12 : 9); })
-        .attr("fill", function (d) { return d.t === "p" ? pcol(d)[0] : d.t === "dv" ? (d.shared ? "#85B7EB" : "#E6F1FB") : (d.shared ? "#B4B2A9" : "#F1EFE8"); })
-        .attr("stroke", function (d) { return d.t === "p" ? (flag(d) ? "#BA7517" : pcol(d)[1]) : d.t === "dv" ? "#185FA5" : (d.shared ? "#444441" : "#888780"); })
+        .attr("r", function (d) { return mini ? (d.t === "p" ? 5.5 : d.shared ? 4 : 2.5) : (d.t === "p" ? 17 : d.shared ? 15 : 13); })
+        .attr("fill", function (d) { return d.t === "p" ? pcol(d)[0] : d.t === "dm" ? "#F7C1C1" : d.t === "dv" ? (d.shared ? "#85B7EB" : "#E6F1FB") : (d.shared ? "#B4B2A9" : "#F1EFE8"); })
+        .attr("stroke", function (d) { return d.t === "p" ? (flag(d) ? "#BA7517" : pcol(d)[1]) : d.t === "dm" ? "#A32D2D" : d.t === "dv" ? "#185FA5" : (d.shared ? "#444441" : "#888780"); })
         .attr("stroke-width", function (d) { return mini ? 1 : flag(d) ? 3.5 : (d.t === "p" || d.shared ? 2 : 1); });
       nd.style("opacity", function (d) {
-        var op = (d.t === "p" || d.shared) ? 1 : (mini ? 0.85 : 0.78);
+        var op = (d.t === "p" || d.shared) ? 1 : (mini ? 0.85 : 0.95);
         if (S.focus && d.t !== "p" && !S.focus.has(d.t)) op = 0.14;
         return op;
       });
@@ -242,13 +245,14 @@
       });
       if (!mini) {
         nd.select(".idg-nico").each(function (d) {
-          var s = d.t === "p" ? 17 : d.shared ? 15 : 12, nm = iconName(d), col = d.t === "p" ? pcol(d)[1] : d.t === "dv" ? "#0C447C" : (d.shared ? "#2C2C2A" : "#5F5E5A");
+          var s = d.t === "p" ? 18 : d.shared ? 20 : 18, nm = iconName(d), col = d.t === "p" ? pcol(d)[1] : d.t === "dm" ? "#A32D2D" : d.t === "dv" ? "#0C447C" : (d.shared ? "#1f1f1d" : "#3f3e3b");
+          this.style.color = col;
           this.setAttribute("transform", "translate(" + (-s / 2) + "," + (-s / 2) + ") scale(" + (s / 24) + ")");
-          this.setAttribute("fill", "none"); this.setAttribute("stroke", col); this.setAttribute("stroke-width", "2.2");
+          this.setAttribute("fill", "none"); this.setAttribute("stroke", col); this.setAttribute("stroke-width", "2");
           this.setAttribute("stroke-linecap", "round"); this.setAttribute("stroke-linejoin", "round");
-          if (d._ic !== nm) { this.innerHTML = ICONS[nm]; d._ic = nm; }
+          if (this.__ic !== nm) { this.innerHTML = ICONS[nm]; this.__ic = nm; }
         });
-        nd.select(".lb").attr("y", function (d) { return d.t === "p" ? 29 : 21; }).attr("font-weight", function (d) { return d.t === "p" ? 600 : 400; }).attr("font-size", function (d) { return d.t === "p" ? 12 : 11; })
+        nd.select(".lb").attr("y", function (d) { return d.t === "p" ? 30 : 25; }).attr("font-weight", function (d) { return d.t === "p" ? 600 : 400; }).attr("font-size", function (d) { return d.t === "p" ? 12 : 11; })
           .text(function (d) { return d.t === "p" || d.t === "dv" ? d.lb : (S.shared && d.shared ? d.lb : ""); });
       }
     }
@@ -266,7 +270,8 @@
       } else if (d.t === "dv") {
         t = d.lb + ": step-up challenges passed by " + d.ppl.length + " " + (d.ppl.length > 1 ? "people" : "person") + ". " + c.map(function (l) { return l.source.id + " via " + l.ms.map(function (m) { return METH[m][1].toLowerCase(); }).join(" + ") + ", " + ago(l.first); }).join("; ") + "." + (d.ppl.length > 1 ? " One device clearing challenges for several supposedly separate people is a red flag." : "");
       } else {
-        var nm = TN[d.t] ? TN[d.t] + " " + d.lb : d.lb;
+        var nm = d.t === "ph" && d.land ? "Landline or VoIP phone " + d.lb : TN[d.t] ? TN[d.t] + " " + d.lb : d.lb;
+        if (d.t === "dm") nm = "Death Master File hit (" + d.lb.toLowerCase() + "): the SSN belongs to a deceased person";
         t = nm + ": " + d.ppl.length + " " + (d.ppl.length > 1 ? "people" : "person") + ". " + c.map(function (l) { return l.source.id + " " + ET[l.k] + " " + l.c; }).join(", ") + "." + (d.first != null ? " First seen " + ago(d.first) + ", last seen " + ago(d.last) + "." : "");
       }
       if (o.onInfo) o.onInfo(t);
@@ -346,7 +351,7 @@
 
   /* ---------- explorer modal ---------- */
   var PICKS = [["good", "Good actor"], ["fraud", "Fraudster"], ["bust", "Bust-out"], ["syn", "Synthetic ID"], ["all", "Everyone, labeled"], ["none", "Everyone, raw"]];
-  var LEGEND = [["user", "Person"], ["mail", "Email"], ["phone", "Phone"], ["world", "IP"], ["home", "Home"], ["building", "Office"], ["mailbox", "PO box / drop"], ["package", "Shipping"], ["credit-card", "Card token"], ["cake", "DOB"], ["id", "SSN"], ["building-bank", "Bank"], ["coins", "Lender"], ["device-mobile", "Device"]];
+  var LEGEND = [["user", "Person"], ["at", "Email"], ["phone", "Mobile phone"], ["device-landline-phone", "Landline / VoIP"], ["ip", "IP address"], ["home", "Home"], ["building", "Office"], ["mailbox", "PO box / drop"], ["truck-delivery", "Shipping"], ["currency-dollar", "Payment token"], ["dob", "Date of birth"], ["id", "SSN"], ["dmf", "Death Master File"], ["building-bank", "Bank"], ["coins", "Lender"], ["device-mobile", "Device"]];
   var HINT = "Tap any dot for details.";
   var cur = { lens: null, pick: null };
 
