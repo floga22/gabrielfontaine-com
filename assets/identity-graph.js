@@ -31,22 +31,27 @@
       idv: { icon: "fingerprint", label: "Identity verification", title: "Identity verification",
         text: "Every field here passes its own check: valid emails, working phone numbers, plausible birth dates and SSNs. Verification asks whether the data is genuine and consistent. The graph asks the second question: who else is using it?",
         proof: [{ t: "Directed the USIS Credit Header API and Purpose View governance framework; led DIT 1.0/2.0 and the RAE risk engine." }],
+        note: "Dots are gray on purpose: identity checks alone cannot tell these people apart. Faded icons are attributes outside this lens.",
         preset: { mode: "neutral", shared: false, focus: ["em", "ph", "db", "ss"] } },
       fraud: { icon: "alert-triangle", label: "Fraud detection", title: "Fraud detection and prevention",
         text: "Strip out everything unshared and the rings, synthetic clusters and bust-out pairs surface. Each field looks clean; what gives them away is how they are shared: a mail drop, a proxy IP, a passed-around card token.",
         proof: [{ t: "Directed the RAE risk engine, which served 11 tenants across 17 identity-verification, device-assessment and authentication workflows." }],
+        note: "Colors show who is who. Only attributes shared by two or more people are drawn.",
         preset: { mode: "class", shared: true, focus: null } },
       aml: { icon: "building-bank", label: "AML / KYC", title: "AML, KYC and compliance",
         text: "Follow who controls the accounts and where activity lands: common addresses, shared control points, and the same identities touching multiple banks and lenders. This is where onboarding, monitoring and investigation meet.",
         proof: [{ t: "Fluent in FCRA, GLBA, KYC, KYB and AML, including the identity-versus-creditworthiness line most fraud teams miss." }],
-        preset: { mode: "neutral", shared: false, focus: ["bk", "ld", "ma", "sa"] } },
+        note: "Colors show each group. Bright icons are banks, lenders and addresses, where money and control show up. Everything else is faded.",
+        preset: { mode: "class", shared: false, focus: ["bk", "ld", "ma", "sa"] } },
       data: { icon: "database", label: "Data", title: "Data quality and entity resolution",
         text: "Messy records collapse into households, clusters and rings. The colors here are connected components: groups of people linked by at least one shared attribute, the same idea behind entity resolution and network features fed to models.",
         proof: [{ t: "Built FReD (Frequency, Recency, Duration), a patent-pending model that turns many timestamped, as-entered addresses, phones and emails into a ranked, scored list of true uniques." }, { t: "Set the standards that cleaned and validated PII before it reached the discovery service." }],
+        note: "Colors mark connected clusters: people linked by a shared attribute share a color.",
         preset: { mode: "cluster", shared: true, focus: null } },
       risk: { icon: "scale", label: "Risk decisioning", title: "Risk assessment and decisioning",
         text: "Network signals become features and a score, and the score becomes an action: approve, review or decline. Notice who lands in Review. Bust-out accounts look fine until lender velocity is added, which is why decisioning blends network and behavior signals.",
         proof: [{ t: "Built Jev, a fast, explainable AI decision engine, with three live demos.", href: "/projects#jev", a: "Try Jev" }],
+        note: "Colors show the decision: green Approve, amber Review, red Decline.",
         preset: { mode: "decision", shared: false, focus: null } }
     },
     next: { good: ["fraud", "Fraudster"], fraud: ["bust", "Bust-out"], bust: ["syn", "Synthetic ID"], syn: ["all", "everyone together"] }
@@ -305,10 +310,10 @@
       '<div class="idg-head"><div><div class="idg-eyebrow">Interactive</div><h2 class="idg-title" id="idg-title">Follow the connections</h2></div>' +
       '<button class="idg-x" type="button" aria-label="Close">' + ico("x", 20) + "</button></div>" +
       '<p class="idg-how">Start with a good actor, then compare the shapes the bad actors make. Drag any dot, scroll or pinch to zoom, tap for details. All data is fictional.</p>' +
-      '<div class="idg-step"><span class="idg-lbl"><b>1</b> Who are we looking at?</span><div class="idg-row" data-role="picks"></div></div>' +
-      '<div class="idg-step"><span class="idg-lbl"><b>2</b> How does each discipline read it?</span><div class="idg-row" data-role="lenses"></div></div>' +
-      '<div class="idg-layout"><svg class="idg-full" role="img" aria-label="Interactive force-directed identity graph"></svg>' +
-      '<div class="idg-side"><div class="idg-info" aria-live="polite"></div><div class="idg-body"></div>' +
+      '<div class="idg-stage"><svg class="idg-full" role="img" aria-label="Interactive force-directed identity graph"></svg><div class="idg-info" aria-live="polite"></div></div>' +
+      '<div class="idg-steps"><div class="idg-step"><span class="idg-lbl"><b>1</b> Who are we looking at?</span><div class="idg-row" data-role="picks"></div></div>' +
+      '<div class="idg-step"><span class="idg-lbl"><b>2</b> How does each discipline read it?</span><div class="idg-row" data-role="lenses"></div></div></div>' +
+      '<div class="idg-lower"><div class="idg-body"></div><div class="idg-aside">' +
       '<div class="idg-legend">' + LEGEND.map(function (l) { return "<span>" + ico(l[0], 15) + l[1] + "</span>"; }).join("") + "</div>" +
       '<p class="idg-fine">Line thickness = number of transactions or events. Solid = e-commerce, dashed = credit application, dotted = bank login. Large ringed dots are shared by two or more people.</p>' +
       '<details class="idg-filters"><summary>Filters</summary><div class="idg-row">' +
@@ -376,6 +381,7 @@
   }
   function renderLens(k) {
     var L = CFG.lenses[k], h = "<h3>" + L.title + "</h3><p>" + L.text + "</p>";
+    if (L.note) h += '<p class="idg-note">' + L.note + "</p>";
     if (L.proof && L.proof.length) {
       h += '<div class="idg-proof"><span class="idg-lbl">From my work</span><ul>' + L.proof.map(function (x) { return "<li>" + esc(x.t) + (x.href ? ' <a href="' + x.href + '" data-track="idg_proof_link">' + esc(x.a) + "</a>" : "") + "</li>"; }).join("") + "</ul></div>";
     }

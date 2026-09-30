@@ -34,11 +34,14 @@
 .idg-chip.on{background:var(--ink,#12212e);border-color:var(--ink,#12212e);color:#fff}
 .idg-chip.off{opacity:.45}
 .idg-dot{display:inline-block;width:11px;height:11px;border-radius:50%;border:1px solid #0004;flex:none}
-.idg-layout{display:grid;grid-template-columns:minmax(0,1.55fr) minmax(280px,1fr);gap:18px;margin-top:14px;align-items:start}
-.idg-full{display:block;width:100%;height:clamp(380px,64vh,640px);border:1px solid #0002;border-radius:14px;background:#faf9f6;touch-action:none}
-.idg-side{min-width:0}
-.idg-info{min-height:44px;font-size:13px;line-height:1.5;color:var(--mut,#4b5966);background:var(--soft,#e6efee);border-radius:12px;padding:10px 12px}
-.idg-body{margin-top:12px;background:var(--card,#fff);border:1px solid #0001;border-radius:14px;padding:16px 18px;box-shadow:0 1px 3px #0001}
+.idg-stage{position:sticky;top:0;z-index:3;background:var(--bg,#faf9f6);padding:8px 0 10px;margin-top:6px}
+.idg-full{display:block;width:100%;height:clamp(300px,46vh,500px);border:1px solid #0002;border-radius:14px;background:#faf9f6;touch-action:none}
+.idg-info{min-height:40px;margin-top:8px;font-size:13px;line-height:1.5;color:var(--mut,#4b5966);background:var(--soft,#e6efee);border-radius:12px;padding:9px 12px}
+.idg-steps{display:grid;grid-template-columns:1fr 1fr;gap:6px 24px;margin-top:6px}
+.idg-lower{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(240px,1fr);gap:18px;margin-top:14px;align-items:start}
+.idg-aside{min-width:0}
+.idg-note{font-size:13px!important;font-style:italic}
+.idg-body{background:var(--card,#fff);border:1px solid #0001;border-radius:14px;padding:16px 18px;box-shadow:0 1px 3px #0001}
 .idg-body h3{font-family:Georgia,"Times New Roman",serif;font-size:20px;margin:0 0 6px;color:var(--ink,#12212e)}
 .idg-body h3 small{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;font-size:12px;font-weight:400;color:var(--mut,#4b5966);margin-left:6px}
 .idg-body p{font-size:14px;line-height:1.6;color:var(--mut,#4b5966);margin:0 0 8px}
@@ -67,8 +70,9 @@
 .idg-slider input{flex:1}
 
 @media (max-width:900px){
- .idg-layout{grid-template-columns:1fr}
- .idg-full{height:clamp(340px,54vh,560px)}
+ .idg-steps,.idg-lower{grid-template-columns:1fr}
+ .idg-full{height:clamp(240px,38vh,380px)}
+ .idg-legend{margin-top:4px}
 }
 @media (max-width:760px){
  .idg-band{grid-template-columns:1fr;gap:20px}
