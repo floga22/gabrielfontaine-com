@@ -89,7 +89,20 @@ function exampleProfile(){return{
  risk:{bot:'not_detected',incognito:false,vpn:false,vpnConfidence:'high',proxy:false,proxyConfidence:'high',torNode:false,tampering:false,developerTools:false,virtualMachine:false,suspectScore:0},
  network:{ip:'203.0.113.42',asn:'7018',asnName:'Example Broadband LLC',classification:'Consumer ISP network',city:'Atlanta',region:'Georgia',country:'United States',timezone:'America/New_York',latitude:33.749,longitude:-84.388,accuracyRadiusKm:10},
  raw:{note:'Example payload. The live Fingerprint check was unavailable, so this shows the shape of a real result, not your data.'}};}
-function renderProfile(data,ipd,mode){
+function waitForThumbmark(ms){return new Promise(res=>{const c=window.INSIGHTS_CONFIG;if(!c||!c.thumbmark||!c.thumbmark.key)return res(null);const s=Date.now();(function p(){if(window.INSIGHTS_THUMBMARK&&window.INSIGHTS_THUMBMARK.visitorId)return res(window.INSIGHTS_THUMBMARK);if(Date.now()-s>ms)return res(null);setTimeout(p,200);})();});}
+function tmSection(tm){
+ const T='Thumbmark (second opinion)';
+ if(!tm)return psec(T,'<p style="font-size:13px;color:var(--mut);margin:0">No Thumbmark result for this visit. It is skipped on preview hosts and in browsers where tracking is switched off.</p>');
+ const hist=tm.isNew?'New device (first seen just now).':'Returning device'+(tm.firstSeen?' (first seen '+String(tm.firstSeen).slice(0,10)+')':'')+'.';
+ return psec(T,prow('Visitor ID','<code>'+esc(tm.visitorId)+'</code>')+prow('Device hash','<code>'+esc(tm.thumbmark||'Unknown')+'</code>')+prow('Visit history',esc(hist))+prow('Device distinctiveness',tm.uniqueness!=null?esc(tm.uniqueness+'%'):'Unknown')+prow('Bot',esc(fb(tm.bot)))+prow('VPN',esc(fb(tm.vpn)))+prow('Tor',esc(fb(tm.tor)))+prow('Datacenter network',esc(fb(tm.datacenter)))+prow('Danger level',tm.dangerLevel!=null?esc(tm.dangerLevel+' of 5'):'Unknown')+prow('Timezone vs. IP country',tm.tzMismatch==null?'Unknown':esc(tm.tzMismatch?'Mismatch':'Consistent')));
+}
+function agreeSection(r,tm){
+ if(!tm||r.bot==null||r.vpn==null||tm.bot==null||tm.vpn==null)return '';
+ const fpBot=r.bot!=='not_detected',tmBot=tm.bot===true,fpVpn=r.vpn===true,tmVpn=tm.vpn===true;
+ const line=(a,b,what)=>a===b?'Agree: '+(a?what+' detected':'no '+what+' detected'):'Differ: Fingerprint says '+(a?'yes':'no')+', Thumbmark says '+(b?'yes':'no');
+ return psec('Do the two vendors agree?',prow('Bot',esc(line(fpBot,tmBot,'bot')))+prow('VPN',esc(line(fpVpn,tmVpn,'VPN')))+'<p style="font-size:12px;color:var(--mut);margin:8px 0 0">Each vendor uses different signals, so they can disagree. Comparing independent stacks is how a fraud team judges which one to trust for a given risk.</p>');
+}
+function renderProfile(data,ipd,mode,tm){
  const r=data.risk,i=data.identity,c=data.client,n=Object.assign({},data.network);
  let badges='';
  if(mode==='example')badges+=badge('Fingerprint read-out is an example (live check unavailable)','warn');
@@ -102,6 +115,7 @@ function renderProfile(data,ipd,mode){
  if(r.highActivityDevice)badges+=badge('High-activity device','warn');
  if(r.rareDevice)badges+=badge('Rare device','warn');
  if(typeof r.suspectScore==='number')badges+=badge('Suspect score: '+r.suspectScore,r.suspectScore>0?'warn':'good');
+ if(tm){badges+=badge(tm.bot===true?'Thumbmark: bot':'Thumbmark: no bot',tm.bot===true?'bad':'good');if(tm.datacenter)badges+=badge('Thumbmark: datacenter network','warn');}
  const idr=prow('Visitor ID','<code>'+esc(i.visitorId||'Unknown')+'</code>')+prow('Confidence',i.confidence!=null?esc((i.confidence*100).toFixed(0)+'% ('+(i.confidenceVersion||'')+')'):'Unknown')+prow('Visit history',esc(i.returning))+prow('First seen',esc(fd(i.firstSeenAt)))+prow('Last seen',esc(fd(i.lastSeenAt)));
  const cr=prow('Browser',esc(c.browser+(c.browserVersion?' '+c.browserVersion:'')))+prow('Operating system',esc(c.os+(c.osVersion?' '+c.osVersion:'')))+prow('Incognito / private',esc(fb(r.incognito,'Yes, private browsing','No')))+prow('Developer tools open',esc(fb(r.developerTools)))+prow('Virtual machine',esc(fb(r.virtualMachine)));
  const nr=prow('IP address','<code>'+esc(n.ip||'Unknown')+'</code>')+prow('ISP / network',esc(n.asnName||'Unknown')+(n.asn?esc(' (AS'+String(n.asn).replace(/^AS/,'')+')'):''))+prow('Network type',esc(n.classification||'Unknown'))+prow('City / region',esc([n.city,n.region].filter(Boolean).join(', ')||'Unknown'))+prow('Country',esc(n.country||'Unknown'))+prow('Timezone',esc(n.timezone||'Unknown'))+prow('VPN',esc(fb(r.vpn))+(r.vpnConfidence?esc(' (confidence: '+r.vpnConfidence+')'):''))+prow('Proxy',esc(fb(r.proxy))+(r.proxyConfidence?esc(' (confidence: '+r.proxyConfidence+')'):''))+prow('Tor exit node',esc(fb(r.torNode)));
@@ -113,16 +127,17 @@ function renderProfile(data,ipd,mode){
  const an=prow('GA4 client ID',ga?'<code>'+esc(ga)+'</code>':'Not available')+prow('Clarity user ID',cl.userId?'<code>'+esc(cl.userId)+'</code>':'Not available')+prow('Clarity session ID',cl.sessionId?'<code>'+esc(cl.sessionId)+'</code>':'Not available');
  const rid='raw'+Date.now();
  const o=q('#devOut');o.classList.remove('hide');
- o.innerHTML='<div>'+badges+'</div><div class="pgrid">'+psec('Identity',idr)+psec('Client',cr)+'</div>'+psec('Network & location',nr)+map+(ipx?'<div style="height:12px"></div>'+ipx:'')+'<div style="height:12px"></div>'+psec('Analytics identifiers',an)+'<p style="font-size:12px;color:var(--mut);margin:10px 0">These IDs are how this read-out gets matched to the session replay Clarity records for the site owner, the way a fraud team lines up a device risk profile with what the person did on the page.</p><button type="button" class="btn ghost" data-act="raw" data-t="'+rid+'" style="padding:8px 14px;font-size:12px">Show raw JSON</button><pre class="raw hide" id="'+rid+'">'+esc(JSON.stringify(data.raw||{},null,2))+'</pre>';
+ o.innerHTML='<div>'+badges+'</div><div class="pgrid">'+psec('Identity',idr)+psec('Client',cr)+'</div>'+psec('Network & location',nr)+map+(ipx?'<div style="height:12px"></div>'+ipx:'')+'<div style="height:12px"></div>'+tmSection(tm)+(mode==='live'&&agreeSection(r,tm)?'<div style="height:12px"></div>'+agreeSection(r,tm):'')+'<div style="height:12px"></div>'+psec('Analytics identifiers',an)+'<p style="font-size:12px;color:var(--mut);margin:10px 0">These IDs are how this read-out gets matched to the session replay Clarity records for the site owner, the way a fraud team lines up a device risk profile with what the person did on the page.</p><button type="button" class="btn ghost" data-act="raw" data-t="'+rid+'" style="padding:8px 14px;font-size:12px">Show raw JSON</button><pre class="raw hide" id="'+rid+'">'+esc(JSON.stringify({fingerprint:data.raw||{},thumbmark:tm?Object.assign({source:'Thumbmark API result relayed by this browser (unverified); raw browser components omitted'},tm):null},null,2))+'</pre>';
  q('#devStatus').textContent=mode==='example'?'Live Fingerprint service unavailable here. Identity/risk values are an example; IP details are real.':'Done.';
 }
 function devCheck(btn){
  const st=q('#devStatus');btn.disabled=true;st.textContent='Reading device signal…';track('device_check_run');
  const ipP=fetch('/api/ip').then(r=>r.json()).then(d=>d.ok?d:null).catch(()=>null);
+ const tmP=waitForThumbmark(5000);
  waitForVisitor(4000).then(v=>{
-  if(!v){return ipP.then(ipd=>renderProfile(exampleProfile(),ipd,'example'));}
-  return Promise.all([post('/api/profile',{eventId:v.eventId}).catch(()=>({ok:false})),ipP]).then(([d,ipd])=>{
-   if(d&&d.ok)renderProfile(d,ipd,'live');else renderProfile(exampleProfile(),ipd,'example');
+  if(!v){return Promise.all([ipP,tmP]).then(([ipd,tm])=>renderProfile(exampleProfile(),ipd,'example',tm));}
+  return Promise.all([post('/api/profile',{eventId:v.eventId}).catch(()=>({ok:false})),ipP,tmP]).then(([d,ipd,tm])=>{
+   if(d&&d.ok)renderProfile(d,ipd,'live',tm);else renderProfile(exampleProfile(),ipd,'example',tm);
   });
  }).catch(()=>{st.textContent='Something went wrong. Please try again.';}).finally(()=>{btn.disabled=false;});
 }
