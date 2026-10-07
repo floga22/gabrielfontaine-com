@@ -24,7 +24,7 @@
     debug: false
   };
   var s = document.createElement("script");
-  s.src = "https://cdn.jsdelivr.net/gh/floga22/site-insights-kit@v1.3.0/src/insights.js";
+  s.src = "https://cdn.jsdelivr.net/gh/floga22/site-insights-kit@v1.4.0/src/insights.js";
   s.async = true;
   document.head.appendChild(s);
   // Tag Clarity sessions with the audience and landing path once Clarity is up
