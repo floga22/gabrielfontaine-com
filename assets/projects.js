@@ -76,6 +76,22 @@ function renderDash(){
 
 /* ---------- Device check ---------- */
 function waitForVisitor(ms){return new Promise(res=>{const s=Date.now();(function p(){if(window.INSIGHTS_VISITOR&&window.INSIGHTS_VISITOR.eventId)return res(window.INSIGHTS_VISITOR);if(Date.now()-s>ms)return res(null);setTimeout(p,200);})();});}
+const OWNER_KEY='insights_owner';
+function isOwnerMode(){try{return localStorage.getItem(OWNER_KEY)==='1';}catch(e){return false;}}
+/* Starts its own Fingerprint read when the site-wide agent isn't running (owner mode, or a slow load).
+   Result is kept local to this check: it is not stored in window.INSIGHTS_VISITOR, so nothing is logged or linked to replays. */
+function startAgentOnDemand(){
+ const c=window.INSIGHTS_CONFIG||{},fp=c.fingerprint;
+ if(!fp||!fp.key)return Promise.resolve(null);
+ const base=fp.endpoint?fp.endpoint.replace(/\/+$/,''):null;
+ const src=fp.scriptUrl||(base?base+'/web/v4/':'https://fpjscdn.net/v4/')+encodeURIComponent(fp.key);
+ const opts={};if(base)opts.endpoints=[base];if(fp.region)opts.region=fp.region;
+ return import(src).then(FP=>FP.start(opts)).then(a=>a.get()).then(r=>{const v={visitorId:r.visitor_id||r.visitorId,eventId:r.event_id||r.requestId};return v.eventId?v:null;}).catch(()=>null);
+}
+function addOwnerNote(){
+ const o=q('#devOut');if(!o)return;
+ o.insertAdjacentHTML('beforeend','<p class="protonote" style="margin-top:12px">Tracking is switched off in this browser (owner mode), so this check ran its own Fingerprint read and was not logged or linked to session replay. For the full stack, <a href="/projects?insights=reset#device" target="_blank" rel="noopener"><b>open this page with tracking on &#8599;</b></a>. Switch it back off later by adding <code>?insights=owner</code> to any page address.</p>');
+}
 const badge=(t,tone)=>`<span class="bdg b-${tone||'neutral'}">${esc(t)}</span>`;
 const prow=(l,v)=>`<div class="prow"><span>${esc(l)}</span><span>${v}</span></div>`;
 const psec=(t,r)=>`<div class="psec"><h4>${esc(t)}</h4>${r}</div>`;
@@ -131,13 +147,14 @@ function renderProfile(data,ipd,mode,tm){
  q('#devStatus').textContent=mode==='example'?'Live Fingerprint service unavailable here. Identity/risk values are an example; IP details are real.':'Done.';
 }
 function devCheck(btn){
- const st=q('#devStatus');btn.disabled=true;st.textContent='Reading device signal…';track('device_check_run');
+ const st=q('#devStatus'),owner=isOwnerMode();btn.disabled=true;st.textContent='Reading device signal…';track('device_check_run');
  const ipP=fetch('/api/ip').then(r=>r.json()).then(d=>d.ok?d:null).catch(()=>null);
- const tmP=waitForThumbmark(5000);
- waitForVisitor(4000).then(v=>{
-  if(!v){return Promise.all([ipP,tmP]).then(([ipd,tm])=>renderProfile(exampleProfile(),ipd,'example',tm));}
+ const tmP=waitForThumbmark(owner?0:5000);
+ const done=(d,ipd,tm,mode)=>{renderProfile(d,ipd,mode,tm);if(owner)addOwnerNote();};
+ waitForVisitor(owner?0:4000).then(v=>v||startAgentOnDemand()).then(v=>{
+  if(!v){return Promise.all([ipP,tmP]).then(([ipd,tm])=>done(exampleProfile(),ipd,'example',tm));}
   return Promise.all([post('/api/profile',{eventId:v.eventId}).catch(()=>({ok:false})),ipP,tmP]).then(([d,ipd,tm])=>{
-   if(d&&d.ok)renderProfile(d,ipd,'live',tm);else renderProfile(exampleProfile(),ipd,'example',tm);
+   if(d&&d.ok)done(d,ipd,'live',tm);else done(exampleProfile(),ipd,'example',tm);
   });
  }).catch(()=>{st.textContent='Something went wrong. Please try again.';}).finally(()=>{btn.disabled=false;});
 }
