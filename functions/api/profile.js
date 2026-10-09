@@ -19,6 +19,23 @@ const FP_API_BASE = "https://api.fpjs.io";
 const TIMEOUT_MS = 10000;
 const RATE_LIMIT_PER_HOUR = 20;
 
+// Same-origin guard. Browsers always send Origin on a cross-site or same-origin POST
+// and send Sec-Fetch-Site, neither of which page JavaScript can forge. This stops other
+// websites from driving this endpoint from a visitor's browser. It does NOT stop
+// scripted abuse (curl can set any header), so the Cloudflare rate-limit rule and the
+// provider spend caps are the real controls.
+function sameOriginRequest(request) {
+  try {
+    const origin = request.headers.get("Origin");
+    if (!origin) return false;
+    if (new URL(origin).host !== new URL(request.url).host) return false;
+    const site = request.headers.get("Sec-Fetch-Site");
+    return !site || site === "same-origin";
+  } catch (e) {
+    return false;
+  }
+}
+
 const rateBuckets = new Map();
 function isRateLimited(ip) {
   const now = Date.now();
@@ -72,9 +89,7 @@ async function fetchEvent(secretKey, eventId) {
 export async function onRequestPost(context) {
   const { request, env } = context;
 
-  const origin = request.headers.get("Origin");
-  const url = new URL(request.url);
-  if (origin && new URL(origin).host !== url.host) {
+  if (!sameOriginRequest(request)) {
     return json({ ok: false, error: "forbidden" }, 403);
   }
 
@@ -91,7 +106,7 @@ export async function onRequestPost(context) {
   }
 
   const eventId = body.eventId;
-  if (!eventId || typeof eventId !== "string") {
+  if (!eventId || typeof eventId !== "string" || !/^[A-Za-z0-9._-]{8,80}$/.test(eventId)) {
     return json({ ok: false, error: "bad_request", message: "No device signal yet — reload the page and try again." }, 400);
   }
 
@@ -105,6 +120,14 @@ export async function onRequestPost(context) {
     data = await fetchEvent(secretKey, eventId);
   } catch (e) {
     return json({ ok: false, error: "upstream_error", message: "Couldn't reach the device-intelligence service. Try again in a moment." }, 200);
+  }
+
+  // The event must belong to this caller and be recent. Without this, anyone who
+  // learned another visitor's eventId could read that visitor's full profile.
+  const mayBeSameClient = [data.ip_address, data.ip_info && data.ip_info.v4 && data.ip_info.v4.address, data.ip_info && data.ip_info.v6 && data.ip_info.v6.address].filter(Boolean);
+  const ageMs = typeof data.timestamp === "number" ? Date.now() - data.timestamp : 0;
+  if ((ip !== "unknown" && mayBeSameClient.length && !mayBeSameClient.includes(ip)) || ageMs > 15 * 60 * 1000) {
+    return json({ ok: false, error: "event_not_yours", message: "Couldn't match that device signal to this connection. Reload the page and try again." }, 200);
   }
 
   const ident = data.identification || {};
