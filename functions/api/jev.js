@@ -213,6 +213,23 @@ const JOB_FALLBACK = {
 // starts or multiple edge locations, but enough to blunt casual abuse of a
 // low-traffic demo endpoint without provisioning KV/D1 for it).
 // ---------------------------------------------------------------------------
+// Same-origin guard. Browsers always send Origin on a cross-site or same-origin POST
+// and send Sec-Fetch-Site, neither of which page JavaScript can forge. This stops other
+// websites from driving this endpoint from a visitor's browser. It does NOT stop
+// scripted abuse (curl can set any header), so the Cloudflare rate-limit rule and the
+// provider spend caps are the real controls.
+function sameOriginRequest(request) {
+  try {
+    const origin = request.headers.get("Origin");
+    if (!origin) return false;
+    if (new URL(origin).host !== new URL(request.url).host) return false;
+    const site = request.headers.get("Sec-Fetch-Site");
+    return !site || site === "same-origin";
+  } catch (e) {
+    return false;
+  }
+}
+
 const rateBuckets = new Map();
 
 function isRateLimited(ip) {
@@ -358,10 +375,7 @@ function fallbackJobPayload(postingId) {
 export async function onRequestPost(context) {
   const { request, env } = context;
 
-  // Same-origin only.
-  const origin = request.headers.get("Origin");
-  const url = new URL(request.url);
-  if (origin && new URL(origin).host !== url.host) {
+  if (!sameOriginRequest(request)) {
     return json({ ok: false, error: "forbidden" }, 403);
   }
 
