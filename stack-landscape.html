@@ -425,6 +425,16 @@ window.ROLLUP_SENSITIVE = {"generatedAt": "2026-10-15T16:52:59.000Z", "minVersio
   function renderPack() {
     svg.selectAll("*").remove();
     const visibleBuckets = R.buckets.filter(b => activeBuckets.has(b.name));
+    if (!visibleBuckets.length) {
+      // nothing selected: d3.pack has no children to lay out and would emit NaN geometry
+      svg.append("text")
+        .attr("x", W / 2).attr("y", H / 2)
+        .attr("text-anchor", "middle")
+        .attr("font-size", 15)
+        .attr("fill", cssVar("--text-muted"))
+        .text("No categories selected. Switch one on above to see its vendors.");
+      return;
+    }
     const children = visibleBuckets.map(b => ({
       name: b.name,
       children: R.vendors.filter(v => v.bucket === b.name).map(v => ({ ...v, value: v.siteCount }))
