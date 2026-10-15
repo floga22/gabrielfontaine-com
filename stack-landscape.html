@@ -171,7 +171,7 @@
   #tool-root .rank-list { display: flex; flex-direction: column; }
   #tool-root .rank-row {
     display: grid;
-    grid-template-columns: minmax(150px, 25ch) minmax(0,1fr) 5.5ch;
+    grid-template-columns: minmax(150px, 25ch) minmax(0,1fr) 4.5ch 3.5ch;
     align-items: center;
     gap: 14px;
     padding: 7px 0;
@@ -182,7 +182,8 @@
   #tool-root .rank-row .name { color: var(--text-primary); white-space: normal; line-height: 1.25; overflow-wrap: break-word; }
   #tool-root .rank-row .bar-track { background: var(--surface-2); border-radius: 4px; height: 10px; overflow: hidden; }
   #tool-root .rank-row .bar-fill { height: 100%; border-radius: 4px; }
-  #tool-root .rank-row .count { text-align: right; color: var(--text-secondary); }
+  #tool-root .rank-row .pct { text-align: right; color: var(--text-secondary); }
+  #tool-root .rank-row .count { text-align: right; color: var(--text-muted); font-size: 11px; }
 
   #tool-root .section-note { color: var(--text-muted); font-size: 12.5px; line-height: 1.55; max-width: 66ch; margin: -6px 0 16px; }
 
@@ -233,7 +234,7 @@
   }
 
   @media (max-width: 480px) {
-    #tool-root .rank-row { grid-template-columns: minmax(100px, 15ch) minmax(0,1fr) 4.5ch; }
+    #tool-root .rank-row { grid-template-columns: minmax(100px, 15ch) minmax(0,1fr) 4ch 3ch; }
     #tool-root header.page-head h1 { font-size: 25px; }
   }
 
@@ -582,6 +583,7 @@ window.ROLLUP_SENSITIVE = {"generatedAt": "2026-10-15T16:52:59.000Z", "minVersio
       row.innerHTML = `
         <div class="name" title="${v.name}">${v.name}</div>
         <div class="bar-track"><div class="bar-fill" style="width:${pct}%; background:${bucketColor(v.bucket)}"></div></div>
+        <div class="pct tabular">${Math.round((v.siteCount / R.totalSites) * 100)}%</div>
         <div class="count tabular">${v.siteCount}</div>`;
       rankList.appendChild(row);
     });
@@ -672,6 +674,7 @@ window.ROLLUP_SENSITIVE = {"generatedAt": "2026-10-15T16:52:59.000Z", "minVersio
       row.innerHTML = `
         <div class="name" title="${v.name}">${v.name}</div>
         <div class="bar-track"><div class="bar-fill" style="width:${w}%; background:${bucketColor(v.bucket)}"></div></div>
+        <div class="pct tabular">${Math.round((v.siteCount / SR.totalSites) * 100)}%</div>
         <div class="count tabular">${v.siteCount}</div>`;
       sensList.appendChild(row);
     });
