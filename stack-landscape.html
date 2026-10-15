@@ -566,15 +566,18 @@ window.ROLLUP_SENSITIVE = {"generatedAt": "2026-10-15T16:52:59.000Z", "minVersio
   // ---------- ranked list ----------
   const rankList = document.getElementById("rank-list");
   const rankCaption = document.getElementById("rank-caption");
+  const fmtShare = (x) => (x > 0 && x < 0.01 ? "<1%" : Math.round(x * 100) + "%");
   function renderRankList() {
     rankList.innerHTML = "";
     const visible = R.vendors.filter(v => activeBuckets.has(v.bucket)).sort((a, b) => b.siteCount - a.siteCount);
     const maxSite = d3.max(visible, v => v.siteCount) || 1;
+    const shownTotal = d3.sum(visible, v => v.siteCount) || 1;
     const top = visible[0];
     rankCaption.textContent = visible.length
       ? `Ranked by how many of the ${R.totalSites} websites visited with a vendor detected had each vendor detected at least once — ` +
         `not weighted by visit count or confidence. ${top.name} is #1 (of the categories shown) because it ` +
-        `turned up on the most sites, not because those sites were visited more.`
+        `turned up on the most sites, not because those sites were visited more. The percentage is each vendor's share ` +
+        `of all vendor detections in the categories shown, so it recalculates as you switch categories on or off.`
       : `No categories selected — toggle one on above to see its vendors ranked.`;
     visible.forEach(v => {
       const row = document.createElement("div");
@@ -583,7 +586,7 @@ window.ROLLUP_SENSITIVE = {"generatedAt": "2026-10-15T16:52:59.000Z", "minVersio
       row.innerHTML = `
         <div class="name" title="${v.name}">${v.name}</div>
         <div class="bar-track"><div class="bar-fill" style="width:${pct}%; background:${bucketColor(v.bucket)}"></div></div>
-        <div class="pct tabular">${Math.round((v.siteCount / R.totalSites) * 100)}%</div>
+        <div class="pct tabular">${fmtShare(v.siteCount / shownTotal)}</div>
         <div class="count tabular">${v.siteCount}</div>`;
       rankList.appendChild(row);
     });
@@ -664,9 +667,10 @@ window.ROLLUP_SENSITIVE = {"generatedAt": "2026-10-15T16:52:59.000Z", "minVersio
     });
     const sensTop = SR.vendors.slice(0, 12);
     document.getElementById("sens-caption").textContent =
-      `Top ${sensTop.length} vendors on these pages, by how many of the ${SR.totalSites} pages had each one detected at least once.`;
+      `Top ${sensTop.length} vendors on these pages, by how many of the ${SR.totalSites} pages had each one detected at least once. The percentage is each vendor's share of all vendor detections on these pages.`;
     const sensList = document.getElementById("sens-list");
     const sensMax = d3.max(sensTop, v => v.siteCount) || 1;
+    const sensTotal = d3.sum(SR.vendors, v => v.siteCount) || 1;
     sensTop.forEach(v => {
       const row = document.createElement("div");
       row.className = "rank-row";
@@ -674,7 +678,7 @@ window.ROLLUP_SENSITIVE = {"generatedAt": "2026-10-15T16:52:59.000Z", "minVersio
       row.innerHTML = `
         <div class="name" title="${v.name}">${v.name}</div>
         <div class="bar-track"><div class="bar-fill" style="width:${w}%; background:${bucketColor(v.bucket)}"></div></div>
-        <div class="pct tabular">${Math.round((v.siteCount / SR.totalSites) * 100)}%</div>
+        <div class="pct tabular">${fmtShare(v.siteCount / sensTotal)}</div>
         <div class="count tabular">${v.siteCount}</div>`;
       sensList.appendChild(row);
     });
