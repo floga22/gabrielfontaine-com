@@ -132,7 +132,7 @@ a:focus-visible,button:focus-visible,summary:focus-visible{outline:2px solid var
 .proj{background:var(--card);border-radius:18px;padding:26px;margin-top:26px;box-shadow:0 1px 3px #0001,0 8px 24px #0000000a}
 .proj:hover{box-shadow:0 14px 36px #0000001c,0 0 0 1.5px color-mix(in srgb,var(--accent) 45%,transparent)}
 .proj h3{font-size:24px;margin:10px 0}
-.why{margin:16px 0 4px;gap:14px}
+.why{margin:16px 0 4px;gap:14px;clear:both}
 .why>div{background:var(--soft);border-radius:12px;padding:14px}
 .why>div:hover{box-shadow:none;transform:none}
 .why b{font-size:14px;color:var(--ink)}
