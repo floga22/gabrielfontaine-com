@@ -20,11 +20,12 @@
     fingerprint: { key: "71BAprWdJzzeJSgcyPcL", region: "us", endpoint: "https://metrics.gabrielfontaine.com" },
     thumbmark: { key: "da8fe149e77a5fdd9a0f5847f85e64ee" }, // public key; locked to gabrielfontaine.com in the Thumbmark console
     worker: "https://site-insights.gabrielfontaine.workers.dev",
+    botd: true,                      // free open-source bot check, runs in the browser
     clickstream: true,
     debug: false
   };
   var s = document.createElement("script");
-  s.src = "https://cdn.jsdelivr.net/gh/floga22/site-insights-kit@v1.4.2/src/insights.js";
+  s.src = "https://cdn.jsdelivr.net/gh/floga22/site-insights-kit@v1.5.0/src/insights.js";
   s.async = true;
   document.head.appendChild(s);
   // Tag Clarity sessions with the audience and landing path once Clarity is up
