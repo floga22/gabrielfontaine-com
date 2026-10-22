@@ -36,6 +36,10 @@ function sameOriginRequest(request) {
   }
 }
 
+// A signal the plan doesn't return must read as "not measured" (null), never as false.
+// false would show up in the panel as a clean result for something that was never checked.
+const bool = (v) => (typeof v === "boolean" ? v : null);
+
 const rateBuckets = new Map();
 function isRateLimited(ip) {
   const now = Date.now();
@@ -158,7 +162,10 @@ export async function onRequestPost(context) {
     },
 
     risk: {
-      bot: data.bot || "unknown",
+      bot: data.bot || null,
+      botType: data.bot_type || null,
+      // bot_info only appears when Fingerprint recognizes a specific bot or AI agent
+      botInfo: data.bot_info || null,
       incognito: typeof data.incognito === "boolean" ? data.incognito : null,
       vpn: typeof data.vpn === "boolean" ? data.vpn : null,
       vpnConfidence: data.vpn_confidence || null,
@@ -166,16 +173,17 @@ export async function onRequestPost(context) {
       vpnOriginCountry: data.vpn_origin_country || null,
       proxy: typeof data.proxy === "boolean" ? data.proxy : null,
       proxyConfidence: data.proxy_confidence || null,
-      torNode: !!(data.ip_blocklist && data.ip_blocklist.tor_node),
+      torNode: data.ip_blocklist ? bool(data.ip_blocklist.tor_node) : null,
+      proxyDetails: data.proxy_details || null,
       ipBlocklist: data.ip_blocklist || null,
       tampering: typeof data.tampering === "boolean" ? data.tampering : null,
       tamperingDetails: data.tampering_details || null,
-      developerTools: !!data.developer_tools,
-      virtualMachine: !!data.virtual_machine,
-      privacySettings: !!data.privacy_settings,
+      developerTools: bool(data.developer_tools),
+      virtualMachine: bool(data.virtual_machine),
+      privacySettings: bool(data.privacy_settings),
       suspectScore: typeof data.suspect_score === "number" ? data.suspect_score : null,
-      highActivityDevice: !!data.high_activity_device,
-      rareDevice: !!data.rare_device,
+      highActivityDevice: bool(data.high_activity_device),
+      rareDevice: bool(data.rare_device),
       rareDevicePercentile: data.rare_device_percentile_bucket || null
     },
 
