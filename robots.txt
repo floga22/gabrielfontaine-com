@@ -1,4 +1,5 @@
+# Crawling stays allowed on purpose: search engines must be able to fetch pages
+# to see the X-Robots-Tag: noindex header (set in _headers). Do not add Disallow: /
+# or already-known URLs can linger in results without a snippet.
 User-agent: *
 Allow: /
-
-Sitemap: https://gabrielfontaine.com/sitemap.xml
