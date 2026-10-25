@@ -1,8 +1,7 @@
-https://:project.pages.dev/*
-  X-Robots-Tag: noindex
-
-https://:version.:project.pages.dev/*
-  X-Robots-Tag: noindex
+# Keep the whole site out of search engines (Google, Bing, etc.).
+# Header-based so it covers every page and file without editing HTML.
+/*
+  X-Robots-Tag: noindex, nofollow
 
 /assets/*
   Cache-Control: public, max-age=3600
