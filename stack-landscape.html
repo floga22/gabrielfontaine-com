@@ -486,9 +486,8 @@
   ].map(t => `<div class="exec-item">${t}</div>`).join("");
 
   // ---------- stat tiles (tap or click to open) ----------
-  const delta = R.totalSites - R.prev.totalSites;
   const tiles = [
-    { id: "panel-sites", value: R.totalSites.toLocaleString(), label: "Websites visited with a vendor detected", delta: (delta >= 0 ? "+" : "") + delta + " vs " + R.prev.label },
+    { id: "panel-sites", value: R.totalSites.toLocaleString(), label: "Websites visited with a vendor detected" },
     { id: "panel-vendors", value: R.vendors.length, label: "Distinct vendors detected", hint: "Tap for the full list ↓" },
     { id: "panel-cats", value: R.buckets.length, label: "Categories", hint: "Tap for the breakdown ↓" },
     { id: "panel-combos", value: layeredPct + "%", label: "Sites running 2+ layered defenses", hint: "Tap for common pairings ↓", highlight: true },
@@ -513,7 +512,7 @@
     tilesEl.appendChild(b);
   });
   document.getElementById("panel-sites").textContent =
-    `Sites with at least one vendor detected, as of the ${new Date(R.generatedAt).toLocaleDateString(undefined, { month: "long", day: "numeric" })} export. It was ${R.prev.totalSites} on ${R.prev.label}.`;
+    `Sites with at least one vendor detected, as of the ${new Date(R.generatedAt).toLocaleDateString(undefined, { month: "long", day: "numeric" })} export.`;
   document.getElementById("panel-vendors").innerHTML =
     `<div class="pcols">${vendorsSorted.map(v => `<div class="pr"><span class="dot" style="background:${bucketColor(v.bucket)}"></span>${esc(v.shortName)}<em>${v.siteCount}</em></div>`).join("")}</div>` +
     `<div class="pnote">Dot color = category · number = sites the vendor was detected on.</div>`;
