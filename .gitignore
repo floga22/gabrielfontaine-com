@@ -10,3 +10,9 @@ node_modules/
 *.p12
 .DS_Store
 *.log
+node_modules/
+.env.*
+!.env.example
+*.pem
+*.key
+.DS_Store
