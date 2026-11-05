@@ -57,7 +57,7 @@
   #tool-root .mono { font-family: ui-monospace,SFMono-Regular,Menlo,Consolas,monospace; }
   #tool-root .tabular { font-variant-numeric: tabular-nums; }
 
-  #tool-root header.page-head { margin-bottom: 28px; }
+  #tool-root header.page-head { margin-bottom: 22px; }
   #tool-root header.page-head h1 {
     font-size: 30px;
     font-weight: 700;
@@ -77,6 +77,45 @@
     font-size: 12px;
     margin-top: 10px;
   }
+
+  #tool-root .disc {
+    background: #fdf8ee;
+    border: 1px solid #e8d8a0;
+    border-radius: 12px;
+    padding: 12px 16px;
+    font-size: 13px;
+    line-height: 1.55;
+    color: #6a5218;
+    margin: 0 0 20px;
+  }
+
+  #tool-root .exec {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--b-device);
+    border-radius: 0 14px 14px 0;
+    padding: 18px 20px;
+    margin-bottom: 24px;
+  }
+  #tool-root .exec h2 {
+    font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--text-muted);
+    font-weight: 600;
+    margin: 0 0 12px;
+  }
+  #tool-root .exec-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  #tool-root .exec-item {
+    background: var(--page-bg);
+    border-radius: 10px;
+    padding: 11px 14px;
+    font-size: 13.5px;
+    line-height: 1.55;
+    color: var(--text-secondary);
+  }
+  #tool-root .exec-item b { color: var(--text-primary); }
 
   #tool-root .stat-row {
     display: grid;
@@ -102,6 +141,49 @@
     margin-top: 6px;
   }
   #tool-root .stat-tile.highlight .value { color: var(--b-device); }
+
+  /* tap-to-open stat tiles */
+  #tool-root .tiles {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+    gap: 12px;
+    margin-bottom: 8px;
+  }
+  #tool-root .tile {
+    position: relative;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 16px 18px;
+    cursor: pointer;
+    text-align: left;
+    font: inherit;
+    color: inherit;
+  }
+  #tool-root .tile:hover, #tool-root .tile.open { border-color: #0e7c86; }
+  #tool-root .tile .value { font-family: ui-monospace,SFMono-Regular,Menlo,Consolas,monospace; font-size: 28px; font-weight: 600; line-height: 1.1; }
+  #tool-root .tile .label { color: var(--text-secondary); font-size: 12.5px; margin-top: 5px; }
+  #tool-root .tile .hint { color: #0e7c86; font-size: 11px; font-weight: 700; margin-top: 8px; }
+  #tool-root .tile.highlight .value { color: var(--b-device); }
+  #tool-root .tile .delta { position: absolute; top: 12px; right: 12px; font-size: 11px; font-weight: 700; background: #e5f6ee; color: #12704a; border-radius: 999px; padding: 1px 8px; }
+  #tool-root .panel {
+    display: none;
+    background: var(--surface);
+    border: 1px solid #0e7c86;
+    border-radius: 12px;
+    padding: 14px 18px;
+    margin: 0 0 8px;
+    font-size: 13px;
+    line-height: 1.55;
+    color: var(--text-secondary);
+  }
+  #tool-root .panel.open { display: block; }
+  #tool-root .panel .pr { display: flex; gap: 8px; align-items: center; padding: 4px 0; border-top: 1px solid var(--gridline); }
+  #tool-root .panel .pr:first-child { border-top: 0; }
+  #tool-root .panel .pr em { margin-left: auto; font-style: normal; font-family: ui-monospace,SFMono-Regular,Menlo,Consolas,monospace; color: var(--text-muted); white-space: nowrap; }
+  #tool-root .panel .pcols { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); column-gap: 24px; }
+  #tool-root .panel .pnote { font-size: 12px; color: var(--text-muted); margin-top: 8px; }
+  #tool-root .dot { width: 9px; height: 9px; border-radius: 50%; flex: none; display: inline-block; }
 
   #tool-root section { margin-bottom: 36px; }
   #tool-root section > h2 {
@@ -166,6 +248,37 @@
   }
   #tool-root #tooltip b { display: block; font-weight: 600; margin-bottom: 2px; }
   #tool-root #tooltip .muted { opacity: 0.7; }
+
+  /* category totals */
+  #tool-root .bk { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 12px; }
+  #tool-root .bc { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 14px 16px; }
+  #tool-root .bc .n { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .04em; color: var(--text-secondary); min-height: 30px; }
+  #tool-root .bc .c { font-family: ui-monospace,SFMono-Regular,Menlo,Consolas,monospace; font-size: 28px; font-weight: 700; margin-top: 6px; }
+  #tool-root .bc .s { font-size: 11.5px; color: var(--text-muted); }
+  #tool-root .bc .bar { height: 5px; background: var(--surface-2); border-radius: 3px; margin-top: 8px; overflow: hidden; }
+  #tool-root .bc .bar i { display: block; height: 100%; }
+
+  /* vendors by category */
+  #tool-root .vcat { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; margin-bottom: 14px; }
+  #tool-root .vcat .ch { padding: 11px 16px; display: flex; gap: 10px; align-items: center; border-bottom: 1px solid var(--gridline); font-weight: 700; font-size: 14px; }
+  #tool-root .vcat .ch em { margin-left: auto; font-style: normal; font-weight: 400; font-size: 12px; color: var(--text-muted); text-align: right; }
+  #tool-root .vr { display: grid; grid-template-columns: minmax(120px, 1fr) 90px 34px; gap: 10px; align-items: center; padding: 6px 16px; border-top: 1px solid var(--gridline); font-size: 13px; }
+  #tool-root .vr:first-of-type { border-top: 0; }
+  #tool-root .vr .t { height: 7px; background: var(--surface-2); border-radius: 4px; overflow: hidden; }
+  #tool-root .vr .t i { display: block; height: 100%; }
+  #tool-root .vr span:last-child { text-align: right; font-family: ui-monospace,SFMono-Regular,Menlo,Consolas,monospace; color: var(--text-muted); font-size: 12px; }
+
+  #tool-root .gap {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 18px 22px;
+    display: flex;
+    gap: 20px;
+    align-items: center;
+  }
+  #tool-root .gap .big { font-family: ui-monospace,SFMono-Regular,Menlo,Consolas,monospace; font-size: 46px; font-weight: 700; color: var(--b-device); line-height: 1; }
+  #tool-root .gap p { margin: 4px 0 0; font-size: 13.5px; color: var(--text-secondary); max-width: 62ch; }
 
   #tool-root .rank-caption { color: var(--text-muted); font-size: 12px; line-height: 1.5; margin: -6px 0 16px; max-width: 62ch; }
   #tool-root .rank-list { display: flex; flex-direction: column; }
@@ -233,9 +346,14 @@
     max-width: 68ch;
   }
 
+  @media (max-width: 820px) {
+    #tool-root .exec-grid { grid-template-columns: 1fr; }
+    #tool-root .gap { flex-direction: column; align-items: flex-start; gap: 8px; }
+  }
   @media (max-width: 480px) {
     #tool-root .rank-row { grid-template-columns: minmax(100px, 15ch) minmax(0,1fr) 4ch 3ch; }
     #tool-root header.page-head h1 { font-size: 25px; }
+    #tool-root .vr { grid-template-columns: 1fr 60px 30px; }
   }
 
   #tool-root h1{font-family:Georgia,"Times New Roman",serif;color:#12212e}
@@ -253,7 +371,16 @@
       <div class="meta mono">Generated <span id="meta-date"></span> · site identities are never included in this view</div>
     </header>
 
-    <div class="stat-row" id="stat-row"></div>
+    <div class="disc"><b>Personal observation dataset, not a market study.</b> These are sites visited from one person's browser, so the counts show how often something was detected in that browsing, not market share or install base.</div>
+
+    <div class="exec"><h2>Key takeaways</h2><div class="exec-grid" id="exec-grid"></div></div>
+
+    <div class="tiles" id="tiles"></div>
+    <div class="panel" id="panel-sites"></div>
+    <div class="panel" id="panel-vendors"></div>
+    <div class="panel" id="panel-cats"></div>
+    <div class="panel" id="panel-combos"></div>
+    <div style="margin-bottom:28px"></div>
 
     <section>
       <h2>By category</h2>
@@ -261,6 +388,22 @@
       <div class="viz-wrap">
         <svg id="pack-svg" viewBox="0 0 1040 780"></svg>
       </div>
+    </section>
+
+    <section>
+      <h2>Category totals</h2>
+      <div class="bk" id="bk"></div>
+    </section>
+
+    <section>
+      <h2>Every vendor detected, by category</h2>
+      <p class="section-note" id="vlist-note"></p>
+      <div id="vlist"></div>
+    </section>
+
+    <section>
+      <h2>Sensitive pages with no recognized vendor</h2>
+      <div class="gap" id="gap-box"></div>
     </section>
 
     <section>
@@ -299,14 +442,12 @@
   <div class="credits">Photos: Unsplash (George Prentzas, Vitaly Gariev). Icons: Font Awesome Free, CC BY 4.0.</div></footer>
  <script src="/assets/site.js?v=26d5d745"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js"></script>
-<script>
-window.ROLLUP = {"generatedAt": "2026-11-05T20:46:02.525Z", "totalSites": 731, "totalVisits": 2759, "sitesNoVendorDetected": 0, "sitesMultiVendorStack": 170, "buckets": [{"name": "Bot & Traffic Management", "color": "#d6955c", "siteCount": 501, "vendorCount": 9}, {"name": "Challenge / CAPTCHA", "color": "#acd65c", "siteCount": 199, "vendorCount": 3}, {"name": "Fraud & Risk Platforms", "color": "#e04c8f", "siteCount": 76, "vendorCount": 9}, {"name": "Device & Behavioral Intelligence", "color": "#5cd6b9", "siteCount": 107, "vendorCount": 12}, {"name": "Identity & Account Linking", "color": "#5c60d6", "siteCount": 19, "vendorCount": 9}], "vendors": [{"id": "cloudflare-bm", "name": "Cloudflare Bot Management", "color": "#8892a6", "bucket": "Bot & Traffic Management", "siteCount": 277}, {"id": "recaptcha", "name": "Google reCAPTCHA", "color": "#8892a6", "bucket": "Challenge / CAPTCHA", "siteCount": 191}, {"id": "akamai", "name": "Akamai Bot Manager", "color": "#8892a6", "bucket": "Bot & Traffic Management", "siteCount": 142}, {"id": "imperva-incapsula", "name": "Imperva Incapsula", "color": "#d68a5c", "bucket": "Bot & Traffic Management", "siteCount": 52}, {"id": "threatmetrix", "name": "ThreatMetrix (LexisNexis Risk Solutions)", "color": "#8892a6", "bucket": "Device & Behavioral Intelligence", "siteCount": 42}, {"id": "stripe-radar", "name": "Stripe Radar", "color": "#d65c7a", "bucket": "Fraud & Risk Platforms", "siteCount": 41}, {"id": "biocatch", "name": "BioCatch", "color": "#5cd6b9", "bucket": "Device & Behavioral Intelligence", "siteCount": 18}, {"id": "iovation", "name": "iovation / TransUnion TruValidate", "color": "#8892a6", "bucket": "Device & Behavioral Intelligence", "siteCount": 17}, {"id": "human", "name": "HUMAN (PerimeterX)", "color": "#6ad65c", "bucket": "Bot & Traffic Management", "siteCount": 16}, {"id": "datadome", "name": "DataDome", "color": "#d65c8e", "bucket": "Bot & Traffic Management", "siteCount": 12}, {"id": "deviceprint-field", "name": "RSA-style deviceprint (RSA Adaptive Authentication; vendor per site unconfirmed)", "color": "#d19560", "bucket": "Device & Behavioral Intelligence", "siteCount": 12}, {"id": "fingerprint", "name": "Fingerprint", "color": "#d66c5c", "bucket": "Device & Behavioral Intelligence", "siteCount": 11}, {"id": "hcaptcha", "name": "hCaptcha", "color": "#8892a6", "bucket": "Challenge / CAPTCHA", "siteCount": 9}, {"id": "forter", "name": "Forter", "color": "#5cd677", "bucket": "Fraud & Risk Platforms", "siteCount": 8}, {"id": "kount", "name": "Kount (Equifax)", "color": "#8892a6", "bucket": "Fraud & Risk Platforms", "siteCount": 8}, {"id": "radware", "name": "Radware Bot Manager (ShieldSquare)", "color": "#af68d3", "bucket": "Bot & Traffic Management", "siteCount": 8}, {"id": "arkose", "name": "Arkose Labs", "color": "#d65cd0", "bucket": "Challenge / CAPTCHA", "siteCount": 7}, {"id": "castle", "name": "Castle", "color": "#9a5cd6", "bucket": "Fraud & Risk Platforms", "siteCount": 7}, {"id": "aws-waf", "name": "AWS WAF (Bot Control)", "color": "#d6a05c", "bucket": "Bot & Traffic Management", "siteCount": 6}, {"id": "sardine", "name": "Sardine", "color": "#68d39d", "bucket": "Device & Behavioral Intelligence", "siteCount": 6}, {"id": "sift", "name": "Sift", "color": "#d65c65", "bucket": "Fraud & Risk Platforms", "siteCount": 6}, {"id": "callsign", "name": "Callsign", "color": "#aad160", "bucket": "Device & Behavioral Intelligence", "siteCount": 5}, {"id": "persona", "name": "Persona", "color": "#5ccbd6", "bucket": "Identity & Account Linking", "siteCount": 4}, {"id": "plaid", "name": "Plaid Link", "color": "#5c60d6", "bucket": "Identity & Account Linking", "siteCount": 4}, {"id": "transmit-security", "name": "Transmit Security (Mosaic)", "color": "#8e5cd6", "bucket": "Device & Behavioral Intelligence", "siteCount": 4}, {"id": "incode", "name": "Incode", "color": "#8892a6", "bucket": "Identity & Account Linking", "siteCount": 3}, {"id": "regula", "name": "Regula (document verification)", "color": "#8e5cd6", "bucket": "Identity & Account Linking", "siteCount": 3}, {"id": "seon", "name": "Seon", "color": "#d6be5c", "bucket": "Device & Behavioral Intelligence", "siteCount": 3}, {"id": "f5-bigip-bot-defense", "name": "F5 BIG-IP bot defense", "color": "#60d1b6", "bucket": "Bot & Traffic Management", "siteCount": 2}, {"id": "feedzai", "name": "Feedzai", "color": "#6dd368", "bucket": "Device & Behavioral Intelligence", "siteCount": 2}, {"id": "kasada", "name": "Kasada", "color": "#d3ce68", "bucket": "Bot & Traffic Management", "siteCount": 2}, {"id": "signifyd", "name": "Signifyd", "color": "#7ad368", "bucket": "Fraud & Risk Platforms", "siteCount": 2}, {"id": "socure", "name": "Socure (Digital Intelligence)", "color": "#d3688c", "bucket": "Fraud & Risk Platforms", "siteCount": 2}, {"id": "threatmark", "name": "ThreatMark", "color": "#d160cb", "bucket": "Device & Behavioral Intelligence", "siteCount": 2}, {"id": "acuant-mitek", "name": "Acuant (Mitek Systems)", "color": "#5c9ed6", "bucket": "Identity & Account Linking", "siteCount": 1}, {"id": "fraudlabspro", "name": "FraudLabs Pro", "color": "#e04c8f", "bucket": "Fraud & Risk Platforms", "siteCount": 1}, {"id": "jumio", "name": "Jumio", "color": "#d36884", "bucket": "Identity & Account Linking", "siteCount": 1}, {"id": "onefootprint", "name": "Footprint (onefootprint.com)", "color": "#5c8ed6", "bucket": "Identity & Account Linking", "siteCount": 1}, {"id": "riskified", "name": "Riskified", "color": "#7568d3", "bucket": "Fraud & Risk Platforms", "siteCount": 1}, {"id": "riskminder", "name": "Symantec RiskMinder (Broadcom DeviceDNA)", "color": "#4ce0c8", "bucket": "Device & Behavioral Intelligence", "siteCount": 1}, {"id": "sumsub", "name": "Sumsub", "color": "#d39468", "bucket": "Identity & Account Linking", "siteCount": 1}, {"id": "veriff", "name": "Veriff", "color": "#d37e68", "bucket": "Identity & Account Linking", "siteCount": 1}], "pageTypeByBucket": [{"bucket": "Bot & Traffic Management", "pageType": "General", "count": 306}, {"bucket": "Challenge / CAPTCHA", "pageType": "General", "count": 126}, {"bucket": "Bot & Traffic Management", "pageType": "Login", "count": 123}, {"bucket": "Device & Behavioral Intelligence", "pageType": "Login", "count": 67}, {"bucket": "Bot & Traffic Management", "pageType": "Signup", "count": 57}, {"bucket": "Fraud & Risk Platforms", "pageType": "General", "count": 50}, {"bucket": "Challenge / CAPTCHA", "pageType": "Login", "count": 45}, {"bucket": "Device & Behavioral Intelligence", "pageType": "General", "count": 29}, {"bucket": "Challenge / CAPTCHA", "pageType": "Signup", "count": 28}, {"bucket": "Bot & Traffic Management", "pageType": "Password reset", "count": 27}, {"bucket": "Device & Behavioral Intelligence", "pageType": "Signup", "count": 15}, {"bucket": "Fraud & Risk Platforms", "pageType": "Login", "count": 13}, {"bucket": "Device & Behavioral Intelligence", "pageType": "Password reset", "count": 9}, {"bucket": "Identity & Account Linking", "pageType": "Login", "count": 9}, {"bucket": "Identity & Account Linking", "pageType": "General", "count": 8}, {"bucket": "Fraud & Risk Platforms", "pageType": "Signup", "count": 7}, {"bucket": "Challenge / CAPTCHA", "pageType": "Password reset", "count": 5}, {"bucket": "Bot & Traffic Management", "pageType": "Checkout", "count": 3}, {"bucket": "Fraud & Risk Platforms", "pageType": "Password reset", "count": 3}, {"bucket": "Challenge / CAPTCHA", "pageType": "Checkout", "count": 2}, {"bucket": "Device & Behavioral Intelligence", "pageType": "Unspecified", "count": 2}, {"bucket": "Fraud & Risk Platforms", "pageType": "Checkout", "count": 2}, {"bucket": "Bot & Traffic Management", "pageType": "Unspecified", "count": 1}, {"bucket": "Challenge / CAPTCHA", "pageType": "Unspecified", "count": 1}, {"bucket": "Device & Behavioral Intelligence", "pageType": "Checkout", "count": 1}, {"bucket": "Fraud & Risk Platforms", "pageType": "Unspecified", "count": 1}, {"bucket": "Identity & Account Linking", "pageType": "Password reset", "count": 1}, {"bucket": "Identity & Account Linking", "pageType": "Signup", "count": 1}], "sensitivePagesNoVendor": 152};
-window.ROLLUP_SENSITIVE = {"generatedAt": "2026-11-05T20:51:39.000Z", "minVersion": "1.20.2", "totalSites": 273, "sitesWithRiskVendor": 220, "sitesWithSpecialistVendor": 88, "pageTypes": {"Login": 171, "Signup": 72, "Checkout": 4, "Password reset": 26}, "vendors": [{"id": "cloudflare-bm", "name": "Cloudflare Bot Management", "bucket": "Bot & Traffic Management", "siteCount": 81}, {"id": "akamai", "name": "Akamai Bot Manager", "bucket": "Bot & Traffic Management", "siteCount": 51}, {"id": "recaptcha", "name": "Google reCAPTCHA", "bucket": "Challenge / CAPTCHA", "siteCount": 50}, {"id": "threatmetrix", "name": "ThreatMetrix (LexisNexis Risk Solutions)", "bucket": "Device & Behavioral Intelligence", "siteCount": 25}, {"id": "imperva-incapsula", "name": "Imperva Incapsula", "bucket": "Bot & Traffic Management", "siteCount": 21}, {"id": "biocatch", "name": "BioCatch", "bucket": "Device & Behavioral Intelligence", "siteCount": 12}, {"id": "iovation", "name": "iovation / TransUnion TruValidate", "bucket": "Device & Behavioral Intelligence", "siteCount": 12}, {"id": "stripe-radar", "name": "Stripe Radar", "bucket": "Fraud & Risk Platforms", "siteCount": 8}, {"id": "deviceprint-field", "name": "RSA-style deviceprint (RSA Adaptive Authentication; vendor per site unconfirmed)", "bucket": "Device & Behavioral Intelligence", "siteCount": 7}, {"id": "radware", "name": "Radware Bot Manager (ShieldSquare)", "bucket": "Bot & Traffic Management", "siteCount": 7}, {"id": "datadome", "name": "DataDome", "bucket": "Bot & Traffic Management", "siteCount": 5}, {"id": "callsign", "name": "Callsign", "bucket": "Device & Behavioral Intelligence", "siteCount": 5}, {"id": "human", "name": "HUMAN (PerimeterX)", "bucket": "Bot & Traffic Management", "siteCount": 4}, {"id": "transmit-security", "name": "Transmit Security (Mosaic)", "bucket": "Device & Behavioral Intelligence", "siteCount": 4}, {"id": "sardine", "name": "Sardine", "bucket": "Device & Behavioral Intelligence", "siteCount": 4}, {"id": "hcaptcha", "name": "hCaptcha", "bucket": "Challenge / CAPTCHA", "siteCount": 3}, {"id": "arkose", "name": "Arkose Labs", "bucket": "Challenge / CAPTCHA", "siteCount": 3}, {"id": "plaid", "name": "Plaid Link", "bucket": "Identity & Account Linking", "siteCount": 3}, {"id": "kount", "name": "Kount (Equifax)", "bucket": "Fraud & Risk Platforms", "siteCount": 2}, {"id": "riskminder", "name": "Symantec RiskMinder (Broadcom DeviceDNA)", "bucket": "Device & Behavioral Intelligence", "siteCount": 1}, {"id": "aws-waf", "name": "AWS WAF (Bot Control)", "bucket": "Bot & Traffic Management", "siteCount": 1}, {"id": "acuant-mitek", "name": "Acuant (Mitek Systems)", "bucket": "Identity & Account Linking", "siteCount": 1}, {"id": "persona", "name": "Persona", "bucket": "Identity & Account Linking", "siteCount": 1}, {"id": "kasada", "name": "Kasada", "bucket": "Bot & Traffic Management", "siteCount": 1}, {"id": "veriff", "name": "Veriff", "bucket": "Identity & Account Linking", "siteCount": 1}, {"id": "socure", "name": "Socure (Digital Intelligence)", "bucket": "Fraud & Risk Platforms", "siteCount": 1}, {"id": "regula", "name": "Regula (document verification)", "bucket": "Identity & Account Linking", "siteCount": 1}, {"id": "onefootprint", "name": "Footprint (onefootprint.com)", "bucket": "Identity & Account Linking", "siteCount": 1}, {"id": "f5-bigip-bot-defense", "name": "F5 BIG-IP bot defense", "bucket": "Bot & Traffic Management", "siteCount": 1}, {"id": "jumio", "name": "Jumio", "bucket": "Identity & Account Linking", "siteCount": 1}, {"id": "incode", "name": "Incode", "bucket": "Identity & Account Linking", "siteCount": 1}, {"id": "castle", "name": "Castle", "bucket": "Fraud & Risk Platforms", "siteCount": 1}, {"id": "feedzai", "name": "Feedzai", "bucket": "Device & Behavioral Intelligence", "siteCount": 1}, {"id": "fingerprint", "name": "Fingerprint", "bucket": "Device & Behavioral Intelligence", "siteCount": 1}, {"id": "sumsub", "name": "Sumsub", "bucket": "Identity & Account Linking", "siteCount": 1}, {"id": "sift", "name": "Sift", "bucket": "Fraud & Risk Platforms", "siteCount": 1}, {"id": "riskified", "name": "Riskified", "bucket": "Fraud & Risk Platforms", "siteCount": 1}]};
-</script>
+<script src="/assets/rollup.js?v=aba734fc"></script>
 <script>
 (function () {
   const R = window.ROLLUP;
   const cssVar = (name) => getComputedStyle(document.documentElement).getPropertyValue(name).trim();
+  const esc = (s) => String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
 
   const BUCKET_VAR = {
     "Bot & Traffic Management": "--b-bot",
@@ -316,27 +457,70 @@ window.ROLLUP_SENSITIVE = {"generatedAt": "2026-11-05T20:51:39.000Z", "minVersio
     "Identity & Account Linking": "--b-identity",
   };
   function bucketColor(name) { return cssVar(BUCKET_VAR[name] || "--text-muted"); }
+  const BUCKET_ORDER = ["Bot & Traffic Management", "Challenge / CAPTCHA", "Device & Behavioral Intelligence", "Fraud & Risk Platforms", "Identity & Account Linking"];
+  const bucketsOrdered = BUCKET_ORDER.map(n => R.buckets.find(b => b.name === n)).filter(Boolean);
+  const vendorsSorted = R.vendors.slice().sort((a, b) => b.siteCount - a.siteCount);
 
   // ---------- date ----------
   document.getElementById("meta-date").textContent = new Date(R.generatedAt).toLocaleDateString(
     undefined, { year: "numeric", month: "long", day: "numeric" }
   );
 
-  // ---------- stat tiles ----------
+  // ---------- key takeaways (computed from the data so they never drift) ----------
   const layeredPct = Math.round((R.sitesMultiVendorStack / R.totalSites) * 100);
-  const stats = [
-    { value: R.totalSites.toLocaleString(), label: "Websites visited with a vendor detected" },
-    { value: R.vendors.length, label: "Distinct vendors detected" },
-    { value: R.buckets.length, label: "Categories" },
-    { value: layeredPct + "%", label: "Sites running 2+ layered defenses", highlight: true },
+  // One definition for the whole page: the same-version sign-in sample (falls back to the all-time count if it is missing)
+  const SRX = window.ROLLUP_SENSITIVE;
+  const noVendorOf = SRX && SRX.totalSites ? SRX.totalSites : R.sensitivePagesNoVendor;
+  const noVendorN = SRX && SRX.totalSites ? SRX.totalSites - SRX.sitesWithRiskVendor : R.sensitivePagesNoVendor;
+  const top = vendorsSorted[0], second = vendorsSorted[1];
+  const topPct = Math.round((top.siteCount / R.totalSites) * 100);
+  const ratio = top.siteCount / second.siteCount;
+  const ratioTxt = (ratio >= 1.8 && ratio <= 2.3) ? "about twice" : ratio.toFixed(1) + "× ";
+  const fragB = R.buckets.slice().sort((a, b) => b.vendorCount - a.vendorCount)[0];
+  const fragTop = vendorsSorted.filter(v => v.bucket === fragB.name)[0];
+  document.getElementById("exec-grid").innerHTML = [
+    `<b>${esc(top.shortName)} is the most-detected vendor.</b> It appeared on ${top.siteCount} of ${R.totalSites} sites (${topPct}%), ${ratioTxt} ${esc(second.shortName)} (${second.siteCount}).`,
+    `<b>Layering is common.</b> ${R.sitesMultiVendorStack} sites (${layeredPct}%) ran two or more vendors at once, such as bot management plus a CAPTCHA or fraud scoring.`,
+    `<b>Some sign-in pages show no recognized vendor.</b> ${noVendorN} of ${noVendorOf} login, signup, checkout or reset pages had none. That is a mix of lightly protected pages, vendors the detector doesn't know yet, and checks that run on the server where a browser can't see them.`,
+    `<b>${esc(fragB.name)} is the most fragmented category.</b> ${fragB.vendorCount} vendors across ${fragB.siteCount} sites, with no single vendor above ${fragTop.siteCount}.`
+  ].map(t => `<div class="exec-item">${t}</div>`).join("");
+
+  // ---------- stat tiles (tap or click to open) ----------
+  const tiles = [
+    { id: "panel-sites", value: R.totalSites.toLocaleString(), label: "Websites visited with a vendor detected" },
+    { id: "panel-vendors", value: R.vendors.length, label: "Distinct vendors detected", hint: "Tap for the full list ↓" },
+    { id: "panel-cats", value: R.buckets.length, label: "Categories", hint: "Tap for the breakdown ↓" },
+    { id: "panel-combos", value: layeredPct + "%", label: "Sites running 2+ layered defenses", hint: "Tap for common pairings ↓", highlight: true },
   ];
-  const statRow = document.getElementById("stat-row");
-  stats.forEach(s => {
-    const el = document.createElement("div");
-    el.className = "stat-tile" + (s.highlight ? " highlight" : "");
-    el.innerHTML = `<div class="value tabular">${s.value}</div><div class="label">${s.label}</div>`;
-    statRow.appendChild(el);
+  const tilesEl = document.getElementById("tiles");
+  tiles.forEach(t => {
+    const b = document.createElement("button");
+    b.type = "button";
+    b.className = "tile" + (t.highlight ? " highlight" : "");
+    b.setAttribute("aria-expanded", "false");
+    b.setAttribute("aria-controls", t.id);
+    b.innerHTML = (t.delta ? `<span class="delta">${t.delta}</span>` : "") +
+      `<div class="value tabular">${t.value}</div><div class="label">${t.label}</div>` +
+      (t.hint ? `<div class="hint">${t.hint}</div>` : "");
+    b.addEventListener("click", () => {
+      const panel = document.getElementById(t.id);
+      const wasOpen = panel.classList.contains("open");
+      document.querySelectorAll("#tool-root .panel").forEach(p => p.classList.remove("open"));
+      tilesEl.querySelectorAll(".tile").forEach(x => { x.classList.remove("open"); x.setAttribute("aria-expanded", "false"); });
+      if (!wasOpen) { panel.classList.add("open"); b.classList.add("open"); b.setAttribute("aria-expanded", "true"); }
+    });
+    tilesEl.appendChild(b);
   });
+  document.getElementById("panel-sites").textContent =
+    `Sites with at least one vendor detected, as of the ${new Date(R.generatedAt).toLocaleDateString(undefined, { month: "long", day: "numeric" })} export.`;
+  document.getElementById("panel-vendors").innerHTML =
+    `<div class="pcols">${vendorsSorted.map(v => `<div class="pr"><span class="dot" style="background:${bucketColor(v.bucket)}"></span>${esc(v.shortName)}<em>${v.siteCount}</em></div>`).join("")}</div>` +
+    `<div class="pnote">Dot color = category · number = sites the vendor was detected on.</div>`;
+  document.getElementById("panel-cats").innerHTML = bucketsOrdered.map(b =>
+    `<div class="pr"><span class="dot" style="background:${bucketColor(b.name)}"></span><b>${esc(b.name)}</b><em>${b.vendorCount} vendors · ${b.siteCount} sites</em></div>`).join("");
+  document.getElementById("panel-combos").innerHTML = R.combos.rows.map(r =>
+    `<div class="pr">${r[0].map(id => esc(R.byId[id].shortName)).join(" + ")}<em>${R.combos.approx ? "~" : ""}${r[1]} sites</em></div>`).join("") +
+    (R.combos.approx ? `<div class="pnote">Approximate counts, estimated from the export signals.</div>` : "");
 
   // ---------- legend ----------
   // High-volume commodity categories (Cloudflare, reCAPTCHA, etc.) are real but they crowd out
@@ -345,11 +529,11 @@ window.ROLLUP_SENSITIVE = {"generatedAt": "2026-11-05T20:51:39.000Z", "minVersio
   const OFF_BY_DEFAULT = new Set(["Bot & Traffic Management", "Challenge / CAPTCHA"]);
   const legendRow = document.getElementById("legend-row");
   const activeBuckets = new Set(R.buckets.filter(b => !OFF_BY_DEFAULT.has(b.name)).map(b => b.name));
-  R.buckets.forEach(b => {
+  bucketsOrdered.forEach(b => {
     const chip = document.createElement("div");
     chip.className = "legend-chip" + (activeBuckets.has(b.name) ? "" : " off");
     chip.dataset.bucket = b.name;
-    chip.innerHTML = `<span class="dot" style="background:${bucketColor(b.name)}"></span>${b.name} <span class="n tabular">${b.siteCount}</span>`;
+    chip.innerHTML = `<span class="dot" style="background:${bucketColor(b.name)}"></span>${esc(b.name)} <span class="n tabular">${b.siteCount}</span>`;
     chip.addEventListener("click", () => {
       if (activeBuckets.has(b.name)) { activeBuckets.delete(b.name); chip.classList.add("off"); }
       else { activeBuckets.add(b.name); chip.classList.remove("off"); }
@@ -372,12 +556,10 @@ window.ROLLUP_SENSITIVE = {"generatedAt": "2026-11-05T20:51:39.000Z", "minVersio
     measureCtx.font = `${weight || 600} ${px}px -apple-system, "Segoe UI", sans-serif`;
     return measureCtx.measureText(str).width;
   }
-  // width of the horizontal chord of a circle radius r at vertical offset dy from center
   function chordWidth(r, dy, pad) {
     const inner = r * r - dy * dy;
     return inner > 0 ? 2 * Math.sqrt(inner) - (pad || 10) : 0;
   }
-  // greedily wrap `text` into at most maxLines, using widthForLine(lineIndex) as the budget per line
   function wrapLines(text, widthForLine, px, weight, maxLines) {
     const words = text.split(/\s+/);
     const lines = [];
@@ -397,7 +579,6 @@ window.ROLLUP_SENSITIVE = {"generatedAt": "2026-11-05T20:51:39.000Z", "minVersio
     }
     if (cur) lines.push(cur);
     if (wi < words.length && lines.length) {
-      // leftover words didn't fit — ellipsize the final line
       const li = lines.length - 1;
       const budget = widthForLine(li);
       let last = lines[li];
@@ -415,18 +596,18 @@ window.ROLLUP_SENSITIVE = {"generatedAt": "2026-11-05T20:51:39.000Z", "minVersio
   };
 
   function showTooltip(evt, v) {
-    tooltip.innerHTML = `<b>${v.name}</b>${v.bucket}<br><span class="muted">${v.siteCount} of ${R.totalSites} websites visited with a vendor detected</span>`;
+    tooltip.innerHTML = `<b>${esc(v.name)}</b>${esc(v.bucket)}<br><span class="muted">${v.siteCount} of ${R.totalSites} websites visited with a vendor detected</span>`;
     tooltip.style.left = evt.clientX + "px";
     tooltip.style.top = evt.clientY + "px";
     tooltip.style.opacity = "1";
   }
   function hideTooltip() { tooltip.style.opacity = "0"; }
+  document.addEventListener("click", (e) => { if (!(e.target && e.target.classList && e.target.classList.contains("vendor"))) hideTooltip(); });
 
   function renderPack() {
     svg.selectAll("*").remove();
-    const visibleBuckets = R.buckets.filter(b => activeBuckets.has(b.name));
+    const visibleBuckets = bucketsOrdered.filter(b => activeBuckets.has(b.name));
     if (!visibleBuckets.length) {
-      // nothing selected: d3.pack has no children to lay out and would emit NaN geometry
       svg.append("text")
         .attr("x", W / 2).attr("y", H / 2)
         .attr("text-anchor", "middle")
@@ -443,7 +624,6 @@ window.ROLLUP_SENSITIVE = {"generatedAt": "2026-11-05T20:51:39.000Z", "minVersio
       .sum(d => d.value || 0)
       .sort((a, b) => (b.value || 0) - (a.value || 0));
 
-    // generous top-level padding keeps whole clusters (and their labels) from crowding each other
     d3.pack().size([W, H]).padding(d => d.depth === 0 ? 52 : 4)(root);
 
     const g = svg.append("g");
@@ -464,20 +644,18 @@ window.ROLLUP_SENSITIVE = {"generatedAt": "2026-11-05T20:51:39.000Z", "minVersio
       .attr("class", "vendor")
       .attr("cx", d => d.x).attr("cy", d => d.y).attr("r", d => d.r)
       .attr("fill", d => bucketColor(d.data.bucket))
-      .attr("fill-opacity", d => 0.55 + 0.45 * (d.value / (bucketNodes.find(b=>b.data.name===d.data.bucket)?.children?.[0]?.value || d.value || 1)))
+      .attr("fill-opacity", d => 0.55 + 0.45 * (d.value / (bucketNodes.find(b => b.data.name === d.data.bucket)?.children?.[0]?.value || d.value || 1)))
       .attr("stroke", cssVar("--surface"))
       .attr("stroke-width", 2)
       .on("mousemove", (evt, d) => showTooltip(evt, d.data))
+      .on("click", (evt, d) => showTooltip(evt, d.data))
       .on("mouseleave", hideTooltip);
 
-    // Vendor labels: measure real text width against the circle's chord (not a crude char-count guess),
-    // shrink font, then wrap to 2 lines, before ever truncating — so full names show wherever the circle
-    // has room, and only the smallest bubbles fall back to the tooltip alone.
     node.each(function (d) {
       const r = d.r;
-      if (r <= 10) return; // too small for any legible label — tooltip covers it
+      if (r <= 10) return;
       const gSel = d3.select(this);
-      const name = d.data.name;
+      const name = d.data.shortName;
       const count = String(d.data.siteCount);
       const chordAt = (dy) => chordWidth(r, dy, 8);
       const allowTwoLines = r > 17;
@@ -503,8 +681,6 @@ window.ROLLUP_SENSITIVE = {"generatedAt": "2026-11-05T20:51:39.000Z", "minVersio
       const lineH = fontName + 2;
       const nameBlockH = lines.length * lineH;
       const fontCount = Math.max(7.5, Math.min(11, r / 3.6));
-      // only add the count line if the circle actually has vertical room for it alongside the (now
-      // possibly 2-line) name — otherwise a wrapped name would push the count outside the circle
       const showCount = r > 14 && (nameBlockH + fontCount + 6) <= r * 1.7;
       const totalH = nameBlockH + (showCount ? fontCount + 5 : 0);
       let curY = d.y - totalH / 2 + fontName * 0.85;
@@ -529,9 +705,6 @@ window.ROLLUP_SENSITIVE = {"generatedAt": "2026-11-05T20:51:39.000Z", "minVersio
     });
 
     // Bucket labels, drawn LAST as floating pill badges straddling each cluster's own boundary line.
-    // Vendor circles pack right up to that boundary, so a label placed inside the circle competes with
-    // them for space; a badge centered exactly on the boundary — with an opaque background — never does,
-    // because it's drawn on top of everything else and doesn't depend on the vendors' layout underneath.
     const badgeLayer = g.append("g").attr("class", "badge-layer");
     bucketNodes.forEach((d) => {
       const r = d.r;
@@ -573,6 +746,29 @@ window.ROLLUP_SENSITIVE = {"generatedAt": "2026-11-05T20:51:39.000Z", "minVersio
   }
   renderPack();
 
+  // ---------- category totals ----------
+  document.getElementById("bk").innerHTML = bucketsOrdered.map(b =>
+    `<div class="bc"><div class="n">${esc(b.name)}</div>` +
+    `<div class="c tabular" style="color:${bucketColor(b.name)}">${b.siteCount}</div>` +
+    `<div class="s">${b.vendorCount} vendors</div>` +
+    `<div class="bar"><i style="width:${(b.siteCount / R.totalSites * 100).toFixed(1)}%;background:${bucketColor(b.name)}"></i></div></div>`).join("");
+
+  // ---------- every vendor, by category ----------
+  document.getElementById("vlist-note").textContent =
+    `${R.vendors.length} vendors, each with the number of the ${R.totalSites} sites it was detected on. A category's site total can be lower than the sum of its vendors, because a site can run more than one vendor in the same category.`;
+  document.getElementById("vlist").innerHTML = bucketsOrdered.map(b => {
+    const vs = vendorsSorted.filter(v => v.bucket === b.name);
+    const m = vs[0].siteCount;
+    return `<div class="vcat"><div class="ch"><span class="dot" style="background:${bucketColor(b.name)}"></span>${esc(b.name)}<em>${b.vendorCount} vendors · ${b.siteCount} sites</em></div>` +
+      vs.map(v => `<div class="vr"><span title="${esc(v.name)}">${esc(v.shortName)}</span><span class="t"><i style="width:${Math.max(4, v.siteCount / m * 100)}%;background:${bucketColor(b.name)}"></i></span><span>${v.siteCount}</span></div>`).join("") +
+      `</div>`;
+  }).join("");
+
+  // ---------- sensitive pages with no recognized vendor ----------
+  document.getElementById("gap-box").innerHTML =
+    `<div class="big tabular">${noVendorN}</div><div><b>of ${noVendorOf} login, signup, checkout and password-reset pages</b>` +
+    `<p>No vendor signature was recognized on these. That can mean light protection, a vendor the detector doesn't know yet, or a shared hosted platform. It does not mean the pages are unprotected.</p></div>`;
+
   // ---------- ranked list ----------
   const rankList = document.getElementById("rank-list");
   const rankCaption = document.getElementById("rank-caption");
@@ -582,10 +778,10 @@ window.ROLLUP_SENSITIVE = {"generatedAt": "2026-11-05T20:51:39.000Z", "minVersio
     const visible = R.vendors.filter(v => activeBuckets.has(v.bucket)).sort((a, b) => b.siteCount - a.siteCount);
     const maxSite = d3.max(visible, v => v.siteCount) || 1;
     const shownTotal = d3.sum(visible, v => v.siteCount) || 1;
-    const top = visible[0];
+    const topV = visible[0];
     rankCaption.textContent = visible.length
       ? `Ranked by how many of the ${R.totalSites} websites visited with a vendor detected had each vendor detected at least once — ` +
-        `not weighted by visit count or confidence. ${top.name} is #1 (of the categories shown) because it ` +
+        `not weighted by visit count or confidence. ${topV.name} is #1 (of the categories shown) because it ` +
         `turned up on the most sites, not because those sites were visited more. The percentage is each vendor's share ` +
         `of all vendor detections in the categories shown, so it recalculates as you switch categories on or off.`
       : `No categories selected — toggle one on above to see its vendors ranked.`;
@@ -594,7 +790,7 @@ window.ROLLUP_SENSITIVE = {"generatedAt": "2026-11-05T20:51:39.000Z", "minVersio
       row.className = "rank-row";
       const pct = Math.max(4, Math.round((v.siteCount / maxSite) * 100));
       row.innerHTML = `
-        <div class="name" title="${v.name}">${v.name}</div>
+        <div class="name" title="${esc(v.name)}">${esc(v.name)}</div>
         <div class="bar-track"><div class="bar-fill" style="width:${pct}%; background:${bucketColor(v.bucket)}"></div></div>
         <div class="pct tabular">${fmtShare(v.siteCount / shownTotal)}</div>
         <div class="count tabular">${v.siteCount}</div>`;
@@ -616,7 +812,7 @@ window.ROLLUP_SENSITIVE = {"generatedAt": "2026-11-05T20:51:39.000Z", "minVersio
   const calloutEl = document.getElementById("callout");
   function renderFlowGrid() {
     flowGrid.innerHTML = "";
-    const visibleBuckets = R.buckets.filter(b => activeBuckets.has(b.name));
+    const visibleBuckets = bucketsOrdered.filter(b => activeBuckets.has(b.name));
     let topBucket = null, topPct = -1;
     visibleBuckets.forEach(b => {
       const d = byBucket[b.name] || { sensitive: 0, total: 1, types: [] };
@@ -626,20 +822,20 @@ window.ROLLUP_SENSITIVE = {"generatedAt": "2026-11-05T20:51:39.000Z", "minVersio
       const maxType = d3.max(types, t => t.count) || 1;
       const rows = types.map(t => `
         <div class="pt-row">
-          <div class="pt-label" title="${t.pageType}">${t.pageType}</div>
+          <div class="pt-label" title="${esc(t.pageType)}">${esc(t.pageType)}</div>
           <div class="pt-track"><div class="pt-fill" style="width:${Math.max(4, Math.round((t.count / maxType) * 100))}%; background:${bucketColor(b.name)}"></div></div>
           <div class="pt-count tabular">${t.count}</div>
         </div>`).join("");
       const card = document.createElement("div");
       card.className = "flow-card";
       card.innerHTML = `
-        <div class="fc-head"><span class="fc-name">${b.name}</span><span class="fc-pct tabular">${pct}% sensitive</span></div>
+        <div class="fc-head"><span class="fc-name">${esc(b.name)}</span><span class="fc-pct tabular">${pct}% sensitive</span></div>
         <div class="pt-card-rows">${rows}</div>`;
       flowGrid.appendChild(card);
     });
 
     calloutEl.innerHTML = topBucket
-      ? `<b>${topBucket}</b> concentrates on sensitive flows far more than any other category shown — ` +
+      ? `<b>${esc(topBucket)}</b> concentrates on sensitive flows far more than any other category shown — ` +
         `<b>${topPct}%</b> of its detections happen at login, signup, checkout, or password reset. ` +
         `That matches how these tools are actually deployed: broad bot management sits on every page, but ` +
         `device- and behavior-based risk scoring gets reserved for the moments that matter most.`
@@ -649,7 +845,7 @@ window.ROLLUP_SENSITIVE = {"generatedAt": "2026-11-05T20:51:39.000Z", "minVersio
 
   document.getElementById("foot-methodology").innerHTML =
     `Detection is client-side and confidence-weighted (cookie names, script paths, DOM markers). ` +
-    `Only pages where at least one vendor was recognized are counted above. Separately, ${R.sensitivePagesNoVendor} ` +
+    `Only pages where at least one vendor was recognized are counted above. Separately, ${noVendorN} of ${noVendorOf} ` +
     `login, signup, checkout, or password-reset pages showed no recognized vendor at all: a mix of lightly protected ` +
     `pages and vendors the detector doesn't know yet. ` +
     `This view never includes the hostnames or URLs of visited sites — only vendor and category aggregates.`;
@@ -686,7 +882,7 @@ window.ROLLUP_SENSITIVE = {"generatedAt": "2026-11-05T20:51:39.000Z", "minVersio
       row.className = "rank-row";
       const w = Math.max(4, Math.round((v.siteCount / sensMax) * 100));
       row.innerHTML = `
-        <div class="name" title="${v.name}">${v.name}</div>
+        <div class="name" title="${esc(v.name)}">${esc(v.name)}</div>
         <div class="bar-track"><div class="bar-fill" style="width:${w}%; background:${bucketColor(v.bucket)}"></div></div>
         <div class="pct tabular">${fmtShare(v.siteCount / sensTotal)}</div>
         <div class="count tabular">${v.siteCount}</div>`;

@@ -14,6 +14,46 @@
 <meta name="theme-color" content="#0e7c86">
 <link rel="icon" href="/gabe-headshot.png" type="image/png">
 <link rel="stylesheet" href="/assets/site.css?v=bda32b55">
+<style>
+/* Projects page additions: "On this page" nav, Stack Landscape preview card, vendor list */
+.proj{scroll-margin-top:130px}
+.proj{transition:opacity .25s ease,box-shadow .15s ease,transform .15s ease,border-color .15s ease,background-color .15s ease}
+.proj.pn-dim{opacity:.55}
+.proj.pn-dim:hover,.proj.pn-dim:focus-within{opacity:1}
+.proj.pn-focus{box-shadow:0 0 0 2px #0e7c86,0 14px 36px #0000001c}
+@media (prefers-reduced-motion:reduce){.proj{transition:none}}
+.pn-toc{position:sticky;top:62px;z-index:15;display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin:14px 0 22px;padding:10px 0;background:#fff;border-bottom:1px solid rgba(18,33,46,.12)}
+.pn-toc .pn-lab{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:#5f6d79;margin-right:4px}
+.pn-toc a{display:inline-flex;align-items:center;gap:8px;padding:7px 14px 7px 8px;border:1px solid rgba(18,33,46,.16);border-radius:999px;font-size:13px;color:#12212e;text-decoration:none;background:#fff}
+.pn-toc a i{font-style:normal;display:inline-grid;place-items:center;width:20px;height:20px;border-radius:50%;background:#e6efee;font-size:11px;font-weight:700;color:#0e7c86}
+.pn-toc a:hover{border-color:#0e7c86}
+.pn-toc a.on{background:#0e7c86;border-color:#0e7c86;color:#fff}
+.pn-toc a.on i{background:#fff}
+@media (max-width:760px){.pn-toc{top:56px;flex-wrap:nowrap;overflow-x:auto}.pn-toc a{white-space:nowrap;flex:none}.pn-toc .pn-lab{display:none}}
+.pn-lcard{display:flex;gap:18px;align-items:center;margin:14px 0 6px;padding:16px;border:1px solid rgba(18,33,46,.16);border-radius:14px;color:inherit;text-decoration:none;background:#fff}
+.pn-lcard:hover,.pn-lcard:focus-visible{border-color:#0e7c86;box-shadow:0 4px 18px rgba(14,124,134,.14)}
+.pn-lcard svg{flex:none;width:170px;height:auto;background:#f7f4ee;border-radius:10px}
+.pn-lcard .pn-body{flex:1;min-width:0}
+.pn-lcard b{display:block;font-size:16px;margin-bottom:4px}
+.pn-lcard p{margin:0 0 10px;font-size:13.5px;line-height:1.5;color:#4b5966}
+.pn-stats{display:flex;gap:18px;flex-wrap:wrap;margin-bottom:12px}
+.pn-stats div{font-size:11.5px;color:#5f6d79}
+.pn-stats strong{display:block;font-size:20px;color:#12212e;font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+.pn-lcard .btn{display:inline-block;cursor:pointer}
+@media (max-width:620px){.pn-lcard{flex-direction:column;align-items:stretch}.pn-lcard svg{width:100%;max-height:150px}}
+.pn-vh{margin:18px 0 6px;font-size:13px;font-weight:700}
+.pn-vnote{margin:0 0 10px;font-size:12.5px;color:#5f6d79;line-height:1.5}
+.pn-vc{border:1px solid rgba(18,33,46,.12);border-radius:10px;margin-bottom:8px;background:#fff}
+.pn-vc summary{display:flex;align-items:center;gap:10px;padding:10px 14px;cursor:pointer;list-style:none;font-size:13.5px}
+.pn-vc summary::-webkit-details-marker{display:none}
+.pn-vc summary em{margin-left:auto;font-style:normal;font-size:12px;color:#5f6d79}
+.pn-vc .chev{flex:none}
+.pn-dot{width:10px;height:10px;border-radius:50%;flex:none}
+.pn-vc ul{list-style:none;margin:0;padding:0 14px 10px;columns:2;column-gap:28px}
+.pn-vc li{display:flex;justify-content:space-between;gap:10px;padding:4px 0;border-top:1px solid #e6efee;font-size:13px;break-inside:avoid}
+.pn-vc li i{font-style:normal;font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;color:#5f6d79;font-size:12px}
+@media (max-width:620px){.pn-vc ul{columns:1}}
+</style>
 <script src="/assets/analytics.js?v=150a1"></script>
 </head>
 <body class="site" data-site="personal">
@@ -27,6 +67,8 @@
 
   <section class="sec"><div class="eyebrow">Projects</div><h2>A few things I've built, not just led.</h2><p style="margin-bottom:8px;max-width:700px">Three small, working systems: a fast decision engine applied to everyday judgment calls, a live look at the device-intelligence stack running on this site, and the same decision engine turned on job postings. All illustrative or self-reported. Open any "Try it" bar to use the demos.</p>
    <p class="protonote">Demos call Jev in real time. If a live run is unavailable or rate-limited, the results captured Sep 26, 2026 are shown instead, and the caption says so.</p>
+
+   <nav class="pn-toc" id="pnToc" aria-label="On this page"><span class="pn-lab">On this page</span><a href="#jev" data-target="jev" data-track="projects_toc"><i>1</i>Jev Decision Engine</a><a href="#device" data-target="device" data-track="projects_toc"><i>2</i>Visitor Device Intelligence</a><a href="#jobfit" data-target="jobfit" data-track="projects_toc"><i>3</i>Job Fit Analyzer</a></nav>
 
    <!-- PROJECT 01 -->
    <article class="proj" id="jev">
@@ -71,7 +113,21 @@
      <div class="trybody">
       <p>The live check shows what one signal stack sees about one visit to this one site. I also built a Chrome extension that runs the same kind of client-side detection passively on every site I browse, recognizing anti-bot, fraud-risk and device-intelligence vendors by their script domains, cookie names and global JS objects, then rolling the sightings up into a category-level view. No site names or URLs are ever stored in the rollup, only vendor and category aggregates.</p>
       <div class="grid g3 why"><div><b>Seen in the wild</b><p>Same signal categories as the panel above, across hundreds of real production sites instead of just one.</p></div><div><b>Concentrated at the gate</b><p>The harder tools concentrate at login, signup, checkout and password reset, where the stakes are highest.</p></div><div><b>Privacy by design</b><p>It detects vendors, not sites: no hostname or URL ever leaves the local rollup.</p></div></div>
-      <p style="margin-top:12px"><a class="btn ghost" href="/stack-landscape" data-track="stack_landscape_open">View the Stack Landscape →</a></p>
+
+      <a class="pn-lcard" href="/stack-landscape" data-track="stack_landscape_open" aria-label="Open the full Stack Landscape map">
+       <svg viewBox="0 0 170 110" role="img" aria-hidden="true"><circle cx="48" cy="58" r="30" fill="#eda100" fill-opacity=".8"/><circle cx="104" cy="40" r="22" fill="#1baf7a" fill-opacity=".8"/><circle cx="128" cy="82" r="16" fill="#e87ba4" fill-opacity=".85"/><circle cx="86" cy="86" r="12" fill="#eda100" fill-opacity=".6"/><circle cx="146" cy="34" r="9" fill="#1baf7a" fill-opacity=".6"/><circle cx="24" cy="24" r="8" fill="#e87ba4" fill-opacity=".6"/></svg>
+       <span class="pn-body">
+        <b>Stack Landscape: the full map</b>
+        <p>An interactive bubble chart of every vendor detected, grouped by category, with the most common layered pairings.</p>
+        <span class="pn-stats"><div><strong id="pnSites">731</strong>sites</div><div><strong id="pnVendorsN">42</strong>vendors</div><div><strong id="pnCatsN">5</strong>categories</div></span>
+        <span class="btn">Open the full map →</span>
+       </span>
+      </a>
+
+      <div class="pn-vh">Every vendor the extension recognizes, by name</div>
+      <p class="pn-vnote">Each count is the number of sites the vendor was detected on. Tap a category to open it.</p>
+      <div id="pnVendors"></div>
+
       <p class="protonote">Real data from my own browsing, not a synthetic demo.</p>
      </div>
     </details>
@@ -112,5 +168,7 @@
   <div class="credits">Photos: Unsplash (George Prentzas, Vitaly Gariev). Icons: Font Awesome Free, CC BY 4.0.</div></footer>
  <script src="/assets/site.js?v=26d5d745"></script>
 <script src="/assets/projects.js?v=e30496b5"></script>
+<script src="/assets/rollup.js?v=aba734fc"></script>
+<script src="/assets/projects-nav.js?v=86fa9501"></script>
 </body>
 </html>
